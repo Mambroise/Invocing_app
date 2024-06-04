@@ -1,0 +1,162 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/notification/show_notification.html
+# Author : Arnaud
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div>
+    <script>
+        // TODO
+    </script>
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-notif-received-tab" data-toggle="tab" href="#nav-notif-received" role="tab" aria-controls="nav-notif-received" aria-selected="true" onclick="activer_tab('nav-notif-received-tab')">
+                Notifications reçues
+            </a>
+            <a class="nav-item nav-link" id="nav-notif-sended-tab" data-toggle="tab" href="#nav-notif-sended" role="tab" aria-controls="nav-notif-sended" aria-selected="false" onclick="activer_tab('nav-notif-sended-tab')">
+                Notifications envoyées
+            </a>
+        </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-notif-received" role="tabpanel" aria-labelledby="nav-notif-sended-tab">
+            {%if notifications_received %}
+            
+                <div class="list-notification">
+                    <table class="table table-hover">
+                        <thead>
+                            <th>Statut </th>
+                            <th> Type</th>
+                            <th>Service concerné</th>
+                            <th>Date</th>
+                            <th> </th>
+                        </thead>
+                        {%for notification in  notifications_received %}
+                            <tr>
+                                <td>
+                                    TODO
+                                </td>
+                                <td>
+                                    {% if notification.type == 1%}
+                                        Invoice Request
+                                    {% elif notification.type == 2%}
+                                        Invoice Submitted
+                                    {% elif notification.type == 3%}
+                                        Invoice Verified
+                                    {% elif notification.type == 4%}
+                                        Invoice Rejected
+                                    {% elif notification.type == 5%}
+                                    {% else %}
+                                        Invoice Paid
+                                    {% endif %}      
+                                </td>
+
+                                <td>
+                                    {{notification.service_title}}
+                                </td>
+                                <td>
+                                    {{notification.send_at|date}}
+                                </td>
+                                <td>
+                                    <a  href="#" 
+                                        onclick="show_modal_notification_received({{notification.type}}, '{{notification.service_title}}', '{{notification.company_sender.name}}', '{{notification.company_sender.siret}}', '{{notification.send_at}}');"> 
+                                        Voir 
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {%else %}
+                <p>{% translate 'Pas de notifications disponible.' %}</p>
+            {% endif %}
+        </div>
+        <div class="tab-pane fade" id="nav-notif-sended" role="tabpanel" aria-labelledby="nav-notif-sended-tab">
+            
+            {%if notifications_sended %}
+            <div class="list-notification">
+                <table class="table table-hover">
+                    <thead>
+                        <th>Statut </th>
+                        <th> Type</th>
+                        <th>Service concerné</th>
+                        <th>Date</th>
+                        <th> </th>
+                    </thead>
+                    {%for notification in  notifications_sended %}
+                        <tr>
+                            <td>
+                                TODO
+                            </td>
+                            <td>
+                                {% if notification.type == 1%}
+                                    Invoice Request
+                                {% elif notification.type == 2%}
+                                    Invoice Submitted
+                                {% elif notification.type == 3%}
+                                    Invoice Verified
+                                {% elif notification.type == 4%}
+                                    Invoice Rejected
+                                {% elif notification.type == 5%}
+                                {% else %}
+                                    Invoice Paid
+                                {% endif %}      
+                            </td>
+
+                            <td>
+                                {{notification.service_title}}
+                            </td>
+                            <td>
+                                {{notification.send_at|date}}
+                            </td>
+                            <td>
+                                <a  href="#" 
+                                    onclick=""> 
+                                    Voir 
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        {% else %}
+            <p>{% translate 'Pas dee notifications disponible.' %}</p>   
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- ================================================= -->
+
+<!-- Modal pour afficher les detail de notifications reçues -->
+<div id="modal_nofification_received" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2  class="header">Notification réçue</h2>
+        </div>
+        <div class="modal-body">
+            <table id="table_notif_received_infos" class="table table-hover" >
+            </table>
+        </div>
+        <div class="modal-footer">
+            Factura Sieli
+        </div>
+    </div>
+  
+</div>
+  
+<!-- ================================================= -->
+{% endblock %}

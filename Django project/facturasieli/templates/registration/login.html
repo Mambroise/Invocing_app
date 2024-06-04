@@ -1,0 +1,27 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/registration/login.html
+# Author : Brice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="mt-4">
+    <h2>{% translate 'Please enter your identifiers:' %}</h2>
+    <form method="post" action="{% url 'facturasieli:log_in' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit" value="🔑 {% translate 'Connect' %}" />
+        <input type="hidden" name="next" value="{% url 'facturasieli:index' %}" />
+    </form>
+    <br />
+    <br />
+    <h2>{% translate 'You are not registered yet?' %}</h2>
+    <a href="{% url 'facturasieli:register' %}"><button>👤 {% translate 'Create my account' %}</button></a>
+</div>
+{% endblock %}

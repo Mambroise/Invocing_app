@@ -1,0 +1,38 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : templates/verification_list.html
+# Author : Zineb
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Invoices Pending Verification</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Invoice Number</th>
+            <th>Service Title</th>
+            <th>Amount</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+        <tr>
+            <td>{{ invoice.invoice_number }}</td>
+            <td>{{ invoice.service.title }}</td>
+            <td>{{ invoice.amount_excluding_tax }}</td>
+            <td>{{ invoice.issue_date }}</td>
+            <td>{{ invoice.due_date }}</td>
+            <td>
+                <a href="{% url 'facturasieli:verify_invoice' invoice.id %}" class="btn btn-primary">Verify</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

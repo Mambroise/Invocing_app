@@ -1,0 +1,16 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/registration/transitions/goodbye.html
+# Author : Brice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <h2>{% translate 'You are now logged out!' %}</h2>
+    <a href="{% url 'facturasieli:custom_log_in' %}"><button>🔐 {% translate 'Go back to login page' %}</button></a>
+{% endblock %}

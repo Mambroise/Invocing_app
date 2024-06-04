@@ -1,0 +1,33 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/facturasieli/public_profile.html
+# Author : Brice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="mt-4">
+    <h3>{% translate 'Public profile of user' %} {{ profile.user.username }}{% translate ':' %}</h3>
+    <img src="{{ profile.avatar.url }}" width="100px" height="100px" />
+    {% if request.user.id == profile.user.id %}
+        <a href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
+    {% endif %}
+    <table>
+        <tr>
+            <td>
+                <h3>{% translate 'Invoices:' %}</h3>
+                {% if invoices %}
+                    <p>TODO</p>
+                {% else %}
+                    <p>{{ profile.user.username }} {% translate 'has no invoice defined yet.' %}</p>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

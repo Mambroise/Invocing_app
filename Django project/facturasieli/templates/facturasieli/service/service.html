@@ -1,0 +1,64 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/facturasieli/service/service.html
+# Author : Morice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %} 
+    <!-- Affichage des messages -->
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="mt-4">   
+    <h3 class="text-center mt-3">{% translate 'Your services' %}</h3>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="">
+            <a href="{% url 'facturasieli:service_form' %}" class="btn btn-warning mb-4">{% translate 'Create' %}</a>
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">{% translate 'Title' %}</th>
+                    <th scope="col">{% translate 'Service creation date' %}</th>
+                    <th scope="col">{% translate 'Company' %}</th>
+                    <th scope="col">{% translate 'Status' %}</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% if services %}
+                        {% for service in services %}
+                            <tr>
+                                <th scope="row">{{ service.title }}</th>
+                                <td>{{ service.issue_date }}</td>
+                                <td>{{ service.company.name }}</td>
+                                <td>{{ service.status }}</td>
+                                <td><a href="{% url 'facturasieli:show_service' service.id %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                    </svg>
+                                </a></td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+
+                    {% endif %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>  
+{% endblock %}

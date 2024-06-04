@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-23 11:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: config/settings.py:117 facturasieli/templates/base.html:45
+msgid "English"
+msgstr "Anglais"
+
+#: config/settings.py:118 facturasieli/templates/base.html:43
+msgid "French"
+msgstr "Français"
+
+#: facturasieli/forms/ProfileForm.py:21
+msgid ""
+"Your e-mail address is necessary to enable the two-factor authentication!"
+msgstr ""
+"Votre adresse e-mail est nécessaire pour activer l'authentification à deux "
+"facteurs !"
+
+#: facturasieli/templates/base.html:15
+msgid "Welcome to FacturaSieli"
+msgstr "Bienvenue sur FacturaSieli"
+
+#: facturasieli/templates/base.html:15
+msgid "!"
+msgstr " !"
+
+#: facturasieli/templates/base.html:29
+msgid "Home"
+msgstr "Accueil"
+
+#: facturasieli/templates/base.html:32
+msgid "My public profile"
+msgstr "Mon profil public"
+
+#: facturasieli/templates/base.html:34
+msgid "Disconnection"
+msgstr "Déconnexion"
+
+#: facturasieli/templates/base.html:37
+msgid "Connection"
+msgstr "Connexion"
+
+#: facturasieli/templates/facturasieli/edit_profile.html:7
+msgid "Edit my profile:"
+msgstr "Modifier mon profil :"
+
+#: facturasieli/templates/facturasieli/edit_profile.html:12
+msgid "Save"
+msgstr "Enregistrer"
+
+#: facturasieli/templates/facturasieli/index.html:11
+msgid "My invoices:"
+msgstr "Mes factures :"
+
+#: facturasieli/templates/facturasieli/index.html:15
+msgid "You have no invoice defined yet."
+msgstr "Vous n'avez pas encore de facture."
+
+#: facturasieli/templates/facturasieli/public_profile.html:7
+msgid "Public profile of user"
+msgstr "Profil public de l'utilisateur"
+
+#: facturasieli/templates/facturasieli/public_profile.html:7
+msgid ":"
+msgstr " :"
+
+#: facturasieli/templates/facturasieli/public_profile.html:10
+msgid "Edit my profile"
+msgstr "Modifier mon profil"
+
+#: facturasieli/templates/facturasieli/public_profile.html:15
+msgid "Invoices:"
+msgstr "Factures :"
+
+#: facturasieli/templates/facturasieli/public_profile.html:19
+msgid "has no invoice defined yet."
+msgstr "n'a pas encore de facture."
+
+#: facturasieli/templates/registration/custom_login.html:7
+#: facturasieli/templates/registration/login.html:7
+msgid "Please enter your identifiers:"
+msgstr "Veuillez entrer vos identifiants :"
+
+#: facturasieli/templates/registration/custom_login.html:11
+#: facturasieli/templates/registration/login.html:11
+#: facturasieli/templates/registration/otp_validation.html:11
+msgid "Connect"
+msgstr "Me connecter"
+
+#: facturasieli/templates/registration/custom_login.html:15
+#: facturasieli/templates/registration/login.html:16
+msgid "You are not registered yet?"
+msgstr "Vous n'êtes pas encore inscrit(e) ?"
+
+#: facturasieli/templates/registration/custom_login.html:16
+#: facturasieli/templates/registration/login.html:17
+msgid "Create my account"
+msgstr "Créer mon compte"
+
+#: facturasieli/templates/registration/logout.html:7
+msgid "Are you sure you want to log out?"
+msgstr "Êtes-vous sûr(e) de vouloir vous déconnecter ?"
+
+#: facturasieli/templates/registration/logout.html:10
+msgid "Disconnect"
+msgstr "Me déconnecter"
+
+#: facturasieli/templates/registration/otp_validation.html:7
+msgid "Please enter your one time password:"
+msgstr "Veuillez entrer votre code OTP :"
+
+#: facturasieli/templates/registration/register.html:7
+msgid "Please choose your identifiers:"
+msgstr "Veuillez choisir vos identifiants :"
+
+#: facturasieli/templates/registration/register.html:11
+msgid "Register"
+msgstr "M'enregistrer"
+
+#: facturasieli/templates/registration/transitions/goodbye.html:7
+msgid "You are now logged out!"
+msgstr "Vous êtes à présent déconnecté(e) !"
+
+#: facturasieli/templates/registration/transitions/goodbye.html:8
+#: facturasieli/templates/registration/transitions/welcome.html:8
+msgid "Go back to login page"
+msgstr "Retourner à la page de connexion"
+
+#: facturasieli/templates/registration/transitions/welcome.html:7
+msgid "Your account has been created!"
+msgstr "Votre compte a bien été créé !"
+
+#: facturasieli/views.py:58
+msgid "Authentication"
+msgstr "Authentification"
+
+#: facturasieli/views.py:59
+msgid "Your one time password: - "
+msgstr "Votre mot de passe OTP - "

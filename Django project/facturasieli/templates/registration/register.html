@@ -1,0 +1,22 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/registration/register.html
+# Author : Brice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="mt-4">
+    <h2>{% translate 'Please choose your identifiers:' %}</h2>
+    <form method="post" action="{% url 'facturasieli:register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit" value="🔐 {% translate 'Register' %}" />
+    </form>
+</div>
+{% endblock %}
