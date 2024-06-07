@@ -5,8 +5,9 @@
 # Author : Team
 # ---------------------------------------------------------------------------
 
+from typing import Any
 from django.utils import timezone
-from facturasieli.models import Profile
+from facturasieli.models import Profile,Notification
 
 class ProfileMiddleware:
 
@@ -24,6 +25,24 @@ class ProfileMiddleware:
                 request.profile = None
         else:
             request.profile = None
+
+        response = self.get_response(request)
+        return response
+
+
+class notificationMiddleware:
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+
+        if request.user.is_authenticated:
+            try:
+                notifications_to_read = Notification.objects.filter(company_receiver=request.profile.company, is_read=False).count()
+                request.notifications_to_read = notifications_to_read
+            except Notification.DoesNotExist:
+                request.notifications_to_read=None
 
         response = self.get_response(request)
         return response

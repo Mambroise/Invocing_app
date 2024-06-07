@@ -32,7 +32,7 @@
             {%if notifications_received %}
             
                 <div class="list-notification">
-                    <table class="table table-hover">
+                    <table class="table">
                         <thead>
                             <th>Statut </th>
                             <th> Type</th>
@@ -41,9 +41,14 @@
                             <th> </th>
                         </thead>
                         {%for notification in  notifications_received %}
-                            <tr>
+
+                            <tr class="{% if not notification.is_read %}table-warning{% endif %}">
                                 <td>
-                                    TODO
+                                    {% if notification.is_read %}
+                                    Read
+                                    {% else %}
+                                    To read
+                                    {% endif %}
                                 </td>
                                 <td>
                                     {% if notification.type == 1%}
@@ -68,7 +73,7 @@
                                 </td>
                                 <td>
                                     <a  href="#" 
-                                        onclick="show_modal_notification_received({{notification.type}}, '{{notification.service_title}}', '{{notification.company_sender.name}}', '{{notification.company_sender.siret}}', '{{notification.send_at}}');"> 
+                                        onclick="show_modal_notification_received('{{notification.type}}', '{{notification.service_title}}', '{{notification.company_sender.name}}', '{{notification.company_sender.siret}}', '{{notification.send_at}}');"> 
                                         Voir 
                                     </a>
                                 </td>
@@ -95,7 +100,11 @@
                     {%for notification in  notifications_sended %}
                         <tr>
                             <td>
-                                TODO
+                                {% if notification.is_read %}
+                                Read
+                                {% else %}
+                                To read
+                                {% endif %}
                             </td>
                             <td>
                                 {% if notification.type == 1%}
@@ -152,7 +161,7 @@
             </table>
         </div>
         <div class="modal-footer">
-            Factura Sieli
+            FacturaSieli
         </div>
     </div>
   

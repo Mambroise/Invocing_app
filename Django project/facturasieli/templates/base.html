@@ -49,7 +49,9 @@
               <li class="nav-item">
                 <a class="nav-link text-body" href="{% url 'facturasieli:show_notification' %}" > 
                   {% translate 'Notifications' %}
-                  <span class="badge rounded-pill badge-notification bg-danger">9+</span>
+                  {% if request.notifications_to_read > 0 %}
+                  <span class="badge rounded-pill badge-notification bg-danger">{{ request.notifications_to_read }}</span>
+                  {% endif %}
                 </a>
               </li>
                 {% endif %}
