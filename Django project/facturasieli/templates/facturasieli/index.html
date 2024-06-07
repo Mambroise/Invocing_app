@@ -11,6 +11,8 @@
 {% load i18n %}
 
 {% block content %}
+<h3 class="text-center mt-4">{% translate 'Welcome to Facturasieli' %} 
+    {{ request.profile.first_name|slice:":1"|upper }}{{ request.profile.first_name|slice:"1:"|lower }}!</h3>
 <div class="mt-4">
     <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
     <table>

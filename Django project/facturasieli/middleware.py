@@ -6,9 +6,7 @@
 # ---------------------------------------------------------------------------
 
 from django.utils import timezone
-
 from facturasieli.models import Profile
-
 
 class ProfileMiddleware:
 
@@ -17,9 +15,13 @@ class ProfileMiddleware:
 
     def __call__(self, request):
         if request.user.is_authenticated:
-            profile = Profile.objects.get(email=request.user)
-            profile.last_request_timestamp = timezone.now()
-            request.profile = profile
+            try:
+                profile = Profile.objects.get(email=request.user.email)
+                profile.last_request_timestamp = timezone.now()
+                profile.save()
+                request.profile = profile
+            except Profile.DoesNotExist:
+                request.profile = None
         else:
             request.profile = None
 

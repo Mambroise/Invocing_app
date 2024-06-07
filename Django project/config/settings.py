@@ -172,3 +172,13 @@ MESSAGE_TAGS = {
     message_constants.WARNING: 'warning',
     message_constants.ERROR: 'danger', 
 }
+
+# pour utliser un autre model pour l'authentification django: ici user est délessé pour profile
+AUTH_USER_MODEL = 'facturasieli.Profile'
+
+# settings.py
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+    # Add other backends if you use them
+]
+

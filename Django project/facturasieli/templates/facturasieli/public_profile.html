@@ -13,7 +13,7 @@
 {% block content %}
 <div class="mt-4">
     <h3>{% translate 'Public profile of user' %} {{ profile.user.username }}{% translate ':' %}</h3>
-    <img src="{{ profile.avatar.url }}" width="100px" height="100px" />
+    <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
     {% if request.user.id == profile.user.id %}
         <a href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
     {% endif %}
