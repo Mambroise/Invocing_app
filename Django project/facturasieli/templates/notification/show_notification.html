@@ -19,10 +19,10 @@
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-notif-received-tab" data-toggle="tab" href="#nav-notif-received" role="tab" aria-controls="nav-notif-received" aria-selected="true" onclick="activer_tab('nav-notif-received-tab')">
-                Notifications reçues
+                {% translate 'Incoming Notifications' %}
             </a>
             <a class="nav-item nav-link" id="nav-notif-sended-tab" data-toggle="tab" href="#nav-notif-sended" role="tab" aria-controls="nav-notif-sended" aria-selected="false" onclick="activer_tab('nav-notif-sended-tab')">
-                Notifications envoyées
+                {% translate 'Outgoing Notifications' %}
             </a>
         </div>
     </nav>
@@ -34,10 +34,10 @@
                 <div class="list-notification">
                     <table class="table">
                         <thead>
-                            <th>Statut </th>
-                            <th> Type</th>
-                            <th>Service concerné</th>
-                            <th>Date</th>
+                            <th>{% translate 'Status' %} </th>
+                            <th> {% translate 'Type' %}</th>
+                            <th>{% translate 'Service' %} </th>
+                            <th>{% translate 'Date' %}</th>
                             <th> </th>
                         </thead>
                         {%for notification in  notifications_received %}
@@ -45,23 +45,23 @@
                             <tr class="{% if not notification.is_read %}table-warning{% endif %}">
                                 <td>
                                     {% if notification.is_read %}
-                                    Read
+                                    {% translate 'Read' %}
                                     {% else %}
-                                    To read
+                                    {% translate 'To Read' %}
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if notification.type == 1%}
-                                        Invoice Request
+                                    {% translate 'Invoice Request' %}
                                     {% elif notification.type == 2%}
-                                        Invoice Submitted
+                                    {% translate 'Invoice Submitted' %}
                                     {% elif notification.type == 3%}
-                                        Invoice Verified
+                                    {% translate 'Invoice Verified' %}
                                     {% elif notification.type == 4%}
-                                        Invoice Rejected
+                                    {% translate 'Invoice Rejected' %}
                                     {% elif notification.type == 5%}
                                     {% else %}
-                                        Invoice Paid
+                                    {% translate 'Invoice Paid' %}
                                     {% endif %}      
                                 </td>
 
@@ -74,7 +74,7 @@
                                 <td>
                                     <a  href="#" 
                                         onclick="show_modal_notification_received('{{notification.type}}', '{{notification.service_title}}', '{{notification.company_sender.name}}', '{{notification.company_sender.siret}}', '{{notification.send_at}}');"> 
-                                        Voir 
+                                        {% translate 'service' %} 
                                     </a>
                                 </td>
                             </tr>
@@ -91,34 +91,34 @@
             <div class="list-notification">
                 <table class="table table-hover">
                     <thead>
-                        <th>Statut </th>
-                        <th> Type</th>
-                        <th>Service concerné</th>
-                        <th>Date</th>
+                        <th>{% translate 'Status' %} </th>
+                        <th> {% translate 'Type' %}</th>
+                        <th>{% translate 'Service' %} </th>
+                        <th>{% translate 'Date' %}</th>
                         <th> </th>
                     </thead>
                     {%for notification in  notifications_sended %}
                         <tr>
                             <td>
                                 {% if notification.is_read %}
-                                Read
+                                {% translate 'Read' %}
                                 {% else %}
-                                To read
+                                {% translate 'To Read' %}
                                 {% endif %}
                             </td>
                             <td>
-                                {% if notification.type == 1%}
-                                    Invoice Request
-                                {% elif notification.type == 2%}
-                                    Invoice Submitted
-                                {% elif notification.type == 3%}
-                                    Invoice Verified
-                                {% elif notification.type == 4%}
-                                    Invoice Rejected
-                                {% elif notification.type == 5%}
-                                {% else %}
-                                    Invoice Paid
-                                {% endif %}      
+                                    {% if notification.type == 1%}
+                                    {% translate 'Invoice Request' %}
+                                    {% elif notification.type == 2%}
+                                    {% translate 'Invoice Submitted' %}
+                                    {% elif notification.type == 3%}
+                                    {% translate 'Invoice Verified' %}
+                                    {% elif notification.type == 4%}
+                                    {% translate 'Invoice Rejected' %}
+                                    {% elif notification.type == 5%}
+                                    {% else %}
+                                    {% translate 'Invoice Paid' %}
+                                    {% endif %}        
                             </td>
 
                             <td>
@@ -130,7 +130,7 @@
                             <td>
                                 <a  href="#" 
                                     onclick=""> 
-                                    Voir 
+                                    {% translate 'see' %} 
                                 </a>
                             </td>
                         </tr>
@@ -139,7 +139,7 @@
                 </table>
             </div>
         {% else %}
-            <p>{% translate 'Pas dee notifications disponible.' %}</p>   
+            <p>{% translate 'Pas de notification disponible.' %}</p>   
         {% endif %}
         </div>
     </div>
@@ -154,7 +154,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h2  class="header">Notification réçue</h2>
+            <h2  class="header">{% translate 'Incoming Notification' %}</h2>
         </div>
         <div class="modal-body">
             <table id="table_notif_received_infos" class="table table-hover" >
