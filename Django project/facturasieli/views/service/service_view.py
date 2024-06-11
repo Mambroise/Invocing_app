@@ -27,5 +27,9 @@ def display_service(request, company_id):
 def delete_service(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
     service.delete()
-    services = get_list_or_404(Service, company_client=request.profile.company)
+    try:
+        services = get_list_or_404(Service, company_client=request.profile.company) 
+    except:
+        return HttpResponseRedirect(reverse('facturasieli:service_form'))
+    
     return render(request, 'facturasieli/service/service.html', {'services': services})

@@ -12,9 +12,7 @@
 
 {% block content %}
 <div>
-    <script>
-        // TODO
-    </script>
+    
 
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -72,11 +70,10 @@
                                     {{notification.send_at|date}}
                                 </td>
                                 <td>
-                                    <a  href="#" 
-                                        onclick="show_modal_notification_received('{{notification.type}}', '{{notification.service_title}}', '{{notification.company_sender.name}}', '{{notification.company_sender.siret}}', '{{notification.send_at}}');"> 
-                                        {% translate 'service' %} 
+                                    <a  href="#" onclick="show_modal_notification_received({{notification.id}}, {{notification.type}}, `{{notification.service_title}}`, `{{notification.company_receiver.name}}`, '{{notification.company_receiver.siret}}', '{{notification.send_at}}');"> 
+                                        {% translate 'see' %} 
                                     </a>
-                                </td>
+                                </td>                                
                             </tr>
                         {% endfor %}
                     </table>
@@ -107,18 +104,18 @@
                                 {% endif %}
                             </td>
                             <td>
-                                    {% if notification.type == 1%}
-                                    {% translate 'Invoice Request' %}
-                                    {% elif notification.type == 2%}
-                                    {% translate 'Invoice Submitted' %}
-                                    {% elif notification.type == 3%}
-                                    {% translate 'Invoice Verified' %}
-                                    {% elif notification.type == 4%}
-                                    {% translate 'Invoice Rejected' %}
-                                    {% elif notification.type == 5%}
-                                    {% else %}
-                                    {% translate 'Invoice Paid' %}
-                                    {% endif %}        
+                                {% if notification.type == 1%}
+                                {% translate 'Invoice Request' %}
+                                {% elif notification.type == 2%}
+                                {% translate 'Invoice Submitted' %}
+                                {% elif notification.type == 3%}
+                                {% translate 'Invoice Verified' %}
+                                {% elif notification.type == 4%}
+                                {% translate 'Invoice Rejected' %}
+                                {% elif notification.type == 5%}
+                                {% else %}
+                                {% translate 'Invoice Paid' %}
+                                {% endif %}        
                             </td>
 
                             <td>
@@ -129,7 +126,7 @@
                             </td>
                             <td>
                                 <a  href="#" 
-                                    onclick=""> 
+                                onclick=""> 
                                     {% translate 'see' %} 
                                 </a>
                             </td>
@@ -153,7 +150,7 @@
     <!-- Modal content -->
     <div class="modal-content">
         <div class="modal-header">
-            <span class="close">&times;</span>
+            <a href="#" class="is_read" data-url="{% url 'facturasieli:change_notif_status' 0 %}" ><span class="close">&times;</span></a>
             <h2  class="header">{% translate 'Incoming Notification' %}</h2>
         </div>
         <div class="modal-body">
@@ -168,4 +165,6 @@
 </div>
   
 <!-- ================================================= -->
+<script>
+</script>
 {% endblock %}

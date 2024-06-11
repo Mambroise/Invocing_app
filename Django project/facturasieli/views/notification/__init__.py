@@ -5,4 +5,4 @@
 # Author : Arnaud
 # ---------------------------------------------------------------------------
 
-from .show_notification import show_notification
+from .show_notification import show_notification, status_notification

@@ -22,3 +22,7 @@ class ServiceForm(forms.ModelForm):
             'intervention_end_date': _('End of the service:'),
             'company_provider': _('Company:'),
         }
+        widgets = {
+            "intervention_start_date" : forms.DateInput(attrs={"type" : "date"}),
+            "intervention_end_date" : forms.DateInput(attrs={"type" : "date"})
+        }
