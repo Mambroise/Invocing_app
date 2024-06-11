@@ -18,3 +18,6 @@ class InvoiceForm(forms.ModelForm):
             'name_client', 'amount_excluding_tax', 'tax',
             'status'
         ]
+        widgets = {
+            "due_date" : forms.DateInput(attrs={"type" : "date"})
+        }
