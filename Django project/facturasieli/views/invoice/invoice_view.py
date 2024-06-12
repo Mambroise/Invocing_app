@@ -18,11 +18,16 @@ logger = logging.getLogger(__name__)
 
 def invoice_view(request, service_id):
     service = get_object_or_404(Service, id=service_id)
+
     if request.method == 'POST':
         form = InvoiceForm(request.POST)
         if form.is_valid():
             invoice = form.save(commit=False)
             invoice.service = service
+            invoice.client_address = service.company_client.address
+            invoice.provider_address = service.company_provider.address
+            invoice.name_provider = service.company_provider.name
+            invoice.name_client = service.company_client.name
             invoice.save()
 
             # service update with the new invoice id.
