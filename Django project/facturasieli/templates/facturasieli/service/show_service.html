@@ -53,7 +53,7 @@
                     </a>
                     <a href="{% url 'facturasieli:delete_service' service.id %}" 
                     class="btn btn-danger" 
-                    onclick="return confirm('{% translate "Êtes-vous sûr de vouloir effacer" %} ?')">{% translate 'Delete' %}
+                    onclick="return confirm(`{% translate 'Do you really want to delete the service' %} ?`)">{% translate 'Delete' %}
                     </a>
                 </div>
             </div>
@@ -96,10 +96,16 @@
                     </div>
                 </div>
                 {% else %}
-                <div>
-                    <p>No invoice registered yet.</p>
-                    <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'Create' %}</a>
-                </div>
+                <!-- checking wether the user is the provider(if not, the user cannot create invoice) -->
+                  {% if service.company_provider.id == request.profile.company.id %}
+                  <div>
+                      <p>No invoice registered yet.</p>
+                      <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'Create' %}</a>
+                  </div>
+                  {% else %}
+                      <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
+                  {% endif %}
+                
                 {% endif %}
             </div>
         </div>
