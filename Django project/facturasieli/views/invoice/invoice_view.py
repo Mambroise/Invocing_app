@@ -7,7 +7,7 @@
 
 
 import logging
-from django.shortcuts import render, redirect, get_object_or_404,get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
 from facturasieli.forms.InvoiceForm import InvoiceForm
@@ -24,10 +24,10 @@ def invoice_view(request, service_id):
         if form.is_valid():
             invoice = form.save(commit=False)
             invoice.service = service
-            invoice.client_address = service.company_client.address
-            invoice.provider_address = service.company_provider.address
             invoice.name_provider = service.company_provider.name
             invoice.name_client = service.company_client.name
+            invoice.client_address = service.company_client.address
+            invoice.provider_address = service.company_provider.address
             invoice.save()
 
             # service update with the new invoice id.
@@ -53,7 +53,5 @@ def invoice_view(request, service_id):
     else:
         form = InvoiceForm()
     
-    return render(request, 'facturasieli/invoice_form.html', {'form': form, 'service': service})
+    return render(request, 'facturasieli/invoice/invoice_form.html', {'form': form, 'service': service})
 
-#def invoice_success(request):
-#    return render(request, 'facturasieli/invoice_success.html')
