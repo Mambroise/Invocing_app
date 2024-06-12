@@ -15,8 +15,7 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = [
             'invoice_number', 'issue_date', 'due_date', 'kind_of_payment',
-            'name_client', 'amount_excluding_tax', 'tax',
-            'status'
+            'name_client', 'amount_excluding_tax', 'tax'
         ]
         widgets = {
             "due_date" : forms.DateInput(attrs={"type" : "date"})

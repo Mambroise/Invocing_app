@@ -86,7 +86,17 @@
                         <i class="text-primary"><u>{{ service.invoice.kind_of_payment }}</u></i> 
                       </li>
                       <li class="list-group-item">
-                        <strong class="text-danger">{{ service.invoice.status }}</strong>  
+                        <strong class="text-danger">
+                          {% if service.invoice.status == '1' %}
+                          {% translate 'Pending' %}
+                          {% elif service.invoice.status == '2' %}
+                          {% translate 'Verified' %}
+                          {% elif service.invoice.status == '3' %}
+                          {% translate 'Rejected' %}
+                          {% else %}
+                          {% translate 'Paid' %}
+                          {% endif %} 
+                          </strong>  
                       </li>
                     </ul>
                     <div class="card-body">
