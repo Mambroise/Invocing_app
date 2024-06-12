@@ -37,5 +37,5 @@ class ServiceForm(forms.ModelForm):
             raise ValidationError({
                 'intervention_end_date': _('End of the service cannot be before the start of the service.')
             })
-        print("coucoucoucoucoucoucoucoucoucoucou")
+        
         return cleaned_data

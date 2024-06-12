@@ -1,8 +1,8 @@
 <!---------------------------------------------------------------------------
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
-# File   : facturasieli/templates/facturasieli/invoice_form.html
-# Author : Margaux
+# File   : facturasieli/templates/registration/register2.html
+# Author : Morice
 # -------------------------------------------------------------------------->
 
 {% extends 'base.html' %}
@@ -10,13 +10,14 @@
 {% load static %}
 {% load i18n %}
 
-{% block content %} 
+{% block content %}
 <div class="mt-4">
-    <h3>Invoice Form</h3>
-    <form method="post">
+    <h2>{% translate 'Please choose your identifiers:' %}</h2>
+    <form method="post" action="{% url 'facturasieli:register2' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
+        {{ company_form.as_p }}
+        {{ address_form.as_p }}
+        <input type="submit" name="submit" value="🔐 {% translate 'Register' %}" />
     </form>
 </div>
 {% endblock %}

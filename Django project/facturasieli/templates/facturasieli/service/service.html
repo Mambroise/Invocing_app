@@ -55,7 +55,7 @@
                                     <tr>
                                         <th scope="row">{{ service.title }}</th>
                                         <td>{{ service.issue_date }}</td>
-                                        <td>{{ service.company.name }}</td>
+                                        <td>{{ service.company_provider.name }}</td>
                                         <td>{{ service.status }}</td>
                                         <td><a href="{% url 'facturasieli:show_service' service.id %}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -95,7 +95,7 @@
                                     <tr>
                                         <th scope="row">{{ service.title }}</th>
                                         <td>{{ service.issue_date }}</td>
-                                        <td>{{ service.company.name }}</td>
+                                        <td>{{ service.company_client.name }}</td>
                                         <td>{{ service.status }}</td>
                                         <td><a href="{% url 'facturasieli:show_service' service.id %}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">

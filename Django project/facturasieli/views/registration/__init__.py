@@ -13,3 +13,4 @@ from .log_out_view import log_out
 from .otp_validation_view import otp_validation
 from .register_view import register
 from .send_otp_mail_view import send_otp_mail
+from .company_address_view import register_company_address
