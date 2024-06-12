@@ -17,11 +17,12 @@ def display_service(request, company_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     try:
-        services = get_list_or_404(Service, company_client=company_id)
+        client_services = get_list_or_404(Service, company_client=company_id)
+        provider_services = get_list_or_404(Service, company_provider=company_id)
     except:
         return HttpResponseRedirect(reverse('facturasieli:service_form'))
-
-    return render(request, 'facturasieli/service/service.html', {'services': services})
+    context = {'client_services': client_services,'provider_services' : provider_services }
+    return render(request, 'facturasieli/service/service.html', context)
 
 # delete selected service
 def delete_service(request, service_id):
