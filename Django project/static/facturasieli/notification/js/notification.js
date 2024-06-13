@@ -157,8 +157,13 @@ function createElementTREmeteur(companyName, companySiret){
     return trEmetteur;
 }
 
-function show_modal_notification_received(notificationType, serviceTitle, companyName, companySiret, send_at) {
+function show_modal_notification_received(notificationId,notificationType, serviceTitle, companyName, companySiret, send_at) {
     var dateReceptionNotification = extract_date(send_at);
+
+    var a_close_button = document.getElementsByClassName("is_read")[0];
+    var baseUrl = a_close_button.getAttribute("data-url");
+    var urlWithNotificationId = baseUrl.replace("0", notificationId);
+    a_close_button.setAttribute("href", urlWithNotificationId);
 
     var spanType = document.createElement("span");
     var spanService = document.createElement("span");
@@ -202,7 +207,6 @@ function show_modal_notification_received(notificationType, serviceTitle, compan
         serviceTitleElement.replaceWith(spanService);
         emetteurElement.replaceWith(spanEmetteur);
         dateRecetionNotificationElement.replaceWith(spanDateRecetionNotification);
-
     }
 
     // When the user clicks anywhere outside of the modal, close it

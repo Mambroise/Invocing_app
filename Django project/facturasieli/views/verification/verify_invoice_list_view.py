@@ -14,5 +14,5 @@ def is_company_verifier_or_admin(user):
 @login_required
 #@user_passes_test(is_company_verifier_or_admin)
 def verify_invoice_list_view(request):
-    pending_invoices = Invoice.objects.filter(status='Pending')  # 1 corresponds to 'Pending'
+    pending_invoices = Invoice.objects.filter(status=1)  # 1 corresponds to 'Pending'
     return render(request, 'facturasieli/verification/verification_list.html', {'invoices': pending_invoices})

@@ -13,11 +13,10 @@ class ProfileForm(forms.ModelForm):
     password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
     password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
     role = forms.ModelMultipleChoiceField(queryset=Role.objects.all(), widget=forms.CheckboxSelectMultiple, required=True)
-    company = forms.ModelChoiceField(queryset=Company.objects.all(), required=True)
 
     class Meta:
         model = Profile
-        fields = ('email', 'first_name', 'last_name', 'role', 'company')
+        fields = ('email', 'first_name', 'last_name', 'role')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

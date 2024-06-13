@@ -12,20 +12,30 @@ from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Service
 
-# display the user service list
+
 def display_service(request, company_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
-    try:
-        services = get_list_or_404(Service, company_client=company_id)
-    except:
+
+    client_services = Service.objects.filter(company_client=company_id)
+    provider_services = Service.objects.filter(company_provider=company_id)
+
+    if not client_services and not provider_services:
         return HttpResponseRedirect(reverse('facturasieli:service_form'))
 
-    return render(request, 'facturasieli/service/service.html', {'services': services})
+    context = {
+        'client_services': client_services if client_services.exists() else None,
+        'provider_services': provider_services if provider_services.exists() else None
+    }
+    return render(request, 'facturasieli/service/service.html', context)
 
 # delete selected service
 def delete_service(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
     service.delete()
-    services = get_list_or_404(Service, company_client=request.profile.company)
+    try:
+        services = get_list_or_404(Service, company_client=request.profile.company) 
+    except:
+        return HttpResponseRedirect(reverse('facturasieli:service_form'))
+    
     return render(request, 'facturasieli/service/service.html', {'services': services})

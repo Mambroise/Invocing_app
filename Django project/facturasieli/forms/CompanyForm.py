@@ -1,8 +1,15 @@
 # ---------------------------------------------------------------------------
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
-# File   : facturasieli/views/notification/__init__.py
-# Author : Arnaud
+# File   : facturasieli/forms/CompanyForm.py
+# Author : Morice
 # ---------------------------------------------------------------------------
 
-from .show_notification import show_notification, status_notification
+from django import forms
+
+from facturasieli.models import Company
+
+class CompanyForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        fields = ['siret','name']

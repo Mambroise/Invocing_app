@@ -8,8 +8,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Invoices Pending Verification</h3>
-<table class="table">
+<h3 class="my-3">Invoices Pending Verification</h3>
+<table class="table mt-4">
     <thead>
         <tr>
             <th>Invoice Number</th>
@@ -29,7 +29,7 @@
             <td>{{ invoice.issue_date }}</td>
             <td>{{ invoice.due_date }}</td>
             <td>
-                <a href="{% url 'facturasieli:verify_invoice' invoice.id %}" class="btn btn-primary">Verify</a>
+                <a href="{% url 'facturasieli:verify_invoice' invoice.id %}" class="btn btn-warning">Verify</a>
             </td>
         </tr>
         {% endfor %}

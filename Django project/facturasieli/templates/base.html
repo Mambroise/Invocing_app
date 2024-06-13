@@ -39,20 +39,22 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'facturasieli:public_profile' user.id %}">👤 {% translate 'Profile' %}</a>
               </li>
+              {% if request.profile.company %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'facturasieli:service' request.profile.company_id %}">{% translate 'My service' %}</a>
-                {% if user.is_authenticated %}
-                
+                <a class="nav-link" href="{% url 'facturasieli:service' request.profile.company_id %}">{% translate 'Services' %}</a>
+              </li>
+              {% endif %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'facturasieli:verification_list' %}">{% translate 'Invoices to Verify' %}</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-body" href="{% url 'facturasieli:show_notification' %}" > 
+                <a class="nav-link" href="{% url 'facturasieli:show_notification' %}" > 
                   {% translate 'Notifications' %}
-                  <span class="badge rounded-pill badge-notification bg-danger">9+</span>
+                  {% if request.notifications_to_read > 0 %}
+                  <span class="badge rounded-pill badge-notification bg-danger">{{ request.notifications_to_read }}</span>
+                  {% endif %}
                 </a>
               </li>
-                {% endif %}
               {% endif %}
               {% if user.username %}
               <li class="nav-item dropdown">

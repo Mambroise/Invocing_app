@@ -2,7 +2,7 @@
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
 # File   : facturasieli/forms/InvoiceForm.py
-# Author : Margaux
+# Author : Margaux, Morice
 # ---------------------------------------------------------------------------
 
 from django import forms
@@ -15,6 +15,10 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = [
             'invoice_number', 'issue_date', 'due_date', 'kind_of_payment',
-            'name_client', 'amount_excluding_tax', 'tax',
-            'status'
+            'amount_excluding_tax', 'tax'
         ]
+
+        widgets = {
+            "due_date" : forms.DateInput(attrs={"type" : "date"})
+        }
+        

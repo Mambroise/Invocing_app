@@ -16,6 +16,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     path('register/', views.register, name='register'),
+    path('register2/', views.register_company_address, name='register2'),
     path('welcome/', views.welcome, name='welcome'),
 
     path('custom_login/', views.custom_log_in, name='custom_log_in'),
@@ -39,8 +40,8 @@ urlpatterns = [
     path('invoice/<int:service_id>/', views.invoice_view, name='invoice_form'),
     
     path('notification/', views.show_notification, name='show_notification'),
+    path('notification/<int:notification_id>', views.status_notification, name='change_notif_status'),
 
-    path('notification/', views.show_notification, name='show_notification'),
     path('invoices/<int:invoice_id>/', views.verify_invoice_view, name='verify_invoice'),
     path('invoices/verification/', views.verify_invoice_list_view, name='verification_list'),
 ]

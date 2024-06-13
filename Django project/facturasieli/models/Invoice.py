@@ -27,7 +27,7 @@ class Invoice(models.Model):
     name_client = models.CharField(_("Client Name"), max_length=255)
     amount_excluding_tax = models.FloatField(_("Amount Excluding Tax"))
     tax = models.FloatField(_("Tax"))
-    status = models.CharField(_("Status"), max_length=50, choices=STATUS_CHOICES)
+    status = models.CharField(_("Status"), max_length=50, choices=STATUS_CHOICES, default=1)
     provider_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_provider')
     client_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_client')
 

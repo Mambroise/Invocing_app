@@ -8,6 +8,7 @@
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+
 from facturasieli.forms import ProfileForm
 
 def register(request: HttpRequest):
@@ -15,7 +16,7 @@ def register(request: HttpRequest):
         form = ProfileForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('facturasieli:welcome'))
+            return HttpResponseRedirect(reverse('facturasieli:register2'))
     else:
         form = ProfileForm()
 

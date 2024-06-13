@@ -18,3 +18,5 @@ class Notification(models.Model):
     service_title = models.CharField(_("Service Title"), max_length=255)
     company_sender = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_sender')
     company_receiver = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_receiver')
+    is_read = models.BooleanField(default=False)
+    is_read_timestamp = models.DateTimeField(_("Opening time"), null=True)

@@ -27,7 +27,7 @@
                     <strong>{% translate 'Address:' %}</strong>
                     <p>{{ service.company_provider.address.number }} {{ service.company_provider.address.street }} 
                         {{ service.company_provider.address.zip_code }} {{ service.company_provider.address.city }}</p>
-                        <p>{{ service.company_provider.address.country }}</p>
+                    <p>{{ service.company_provider.address.country }}</p>
                 </div>
                 <div class="border-bottom my-3 p-3">
                   <div class="d-flex justify-content-between">
@@ -53,7 +53,7 @@
                     </a>
                     <a href="{% url 'facturasieli:delete_service' service.id %}" 
                     class="btn btn-danger" 
-                    onclick="return confirm('{% translate "Êtes-vous sûr de vouloir effacer" %} ?')">{% translate 'Delete' %}
+                    onclick="return confirm(`{% translate 'Do you really want to delete the service' %} ?`)">{% translate 'Delete' %}
                     </a>
                 </div>
             </div>
@@ -86,7 +86,17 @@
                         <i class="text-primary"><u>{{ service.invoice.kind_of_payment }}</u></i> 
                       </li>
                       <li class="list-group-item">
-                        <strong class="text-danger">{{ service.invoice.status }}</strong>  
+                        <strong class="text-danger">
+                          {% if service.invoice.status == '1' %}
+                          {% translate 'Pending' %}
+                          {% elif service.invoice.status == '2' %}
+                          {% translate 'Verified' %}
+                          {% elif service.invoice.status == '3' %}
+                          {% translate 'Rejected' %}
+                          {% else %}
+                          {% translate 'Paid' %}
+                          {% endif %} 
+                          </strong>  
                       </li>
                     </ul>
                     <div class="card-body">
@@ -96,10 +106,16 @@
                     </div>
                 </div>
                 {% else %}
-                <div>
-                    <p>No invoice registered yet.</p>
-                    <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'Create' %}</a>
-                </div>
+                <!-- checking wether the user is the provider(if not, the user cannot create invoice) -->
+                  {% if service.company_provider.id == request.profile.company.id %}
+                  <div>
+                      <p>No invoice registered yet.</p>
+                      <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'Create' %}</a>
+                  </div>
+                  {% else %}
+                      <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
+                  {% endif %}
+                
                 {% endif %}
             </div>
         </div>
