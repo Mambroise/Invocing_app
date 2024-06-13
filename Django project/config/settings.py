@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'facturasieli.middleware.ProfileMiddleware',
     'facturasieli.middleware.notificationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'facturasieli.middleware.registrationCheckMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 ]
