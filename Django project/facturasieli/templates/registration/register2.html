@@ -12,12 +12,24 @@
 
 {% block content %}
 <div class="mt-4">
-    <h2>{% translate 'Please choose your identifiers:' %}</h2>
-    <form method="post" action="{% url 'facturasieli:register2' %}">
-        {% csrf_token %}
-        {{ company_form.as_p }}
-        {{ address_form.as_p }}
-        <input type="submit" name="submit" value="🔐 {% translate 'Register' %}" />
-    </form>
+    <h3>{% translate 'Please register your company:' %}</h3>
+    <!-- Affichage des messages -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+    <div class="d-flex justify-content-center">
+        <form method="post" action="{% url 'facturasieli:register2' %}">
+            {% csrf_token %}
+            {{ company_form.as_p }}
+            {{ address_form.as_p }}
+            <input type="submit" name="submit" value="🔐 {% translate 'Register' %}" />
+        </form>
+    </div>
 </div>
 {% endblock %}

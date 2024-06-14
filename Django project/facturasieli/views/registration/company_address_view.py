@@ -6,21 +6,27 @@
 # ---------------------------------------------------------------------------
 
 from django.http import HttpRequest,HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from facturasieli.forms.CompanyForm import CompanyForm
 from facturasieli.forms.AddressForm import AddressForm
+from facturasieli.models import Profile
 
 def register_company_address(request: HttpRequest):
     if request.method == 'POST':
         company_form =CompanyForm(request.POST)
         address_form =AddressForm(request.POST)
         if company_form.is_valid() and address_form.is_valid():
+            profile = get_object_or_404(Profile, pk=request.profile.id)
             address =address_form.save()
             company = company_form.save(commit=False)
+            
             company.address = address
             company.save()
+            
+            profile.company = company
+            profile.save()
             return HttpResponseRedirect(reverse('facturasieli:welcome'))
     else:
         company_form = CompanyForm()
