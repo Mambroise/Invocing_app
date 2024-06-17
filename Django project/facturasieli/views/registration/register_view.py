@@ -16,7 +16,7 @@ def register(request: HttpRequest):
         form = ProfileForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('facturasieli:register2'))
+            return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     else:
         form = ProfileForm()
 
