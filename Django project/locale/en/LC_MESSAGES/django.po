@@ -8,147 +8,684 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-23 11:00+0200\n"
+"POT-Creation-Date: 2024-06-17 23:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings.py:117 facturasieli/templates/base.html:45
+#: .\Django project\config\settings.py:126
+#: project\facturasieli\templates\base.html:66
 msgid "English"
 msgstr ""
 
-#: config/settings.py:118 facturasieli/templates/base.html:43
+#: .\Django project\config\settings.py:127
+#: project\facturasieli\templates\base.html:65
 msgid "French"
 msgstr ""
 
-#: facturasieli/forms/ProfileForm.py:21
-msgid ""
-"Your e-mail address is necessary to enable the two-factor authentication!"
+#: .\Django project\facturasieli\forms\ProfileForm.py:13
+#: project\facturasieli\models\Profile.py:40
+msgid "Password"
 msgstr ""
 
-#: facturasieli/templates/base.html:15
-msgid "Welcome to FacturaSieli"
+#: .\Django project\facturasieli\forms\ProfileForm.py:14
+msgid "Password confirmation"
 msgstr ""
 
-#: facturasieli/templates/base.html:15
-msgid "!"
+#: .\Django project\facturasieli\forms\ProfileForm.py:25
+msgid "Passwords don't match"
 msgstr ""
 
-#: facturasieli/templates/base.html:29
+#: .\Django project\facturasieli\forms\ServiceForm.py:20
+msgid "Service Title:"
+msgstr ""
+
+#: .\Django project\facturasieli\forms\ServiceForm.py:21
+#: project\facturasieli\templates\facturasieli\service\show_service.html:48
+msgid "Description:"
+msgstr ""
+
+#: .\Django project\facturasieli\forms\ServiceForm.py:22
+msgid "Start of the service:"
+msgstr ""
+
+#: .\Django project\facturasieli\forms\ServiceForm.py:23
+msgid "End of the service:"
+msgstr ""
+
+#: .\Django project\facturasieli\forms\ServiceForm.py:24
+msgid "Company:"
+msgstr ""
+
+#: .\Django project\facturasieli\forms\ServiceForm.py:38
+msgid "End of the service cannot be before the start of the service."
+msgstr ""
+
+#: .\Django project\facturasieli\middleware.py:66
+msgid "You have to finish registration before logging in"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Address.py:13
+msgid "Number"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Address.py:14
+msgid "Street"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Address.py:15
+msgid "Addings"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Address.py:16
+msgid "Zip Code"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Address.py:17
+msgid "City"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Address.py:18
+msgid "Country"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Company.py:15
+msgid "SIRET"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Company.py:16
+msgid "Name"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:16
+#: project\facturasieli\templates\facturasieli\service\show_service.html:91
+msgid "Pending"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:17
+#: project\facturasieli\templates\facturasieli\service\show_service.html:93
+msgid "Verified"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:18
+#: project\facturasieli\templates\facturasieli\service\show_service.html:95
+msgid "Rejected"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:19
+#: project\facturasieli\templates\facturasieli\service\show_service.html:97
+msgid "Paid"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:22
+msgid "Invoice Number"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:23
+#: project\facturasieli\models\Service.py:25
+msgid "Issue Date"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:24
+msgid "Due Date"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:25
+msgid "Kind of Payment"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:25
+msgid "Bank Transfer"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:26
+msgid "Provider Name"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:27
+msgid "Client Name"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:28
+msgid "Amount Excluding Tax"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:29
+msgid "Tax"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Invoice.py:30
+#: project\facturasieli\models\Service.py:28
+#: project\facturasieli\templates\facturasieli\service\service.html:48
+#: project\facturasieli\templates\facturasieli\service\service.html:88
+#: project\facturasieli\templates\notification\show_notification.html:35
+#: project\facturasieli\templates\notification\show_notification.html:91
+msgid "Status"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Notification.py:16
+msgid "Send At"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Notification.py:17
+#: project\facturasieli\templates\notification\show_notification.html:36
+#: project\facturasieli\templates\notification\show_notification.html:92
+msgid "Type"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Notification.py:18
+msgid "Service Title"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Notification.py:22
+msgid "Opening time"
+msgstr ""
+
+#: .\Django project\facturasieli\models\NotificationType.py:13
+#: project\facturasieli\templates\notification\show_notification.html:53
+#: project\facturasieli\templates\notification\show_notification.html:108
+msgid "Invoice Request"
+msgstr ""
+
+#: .\Django project\facturasieli\models\NotificationType.py:14
+#: project\facturasieli\templates\notification\show_notification.html:55
+#: project\facturasieli\templates\notification\show_notification.html:110
+msgid "Invoice Submitted"
+msgstr ""
+
+#: .\Django project\facturasieli\models\NotificationType.py:15
+#: project\facturasieli\templates\notification\show_notification.html:57
+#: project\facturasieli\templates\notification\show_notification.html:112
+msgid "Invoice Verified"
+msgstr ""
+
+#: .\Django project\facturasieli\models\NotificationType.py:16
+#: project\facturasieli\templates\notification\show_notification.html:59
+#: project\facturasieli\templates\notification\show_notification.html:114
+msgid "Invoice Rejected"
+msgstr ""
+
+#: .\Django project\facturasieli\models\NotificationType.py:17
+#: project\facturasieli\templates\notification\show_notification.html:62
+#: project\facturasieli\templates\notification\show_notification.html:117
+msgid "Invoice Paid"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:19
+msgid "The Email field must be set"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:32
+msgid "Email"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:33
+msgid "First Name"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:34
+msgid "Last Name"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:35
+msgid "Creation Date"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:36
+msgid "Modification Date"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:37
+msgid "Last Request Timestamp"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:38
+msgid "Enable 2FA"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:39
+msgid "Avatar"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:44
+msgid "active"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:45
+msgid "staff status"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Profile.py:46
+msgid "superuser status"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Service.py:16
+#: project\facturasieli\models\Service.py:19
+msgid "Invoice Request Sent"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Service.py:17
+#: project\facturasieli\models\Service.py:20
+msgid "Closed"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Service.py:23
+#: project\facturasieli\templates\facturasieli\service\service.html:45
+#: project\facturasieli\templates\facturasieli\service\service.html:85
+msgid "Title"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Service.py:24
+msgid "Description"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Service.py:26
+msgid "Intervention Start Date"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Service.py:27
+msgid "Intervention End Date"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Verification.py:17
+msgid "Date Verified"
+msgstr ""
+
+#: .\Django project\facturasieli\models\Verification.py:18
+msgid "Comments"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\base.html:36
 msgid "Home"
 msgstr ""
 
-#: facturasieli/templates/base.html:32
-msgid "My public profile"
+#: .\Django project\facturasieli\templates\base.html:40
+msgid "Profile"
 msgstr ""
 
-#: facturasieli/templates/base.html:34
+#: .\Django project\facturasieli\templates\base.html:44
+msgid "Services"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\base.html:48
+msgid "Invoices to Verify"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\base.html:52
+msgid "Notifications"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\base.html:62
+msgid "Language"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\base.html:74
+msgid "Search"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\base.html:81
 msgid "Disconnection"
 msgstr ""
 
-#: facturasieli/templates/base.html:37
+#: .\Django project\facturasieli\templates\base.html:84
 msgid "Connection"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/edit_profile.html:7
+#: .\Django project\facturasieli\templates\facturasieli\edit_profile.html:15
 msgid "Edit my profile:"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/edit_profile.html:12
+#: .\Django project\facturasieli\templates\facturasieli\edit_profile.html:20
 msgid "Save"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/index.html:11
+#: .\Django project\facturasieli\templates\facturasieli\index.html:14
+msgid "Welcome to Facturasieli"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\facturasieli\index.html:21
 msgid "My invoices:"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/index.html:15
+#: .\Django project\facturasieli\templates\facturasieli\index.html:25
 msgid "You have no invoice defined yet."
 msgstr ""
 
-#: facturasieli/templates/facturasieli/public_profile.html:7
+#: .\Django
+#: project\facturasieli\templates\facturasieli\invoice\invoice_form.html:15
+msgid "Invoice Form for"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\invoice\invoice_form.html:19
+msgid "Your company:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\invoice\invoice_form.html:20
+msgid "Your address:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\invoice\invoice_form.html:23
+msgid "Client company:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\invoice\invoice_form.html:24
+msgid "Client address:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\invoice\invoice_form.html:31
+#: project\facturasieli\templates\facturasieli\service\service.html:41
+#: project\facturasieli\templates\facturasieli\service\service_form.html:33
+#: project\facturasieli\templates\facturasieli\service\show_service.html:113
+msgid "Create"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\facturasieli\public_profile.html:15
 msgid "Public profile of user"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/public_profile.html:7
+#: .\Django project\facturasieli\templates\facturasieli\public_profile.html:15
 msgid ":"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/public_profile.html:10
+#: .\Django project\facturasieli\templates\facturasieli\public_profile.html:18
 msgid "Edit my profile"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/public_profile.html:15
+#: .\Django project\facturasieli\templates\facturasieli\public_profile.html:23
 msgid "Invoices:"
 msgstr ""
 
-#: facturasieli/templates/facturasieli/public_profile.html:19
+#: .\Django project\facturasieli\templates\facturasieli\public_profile.html:27
 msgid "has no invoice defined yet."
 msgstr ""
 
-#: facturasieli/templates/registration/custom_login.html:7
-#: facturasieli/templates/registration/login.html:7
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\service.html:14
+msgid "Your services"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\service.html:29
+msgid "I am the client"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\service.html:32
+msgid "I am the provider"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\service.html:46
+#: project\facturasieli\templates\facturasieli\service\service.html:86
+msgid "Service creation date"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\service.html:47
+#: project\facturasieli\templates\facturasieli\service\service.html:87
+msgid "Company"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\service_form.html:26
+msgid "Create a new service"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\service_form.html:29
+msgid "Back"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:20
+msgid "Creation date"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:22
+msgid "Companies:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:24
+#: project\facturasieli\templates\facturasieli\service\show_service.html:72
+msgid "Provider:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:25
+#: project\facturasieli\templates\facturasieli\service\show_service.html:35
+msgid "Siret:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:27
+#: project\facturasieli\templates\facturasieli\service\show_service.html:37
+msgid "Address:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:34
+#: project\facturasieli\templates\facturasieli\service\show_service.html:75
+msgid "Client:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:42
+msgid "Service dates:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:44
+msgid "From:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:45
+msgid "To:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:52
+#: project\facturasieli\templates\facturasieli\service\show_service.html:103
+msgid "Edit"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:56
+msgid "Do you really want to delete the service"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:56
+#: project\facturasieli\templates\facturasieli\service\show_service.html:104
+msgid "Delete"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:67
+msgid "Date:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:78
+msgid "Date de paiement:"
+msgstr "payment date"
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:81
+msgid "Price:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:82
+msgid "VAT:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:85
+msgid "Amount:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:105
+msgid "Print"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\facturasieli\service\show_service.html:116
+msgid "The provider will send you the invoice as soon as possible"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:16
+msgid "Your notifications"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:20
+msgid "Incoming Notifications"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:23
+msgid "Outgoing Notifications"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:37
+#: project\facturasieli\templates\notification\show_notification.html:93
+msgid "Service"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:38
+#: project\facturasieli\templates\notification\show_notification.html:94
+msgid "Date"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:46
+#: project\facturasieli\templates\notification\show_notification.html:101
+msgid "Read"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:48
+#: project\facturasieli\templates\notification\show_notification.html:103
+msgid "To Read"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:74
+#: project\facturasieli\templates\notification\show_notification.html:130
+msgid "see"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:82
+#: project\facturasieli\templates\notification\show_notification.html:139
+msgid "No notification available."
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\notification\show_notification.html:154
+msgid "Incoming Notification"
+msgstr ""
+
+#: .\Django project\facturasieli\templates\registration\custom_login.html:15
+#: project\facturasieli\templates\registration\login.html:15
 msgid "Please enter your identifiers:"
 msgstr ""
 
-#: facturasieli/templates/registration/custom_login.html:11
-#: facturasieli/templates/registration/login.html:11
-#: facturasieli/templates/registration/otp_validation.html:11
+#: .\Django project\facturasieli\templates\registration\custom_login.html:21
+#: project\facturasieli\templates\registration\login.html:19
+#: project\facturasieli\templates\registration\otp_validation.html:19
 msgid "Connect"
 msgstr ""
 
-#: facturasieli/templates/registration/custom_login.html:15
-#: facturasieli/templates/registration/login.html:16
+#: .\Django project\facturasieli\templates\registration\custom_login.html:25
+#: project\facturasieli\templates\registration\login.html:24
 msgid "You are not registered yet?"
 msgstr ""
 
-#: facturasieli/templates/registration/custom_login.html:16
-#: facturasieli/templates/registration/login.html:17
+#: .\Django project\facturasieli\templates\registration\custom_login.html:26
+#: project\facturasieli\templates\registration\login.html:25
 msgid "Create my account"
 msgstr ""
 
-#: facturasieli/templates/registration/logout.html:7
+#: .\Django project\facturasieli\templates\registration\logout.html:15
 msgid "Are you sure you want to log out?"
 msgstr ""
 
-#: facturasieli/templates/registration/logout.html:10
+#: .\Django project\facturasieli\templates\registration\logout.html:18
 msgid "Disconnect"
 msgstr ""
 
-#: facturasieli/templates/registration/otp_validation.html:7
+#: .\Django project\facturasieli\templates\registration\otp_validation.html:15
 msgid "Please enter your one time password:"
 msgstr ""
 
-#: facturasieli/templates/registration/register.html:7
+#: .\Django project\facturasieli\templates\registration\register.html:15
 msgid "Please choose your identifiers:"
 msgstr ""
 
-#: facturasieli/templates/registration/register.html:11
+#: .\Django project\facturasieli\templates\registration\register.html:20
+#: project\facturasieli\templates\registration\register2.html:31
 msgid "Register"
 msgstr ""
 
-#: facturasieli/templates/registration/transitions/goodbye.html:7
+#: .\Django project\facturasieli\templates\registration\register2.html:15
+msgid "Please register your company:"
+msgstr ""
+
+#: .\Django
+#: project\facturasieli\templates\registration\transitions\goodbye.html:14
 msgid "You are now logged out!"
 msgstr ""
 
-#: facturasieli/templates/registration/transitions/goodbye.html:8
-#: facturasieli/templates/registration/transitions/welcome.html:8
+#: .\Django
+#: project\facturasieli\templates\registration\transitions\goodbye.html:15
+#: project\facturasieli\templates\registration\transitions\welcome.html:16
 msgid "Go back to login page"
 msgstr ""
 
-#: facturasieli/templates/registration/transitions/welcome.html:7
+#: .\Django
+#: project\facturasieli\templates\registration\transitions\welcome.html:14
 msgid "Your account has been created!"
 msgstr ""
 
-#: facturasieli/views.py:58
+#: .\Django project\facturasieli\views\registration\send_otp_mail_view.py:15
 msgid "Authentication"
 msgstr ""
 
-#: facturasieli/views.py:59
+#: .\Django project\facturasieli\views\registration\send_otp_mail_view.py:16
 msgid "Your one time password: - "
+msgstr ""
+
+#: .\Django project\facturasieli\views\service\service_form_view.py:53
+msgid "Service created successfully."
+msgstr ""
+
+#: .\Django project\facturasieli\views\service\service_form_view.py:58
+#, python-format
+msgid "An error occurred while saving the service: %s"
+msgstr ""
+
+#: .\Django project\facturasieli\views\service\service_form_view.py:60
+msgid "Please correct the errors below."
+msgstr ""
+
+#: .\Django project\facturasieli\views\verification\verify_invoice_view.py:33
+msgid "Invoice status updated successfully"
 msgstr ""
