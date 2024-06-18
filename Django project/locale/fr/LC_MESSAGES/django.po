@@ -186,8 +186,6 @@ msgstr "Lu le :"
 #: .\facturasieli\models\NotificationType.py:13
 #: .\facturasieli\templates\notification\show_notification.html:53
 #: .\facturasieli\templates\notification\show_notification.html:108
-#, fuzzy
-#| msgid "Invoices:"
 msgid "Invoice Request"
 msgstr "Facture demandée"
 
@@ -317,7 +315,7 @@ msgstr "Factures à valider"
 
 #: .\facturasieli\templates\base.html:52
 msgid "Notifications"
-msgstr "Nofications"
+msgstr "Notifications"
 
 #: .\facturasieli\templates\base.html:62
 msgid "Language"
@@ -525,8 +523,6 @@ msgid "Incoming Notifications"
 msgstr "Notifications recues"
 
 #: .\facturasieli\templates\notification\show_notification.html:23
-#, fuzzy
-#| msgid "Authentication"
 msgid "Outgoing Notifications"
 msgstr "Notifications envoyées"
 

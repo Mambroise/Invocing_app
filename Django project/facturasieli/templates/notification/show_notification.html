@@ -70,7 +70,7 @@
                                     {{notification.send_at|date}}
                                 </td>
                                 <td>
-                                    <a  href="#" onclick="show_modal_notification_received({{notification.id}}, {{notification.type}}, `{{notification.service_title}}`, `{{notification.company_receiver.name}}`, '{{notification.company_receiver.siret}}', '{{notification.send_at}}');"> 
+                                    <a  href="#" onclick="show_modal_notification_received({{notification.id}}, {{notification.type}}, `{{notification.service_title}}`, `{{notification.company_sender.name}}`, '{{notification.company_sender.siret}}', '{{notification.send_at}}');"> 
                                         {% translate 'see' %} 
                                     </a>
                                 </td>                                
