@@ -7,6 +7,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load custom_filters %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,9 +45,12 @@
                 <a class="nav-link" href="{% url 'facturasieli:service' request.profile.company_id %}">{% translate 'Services' %}</a>
               </li>
               {% endif %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'facturasieli:verification_list' %}">{% translate 'Invoices to Verify' %}</a>
+              
+              {% if request.profile|has_any_role:'Admin,Company Verifier,Company manager' %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'facturasieli:verification_list' %}">{% translate 'Invoices to Verify' %}</a>
               </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'facturasieli:show_notification' %}" > 
                   {% translate 'Notifications' %}

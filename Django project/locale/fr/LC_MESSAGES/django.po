@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-18 00:50+0200\n"
+"POT-Creation-Date: 2024-06-18 23:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,10 +120,9 @@ msgid "Paid"
 msgstr "Payée"
 
 #: .\facturasieli\models\Invoice.py:22
-#, fuzzy
-#| msgid "Invoices:"
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:18
 msgid "Invoice Number"
-msgstr "Numéro de factures :"
+msgstr "Numéro de factures"
 
 #: .\facturasieli\models\Invoice.py:23 .\facturasieli\models\Service.py:25
 msgid "Issue Date"
@@ -151,7 +150,7 @@ msgstr "Nom du client"
 
 #: .\facturasieli\models\Invoice.py:28
 msgid "Amount Excluding Tax"
-msgstr "Tarif hors taxe"
+msgstr "Montant hors taxe"
 
 #: .\facturasieli\models\Invoice.py:29
 msgid "Tax"
@@ -404,7 +403,7 @@ msgstr "Aucune facture disponible."
 
 #: .\facturasieli\templates\facturasieli\service\service.html:14
 msgid "Your services"
-msgstr "Vos intervention"
+msgstr "Vos interventions"
 
 #: .\facturasieli\templates\facturasieli\service\service.html:29
 msgid "I am the client"
@@ -513,6 +512,30 @@ msgstr "Imprimer"
 #: .\facturasieli\templates\facturasieli\service\show_service.html:116
 msgid "The provider will send you the invoice as soon as possible"
 msgstr "Le sous-traitant vous enverra une facture au plus tôt"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:19
+msgid "Service title"
+msgstr "Nom de l'intervention"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:20
+msgid "Amount"
+msgstr "Montant"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:21
+msgid "Issue date"
+msgstr "Date de Création"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:22
+msgid "Due date"
+msgstr "Date d'échéance"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:23
+msgid "Actions"
+msgstr "Actions"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:35
+msgid "Verify"
+msgstr "Vérifier"
 
 #: .\facturasieli\templates\notification\show_notification.html:16
 msgid "Your notifications"
