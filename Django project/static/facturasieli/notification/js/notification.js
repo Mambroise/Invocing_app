@@ -33,20 +33,6 @@ function activer_tab(id_elt){
 
 }
 
-function  extract_date(send_at){
-    var  dateNotif = new Date(send_at);
-    
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    };
-    date_result = dateNotif.toLocaleDateString('fr-FR');
-    return date_result
-
-}
-
 function tranformTypeNotificationFromIntToString(notificationType){
     var result;
     switch (notificationType) {
@@ -90,7 +76,6 @@ function createElementTRTypeNotification(typeNotification){
 }
 
 function createElementTRDateReceptionNotification(send_at){
-    const dateReceptionNotif = extract_date(send_at);
     const trDateReception = document.createElement("tr");
 
     const thScope =  document.createElement("th");
@@ -101,7 +86,7 @@ function createElementTRDateReceptionNotification(send_at){
 
     const pDate = document.createElement("p");
     const pHeure = document.createElement("p");
-    pDate.append(dateReceptionNotif);
+    pDate.append(send_at);
 
     tdDateKey.append("Réçue le : ");
     tdDateValue.appendChild(pDate);
@@ -158,7 +143,6 @@ function createElementTREmeteur(companyName, companySiret){
 }
 
 function show_modal_notification_received(notificationId,notificationType, serviceTitle, companyName, companySiret, send_at) {
-    var dateReceptionNotification = extract_date(send_at);
 
     var a_close_button = document.getElementsByClassName("is_read")[0];
     var baseUrl = a_close_button.getAttribute("data-url");
