@@ -52,3 +52,6 @@ class Profile(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} {self.email}'
+    
+    def has_role(self, roles):
+        return self.role.filter(role__in=roles).exists()
