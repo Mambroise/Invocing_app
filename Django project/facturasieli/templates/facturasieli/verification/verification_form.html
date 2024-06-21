@@ -6,12 +6,69 @@
 # -------------------------------------------------------------------------->
 
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-    <h3>Verify Invoice {{ invoice.invoice_number }}</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <h3>{% translate 'Invoice verification:' %} {{ invoice.invoice_number }}</h3>
+    <a href="{% url 'facturasieli:verification_list' %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
+    <div class="d-flex justify-content-around mt-4">
+        <form method="post">
+            <div class="my-3">
+                <small>{% translate 'After having checked invoice informations, thank you for confirming or rejecting it. '%}</small>
+                <div class="mt-2">
+                    {% csrf_token %}
+                    {{ form.status}}
+                    {{ form.comments.label_tag }}
+                    {{ form.comments }}
+                </div>
+            </div>
+            <button class="btn btn-warning" type="submit">{% translate 'Save' %}</button>
+        </form>
+        <div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">N° {{ invoice.invoice_number }}</h5>
+                  <strong>{% translate 'Date:' %}</strong><small> {{ invoice.due_date }}</small> 
+                  <p class="card-text"></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <strong>{% translate 'Provider:' %}</strong> {{ invoice.name_provider }} 
+                </li>
+                  <li class="list-group-item">
+                    <strong>{% translate 'Client:' %}</strong> {{ invoice.name_client }} 
+                </li>
+                  <li class="list-group-item">
+                    <strong>{% translate 'Date of payment:' %}</strong><small> {{ invoice.due_date }}</small>    
+                </li>
+                  <li class="list-group-item">
+                    <strong>{% translate 'Price:' %}</strong> {{ invoice.amount_excluding_tax }} € 
+                    <strong>{% translate 'VAT:' %}</strong> {{ invoice.tax }}
+                </li>
+                  <li class="list-group-item">
+                    <strong>{% translate 'Amount:' %}</strong> {{ total }} €  
+                    <i class="text-primary"><u>{{ invoice.kind_of_payment }}</u></i> 
+                  </li>
+                  <li class="list-group-item">
+                    <strong class="text-danger">
+                      {% if invoice.status == '1' %}
+                      {% translate 'Pending' %}
+                      {% elif invoice.status == '2' %}
+                      {% translate 'Verified' %}
+                      {% elif invoice.status == '3' %}
+                      {% translate 'Rejected' %}
+                      {% else %}
+                      {% translate 'Paid' %}
+                      {% endif %} 
+                      </strong>  
+                  </li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">{% translate 'Edit' %}</a>
+                  <a href="#" class="card-link">{% translate 'Delete' %}</a>
+                  <a href="#" class="card-link">{% translate 'Print' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
