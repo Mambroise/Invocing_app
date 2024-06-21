@@ -6,6 +6,7 @@
 # ---------------------------------------------------------------------------
 
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Verification
 
@@ -16,8 +17,8 @@ class VerificationForm(forms.ModelForm):
         fields = ['comments']
 
     STATUS_CHOICES = [
-        (2, 'Verified'),# 2 corresponds to invoice.status "verified"
-        (3, 'rejected')# 3 corresponds to invoice.status "Rejected"
+        (2, _('Confirm')),# 2 corresponds to invoice.status "verified"
+        (3, _('reject'))# 3 corresponds to invoice.status "Rejected"
     ]
 
     status = forms.ChoiceField(choices=STATUS_CHOICES, widget=forms.RadioSelect)

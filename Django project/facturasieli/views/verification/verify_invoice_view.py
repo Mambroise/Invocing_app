@@ -51,6 +51,13 @@ def verify_invoice_view(request, invoice_id):
             pending_invoices = Invoice.objects.filter(status='Pending')  # 1 corresponds to 'Pending'
             return render(request, 'facturasieli/verification/verification_list.html', {'invoices': pending_invoices})
     else:
+                # Total price math
+        try:
+            total_price = invoice.amount_excluding_tax * (1 + invoice.tax / 100)
+        except:
+            total_price=0
         form = VerificationForm()
 
-    return render(request, 'facturasieli/verification/verification_form.html', {'invoice': invoice, 'form': form})
+        context = {'invoice': invoice, 'form': form, 'total': total_price}
+
+    return render(request, 'facturasieli/verification/verification_form.html', context )
