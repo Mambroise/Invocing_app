@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-18 00:50+0200\n"
+"POT-Creation-Date: 2024-06-21 15:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\config\settings.py:126 .\facturasieli\templates\base.html:66
+#: .\config\settings.py:126 .\facturasieli\templates\base.html:70
 msgid "English"
 msgstr "Anglais"
 
-#: .\config\settings.py:127 .\facturasieli\templates\base.html:65
+#: .\config\settings.py:127 .\facturasieli\templates\base.html:69
 msgid "French"
 msgstr "Français"
 
@@ -99,65 +99,68 @@ msgstr "SIRET"
 msgid "Name"
 msgstr "Nom"
 
-#: .\facturasieli\models\Invoice.py:16
+#: .\facturasieli\models\Invoice.py:17
 #: .\facturasieli\templates\facturasieli\service\show_service.html:91
 msgid "Pending"
 msgstr "En attente"
 
-#: .\facturasieli\models\Invoice.py:17
+#: .\facturasieli\models\Invoice.py:18
 #: .\facturasieli\templates\facturasieli\service\show_service.html:93
 msgid "Verified"
 msgstr "Validée"
 
-#: .\facturasieli\models\Invoice.py:18
+#: .\facturasieli\models\Invoice.py:19
 #: .\facturasieli\templates\facturasieli\service\show_service.html:95
 msgid "Rejected"
 msgstr "Rejetée"
 
-#: .\facturasieli\models\Invoice.py:19
+#: .\facturasieli\models\Invoice.py:20
 #: .\facturasieli\templates\facturasieli\service\show_service.html:97
 msgid "Paid"
 msgstr "Payée"
 
-#: .\facturasieli\models\Invoice.py:22
-#, fuzzy
-#| msgid "Invoices:"
+#: .\facturasieli\models\Invoice.py:23
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:18
 msgid "Invoice Number"
-msgstr "Numéro de factures :"
+msgstr "Numéro de factures"
 
-#: .\facturasieli\models\Invoice.py:23 .\facturasieli\models\Service.py:25
-msgid "Issue Date"
-msgstr "Date de Création"
-
-#: .\facturasieli\models\Invoice.py:24
+#: .\facturasieli\models\Invoice.py:25
 msgid "Due Date"
 msgstr "Date d'échéance"
 
-#: .\facturasieli\models\Invoice.py:25
+#: .\facturasieli\models\Invoice.py:26
 msgid "Kind of Payment"
 msgstr "Type de paiement"
 
-#: .\facturasieli\models\Invoice.py:25
+#: .\facturasieli\models\Invoice.py:26
 msgid "Bank Transfer"
 msgstr "Virement"
 
-#: .\facturasieli\models\Invoice.py:26
+#: .\facturasieli\models\Invoice.py:27
 msgid "Provider Name"
 msgstr "Nom du sous-traitant"
 
-#: .\facturasieli\models\Invoice.py:27
+#: .\facturasieli\models\Invoice.py:28
 msgid "Client Name"
 msgstr "Nom du client"
 
-#: .\facturasieli\models\Invoice.py:28
-msgid "Amount Excluding Tax"
-msgstr "Tarif hors taxe"
+#: .\facturasieli\models\Invoice.py:29
+msgid "Hours worked"
+msgstr "Heures travaillées"
 
 #: .\facturasieli\models\Invoice.py:29
+msgid "<small style='display:block;'>worked minutes are counted as followed: 15 mins = 0.25 hour.</small>"
+msgstr "<small style='display:block;'>les minutes travaillées sont comptées comme tel : 15 mins = 0,25 heure.</small>"
+
+#: .\facturasieli\models\Invoice.py:30
+msgid "Amount Excluding Tax"
+msgstr "Montant hors taxe"
+
+#: .\facturasieli\models\Invoice.py:31
 msgid "Tax"
 msgstr "Taxe"
 
-#: .\facturasieli\models\Invoice.py:30 .\facturasieli\models\Service.py:28
+#: .\facturasieli\models\Invoice.py:32 .\facturasieli\models\Service.py:28
 #: .\facturasieli\templates\facturasieli\service\service.html:48
 #: .\facturasieli\templates\facturasieli\service\service.html:88
 #: .\facturasieli\templates\notification\show_notification.html:35
@@ -281,6 +284,10 @@ msgstr "Nom"
 msgid "Description"
 msgstr "Description"
 
+#: .\facturasieli\models\Service.py:25
+msgid "Issue Date"
+msgstr "Date de Création"
+
 #: .\facturasieli\models\Service.py:26
 msgid "Intervention Start Date"
 msgstr "Date de début de l'intervention"
@@ -297,39 +304,39 @@ msgstr "Date de vérification"
 msgid "Comments"
 msgstr "Commantaires"
 
-#: .\facturasieli\templates\base.html:36
+#: .\facturasieli\templates\base.html:37
 msgid "Home"
 msgstr "Accueil"
 
-#: .\facturasieli\templates\base.html:40
+#: .\facturasieli\templates\base.html:41
 msgid "Profile"
 msgstr "Profile"
 
-#: .\facturasieli\templates\base.html:44
+#: .\facturasieli\templates\base.html:45
 msgid "Services"
 msgstr "Interventions"
 
-#: .\facturasieli\templates\base.html:48
+#: .\facturasieli\templates\base.html:51
 msgid "Invoices to Verify"
 msgstr "Factures à valider"
 
-#: .\facturasieli\templates\base.html:52
+#: .\facturasieli\templates\base.html:56
 msgid "Notifications"
 msgstr "Notifications"
 
-#: .\facturasieli\templates\base.html:62
+#: .\facturasieli\templates\base.html:66
 msgid "Language"
 msgstr "Langue"
 
-#: .\facturasieli\templates\base.html:74
+#: .\facturasieli\templates\base.html:78
 msgid "Search"
 msgstr "Rechercher"
 
-#: .\facturasieli\templates\base.html:81
+#: .\facturasieli\templates\base.html:85
 msgid "Disconnection"
 msgstr "Déconnexion"
 
-#: .\facturasieli\templates\base.html:84
+#: .\facturasieli\templates\base.html:88
 msgid "Connection"
 msgstr "Connexion"
 
@@ -346,10 +353,6 @@ msgstr "Enregistrer"
 #| msgid "Welcome to FacturaSieli"
 msgid "Welcome to Facturasieli"
 msgstr "Bienvenue sur FacturaSieli"
-
-#: .\facturasieli\templates\facturasieli\index.html:21
-msgid "My invoices:"
-msgstr "Mes factures :"
 
 #: .\facturasieli\templates\facturasieli\index.html:25
 msgid "You have no invoice defined yet."
@@ -376,9 +379,7 @@ msgid "Client address:"
 msgstr "Adresse du client :"
 
 #: .\facturasieli\templates\facturasieli\invoice\invoice_form.html:31
-#: .\facturasieli\templates\facturasieli\service\service.html:41
 #: .\facturasieli\templates\facturasieli\service\service_form.html:33
-#: .\facturasieli\templates\facturasieli\service\show_service.html:113
 msgid "Create"
 msgstr "Enregistrer"
 
@@ -402,10 +403,6 @@ msgstr "Factures :"
 msgid "has no invoice defined yet."
 msgstr "Aucune facture disponible."
 
-#: .\facturasieli\templates\facturasieli\service\service.html:14
-msgid "Your services"
-msgstr "Vos intervention"
-
 #: .\facturasieli\templates\facturasieli\service\service.html:29
 msgid "I am the client"
 msgstr "Je suis le client"
@@ -413,6 +410,14 @@ msgstr "Je suis le client"
 #: .\facturasieli\templates\facturasieli\service\service.html:32
 msgid "I am the provider"
 msgstr "Je suis le sous-traitant"
+
+#: .\facturasieli\templates\facturasieli\service\service.html:41
+msgid "Your services"
+msgstr "Vos interventions"
+
+#: .\facturasieli\templates\facturasieli\service\service.html:41
+msgid "New service"
+msgstr "Nouvelle intervention"
 
 #: .\facturasieli\templates\facturasieli\service\service.html:46
 #: .\facturasieli\templates\facturasieli\service\service.html:86
@@ -491,8 +496,8 @@ msgid "Date:"
 msgstr "Date :"
 
 #: .\facturasieli\templates\facturasieli\service\show_service.html:78
-msgid "Date de paiement:"
-msgstr ""
+msgid "Date of payment:"
+msgstr "Date de paiement :"
 
 #: .\facturasieli\templates\facturasieli\service\show_service.html:81
 msgid "Price:"
@@ -510,9 +515,48 @@ msgstr "Montant :"
 msgid "Print"
 msgstr "Imprimer"
 
+#: .\facturasieli\templates\facturasieli\index.html:21
+#: .\facturasieli\templates\facturasieli\service\show_service.html:113
+msgid "My invoices:"
+msgstr "Mes factures :"
+
+#: .\facturasieli\templates\facturasieli\service\show_service.html:113
+msgid "New invoice"
+msgstr "Nouvelle factures :"
+
 #: .\facturasieli\templates\facturasieli\service\show_service.html:116
 msgid "The provider will send you the invoice as soon as possible"
 msgstr "Le sous-traitant vous enverra une facture au plus tôt"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:14
+#, fuzzy
+#| msgid "Incoming Notification"
+msgid "Invoices Pending Verification"
+msgstr "Notifications recues"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:19
+msgid "Service title"
+msgstr "Nom de l'intervention"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:20
+msgid "Amount"
+msgstr "Montant"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:21
+msgid "Issue date"
+msgstr "Date de Création"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:22
+msgid "Due date"
+msgstr "Date d'échéance"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:23
+msgid "Actions"
+msgstr "Actions"
+
+#: .\facturasieli\templates\facturasieli\verification\verification_list.html:35
+msgid "Verify"
+msgstr "Vérifier"
 
 #: .\facturasieli\templates\notification\show_notification.html:16
 msgid "Your notifications"
@@ -645,9 +689,6 @@ msgstr "Veuillez corriger les erreurs ci-dessous"
 #: .\facturasieli\views\verification\verify_invoice_view.py:33
 msgid "Invoice status updated successfully"
 msgstr "Le status de la facture a bien été mis à jour"
-
-#~ msgid "Payment date"
-#~ msgstr "Date de paiement"
 
 #~ msgid ""
 #~ "Your e-mail address is necessary to enable the two-factor authentication!"

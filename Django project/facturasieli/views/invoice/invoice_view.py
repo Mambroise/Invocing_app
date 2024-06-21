@@ -10,6 +10,7 @@ import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
+from django.utils import timezone
 from facturasieli.forms.InvoiceForm import InvoiceForm
 from facturasieli.models import Service,Invoice,NotificationType
 from facturasieli.services.notification_service import send_notification
@@ -30,8 +31,14 @@ def invoice_view(request, service_id):
             invoice.provider_address = service.company_provider.address
             invoice.save()
 
-            # service update with the new invoice id.
+            # generation of unique invoice number
             invoice_id= invoice.id
+            today_str = timezone.now().strftime('%Y%m%d')
+            invoice_number = f"{invoice_id}{request.profile.company_id}{today_str}"
+            invoice.invoice_number = invoice_number
+            invoice.save()
+
+            # service update with the new invoice id.
             service.invoice = get_object_or_404(Invoice, pk=invoice_id) 
             service.save()
 

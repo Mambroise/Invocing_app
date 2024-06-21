@@ -75,7 +75,7 @@
                         <strong>{% translate 'Client:' %}</strong> {{ service.invoice.name_client }} 
                     </li>
                       <li class="list-group-item">
-                        <strong>{% translate 'Date de paiement:' %}</strong><small> {{ service.invoice.due_date }}</small>    
+                        <strong>{% translate 'Date of payment:' %}</strong><small> {{ service.invoice.due_date }}</small>    
                     </li>
                       <li class="list-group-item">
                         <strong>{% translate 'Price:' %}</strong> {{ service.invoice.amount_excluding_tax }} € 
@@ -110,7 +110,7 @@
                   {% if service.company_provider.id == request.profile.company.id %}
                   <div>
                       <p>No invoice registered yet.</p>
-                      <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'Create' %}</a>
+                      <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'New invoice' %}</a>
                   </div>
                   {% else %}
                       <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>

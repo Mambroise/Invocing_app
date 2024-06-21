@@ -14,8 +14,8 @@ class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = [
-            'invoice_number', 'issue_date', 'due_date', 'kind_of_payment',
-            'amount_excluding_tax', 'tax'
+            'due_date', 'kind_of_payment',
+            'hours','amount_excluding_tax', 'tax'
         ]
 
         widgets = {
