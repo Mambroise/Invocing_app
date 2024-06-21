@@ -6,6 +6,7 @@
 # ---------------------------------------------------------------------------
 
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Address
@@ -19,12 +20,13 @@ class Invoice(models.Model):
         (4, _('Paid'))
     ]
 
-    invoice_number = models.IntegerField(_("Invoice Number"))
-    issue_date = models.DateField(_("Issue Date"))
+    invoice_number = models.IntegerField(_("Invoice Number"),null=True,unique=True)
+    issue_date = models.DateField(default=timezone.now)
     due_date = models.DateField(_("Due Date"))
     kind_of_payment = models.CharField(_("Kind of Payment"), max_length=255, default=_('Bank Transfer'))
     name_provider = models.CharField(_("Provider Name"), max_length=255)
     name_client = models.CharField(_("Client Name"), max_length=255)
+    hours = models.FloatField(_("Hours worked"),help_text=_("<small style='display:block;'>worked minutes are counted as followed: 15 mins = 0.25 hour.</small>"),null=True)
     amount_excluding_tax = models.FloatField(_("Amount Excluding Tax"))
     tax = models.FloatField(_("Tax"))
     status = models.CharField(_("Status"), max_length=50, choices=STATUS_CHOICES, default=1)
