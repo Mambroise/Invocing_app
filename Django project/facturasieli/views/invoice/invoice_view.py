@@ -11,6 +11,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from facturasieli.forms.InvoiceForm import InvoiceForm
 from facturasieli.models import Service,Invoice,NotificationType
 from facturasieli.services.notification_service import send_notification
@@ -49,14 +50,14 @@ def invoice_view(request, service_id):
                             company_receiver_id=service.company_client.id
                             )
 
-            messages.success(request, "Invoice saved successfully.")
+            messages.success(request, _("Invoice saved successfully."))
             #redirect towards company services
     
-            url = reverse('facturasieli:service', kwargs={'company_id': service.company_client.id})
+            url = reverse('facturasieli:service', kwargs={'company_id': service.company_provider.id})
             return redirect(url)
         else:
             logger.error("Form is not valid: %s", form.errors)
-            messages.error(request, "There were errors in your form. Please correct them and try again.")
+            messages.error(request, _("There were errors in your form. Please correct them and try again."))
     else:
         form = InvoiceForm()
     
