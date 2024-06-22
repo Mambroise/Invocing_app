@@ -48,6 +48,7 @@
                     <p class="text-center"><strong><u>{% translate 'Description:' %}</u></strong></p>
                     <p>{{ service.description }}</p>
                 </div>
+                {% if service.company_client.id == request.profile.company.id %}
                 <div class="d-flex justify-content-around">
                     <a href="#" class="btn btn-warning" >{% translate 'Edit' %}
                     </a>
@@ -56,6 +57,7 @@
                     onclick="return confirm(`{% translate 'Do you really want to delete the service' %} ?`)">{% translate 'Delete' %}
                     </a>
                 </div>
+                {% endif %}
             </div>
             <!-- invoice side -->
             <div class="col-4 d-flex justify-content-center">
@@ -100,8 +102,10 @@
                       </li>
                     </ul>
                     <div class="card-body">
+                      {% if service.company_provider.id == request.profile.company.id %}
                       <a href="#" class="card-link">{% translate 'Edit' %}</a>
                       <a href="#" class="card-link">{% translate 'Delete' %}</a>
+                      {% endif %}
                       <a href="#" class="card-link">{% translate 'Print' %}</a>
                     </div>
                 </div>
