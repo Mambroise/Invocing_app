@@ -21,9 +21,17 @@ def show_service(request, service_id):
 
     # Total price math
     try:
-        total_price = service.invoice.amount_excluding_tax * (1 + service.invoice.tax / 100)
+        if service.invoice.tax == 1:
+            vat = 20
+        elif service.invoice.tax == 2:
+            vat = 10
+        elif service.invoice.tax == 4:
+            vat = 5.5
+        elif service.invoice.tax == 5:
+            vat = 2.1
+        total_price = service.invoice.amount_excluding_tax + (service.invoice.amount_excluding_tax * (vat / 100))
     except:
-        total_price=0
+        total_price = 0
 
     context = {'service':service, 'total':total_price}
     return render(request, 'facturasieli/service/show_service.html', context)

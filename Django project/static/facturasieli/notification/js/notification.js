@@ -191,6 +191,7 @@ function show_modal_notification_received(notificationId,notificationType, servi
         serviceTitleElement.replaceWith(spanService);
         emetteurElement.replaceWith(spanEmetteur);
         dateRecetionNotificationElement.replaceWith(spanDateRecetionNotification);
+        window.location.reload();
     }
 
     // When the user clicks anywhere outside of the modal, close it

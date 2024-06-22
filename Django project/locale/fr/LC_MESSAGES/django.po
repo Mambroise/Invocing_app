@@ -302,7 +302,7 @@ msgstr "Date de vérification"
 
 #: .\facturasieli\models\Verification.py:18
 msgid "Comments"
-msgstr "Commantaires"
+msgstr "Commentaires"
 
 #: .\facturasieli\templates\base.html:37
 msgid "Home"
@@ -529,10 +529,8 @@ msgid "The provider will send you the invoice as soon as possible"
 msgstr "Le sous-traitant vous enverra une facture au plus tôt"
 
 #: .\facturasieli\templates\facturasieli\verification\verification_list.html:14
-#, fuzzy
-#| msgid "Incoming Notification"
-msgid "Invoices Pending Verification"
-msgstr "Notifications recues"
+msgid "Pending Invoices Verification"
+msgstr "Vérification des factures en attente"
 
 #: .\facturasieli\templates\facturasieli\verification\verification_list.html:19
 msgid "Service title"
@@ -688,7 +686,7 @@ msgstr "Veuillez corriger les erreurs ci-dessous"
 
 #: .\facturasieli\views\verification\verify_invoice_view.py:33
 msgid "Invoice status updated successfully"
-msgstr "Le status de la facture a bien été mis à jour"
+msgstr "Le statut de la facture a bien été mis à jour"
 
 #~ msgid ""
 #~ "Your e-mail address is necessary to enable the two-factor authentication!"

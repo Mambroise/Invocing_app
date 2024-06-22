@@ -9,7 +9,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from facturasieli.models import Address
+from facturasieli.models import Address,VAT_choice
 
 
 class Invoice(models.Model):
@@ -28,7 +28,7 @@ class Invoice(models.Model):
     name_client = models.CharField(_("Client Name"), max_length=255)
     hours = models.FloatField(_("Hours worked"),help_text=_("<small style='display:block;'>worked minutes are counted as followed: 15 mins = 0.25 hour.</small>"),null=True)
     amount_excluding_tax = models.FloatField(_("Amount Excluding Tax"))
-    tax = models.FloatField(_("Tax"))
+    tax = models.FloatField(_("Tax"), choices=VAT_choice.VatChoice)
     status = models.CharField(_("Status"), max_length=50, choices=STATUS_CHOICES, default=1)
     provider_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_provider')
     client_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_client')
