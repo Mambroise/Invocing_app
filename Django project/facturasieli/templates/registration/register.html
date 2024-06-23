@@ -12,12 +12,12 @@
 
 {% block content %}
 <div class="mt-4">
-    <h3>{% translate 'Please choose your identifiers:' %}</h3>
-    <div class="d-flex justify-content-center">
+    <h3>🔐 {% translate 'Please choose your identifiers:' %}</h3>
+    <div class="d-flex justify-content-center my-4">
         <form method="post" action="{% url 'facturasieli:register' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" name="submit" value="🔐 {% translate 'Register' %}" />
+            <button class="btn btn-warning" type="submit">👤 {% translate 'Register' %}</button>
         </form>
     </div>
 </div>
