@@ -9,6 +9,7 @@
 
 {% load static %}
 {% load i18n %}
+{% load custom_filters %}
 
 {% block content %}
 <div class="mt-4 d-flex justify-content-center">
@@ -16,7 +17,7 @@
         <div class="row">
             <!-- service side -->
             <div class="col-7 p-2 border border-1 border-opacity-25 rounded-2 bg-body-tertiary">
-                <h3 class="text-center"><u><strong>{{ service.title|slice:":1"|upper }}{{ service.title|slice:"1:"|lower }}</strong></u></h3>
+                <h3 class="text-center"><u><strong>{{ service.title|capfirst }}</strong></u></h3>
                 <p class="text-center"><i>{% translate 'Creation date' %}</i>: {{ service.issue_date }}</p>
                 <div class="border-top border-bottom my-3 p-3">
                     <p class="text-center"><strong><u>{% translate 'Companies:' %}</u></strong></p>
@@ -104,7 +105,7 @@
                     <div class="card-body">
                       {% if service.company_provider.id == request.profile.company.id %}
                       <a href="#" class="card-link">{% translate 'Edit' %}</a>
-                      <a href="#" class="card-link">{% translate 'Delete' %}</a>
+                      <a href="{% url 'facturasieli:delete_invoice' service.id %}" class="card-link" onclick="return confirm(`{% translate 'Do you really want to delete the service' %} ?`)">{% translate 'Delete' %}</a>
                       {% endif %}
                       <a href="#" class="card-link">{% translate 'Print' %}</a>
                     </div>
@@ -113,6 +114,9 @@
                 <!-- checking wether the user is the provider(if not, the user cannot create invoice) -->
                   {% if service.company_provider.id == request.profile.company.id %}
                   <div>
+                      <div class="card" style="width: 18rem;">
+                        <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                      </div>
                       <p>No invoice registered yet.</p>
                       <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'New invoice' %}</a>
                   </div>

@@ -63,3 +63,13 @@ def invoice_view(request, service_id):
     
     return render(request, 'facturasieli/invoice/invoice_form.html', {'form': form, 'service': service})
 
+
+def delete_invoice(request, service_id):
+    service = get_object_or_404(Service, pk=service_id)
+    invoice = service.invoice
+    invoice.delete()
+    #get service after invoice deletion
+    service = get_object_or_404(Service, pk=service_id)
+
+    return render(request, 'facturasieli/service/show_service.html', {'service': service})
+

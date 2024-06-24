@@ -34,10 +34,8 @@ urlpatterns = [
     path('show_service/<int:service_id>/', views.show_service, name='show_service'),
     path('delete_service/<int:service_id>/', views.delete_service, name='delete_service'),
 
-    path('invoices/<int:invoice_id>/verify/', views.verify_invoice_view, name='verify_invoice'),
-
-    #marg
     path('invoice/<int:service_id>/', views.invoice_view, name='invoice_form'),
+    path('delete_invoice/<int:service_id>/', views.delete_invoice, name='delete_invoice'),
     
     path('notification/', views.show_notification, name='show_notification'),
     path('notification/<int:notification_id>', views.handle_open_notification, name='change_notif_status'),

@@ -12,10 +12,3 @@ def has_any_role(user, roles):
         return profile.has_role(role_list)
     except Profile.DoesNotExist:
         return False
-
-@register.filter(name='capital_first')
-def capital_first(word):
-    if not isinstance(word,str):
-        return word
-    final= f"{word[:1].upper()}{word[1:].lower()}"
-    return final
