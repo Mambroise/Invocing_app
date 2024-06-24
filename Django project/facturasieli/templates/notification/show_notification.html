@@ -30,17 +30,16 @@
             {%if notifications_received %}
             
                 <div class="list-notification">
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <th>{% translate 'Status' %} </th>
                             <th> {% translate 'Type' %}</th>
                             <th>{% translate 'Service' %} </th>
                             <th>{% translate 'Date' %}</th>
-                            <th> </th>
                         </thead>
                         {%for notification in  notifications_received %}
 
-                            <tr class="{% if not notification.is_read %}table-warning{% endif %}">
+                            <tr class="{% if not notification.is_read %}table-warning{% endif %}"onclick="show_modal_notification_received({{notification.id}}, {{notification.type}}, `{{notification.service_title}}`, `{{notification.company_sender.name}}`, '{{notification.company_sender.siret}}', '{{notification.send_at}}');">
                                 <td>
                                     {% if notification.is_read %}
                                     {% translate 'Read' %}
@@ -68,12 +67,7 @@
                                 </td>
                                 <td>
                                     {{notification.send_at|date}}
-                                </td>
-                                <td>
-                                    <a  href="#" onclick="show_modal_notification_received({{notification.id}}, {{notification.type}}, `{{notification.service_title}}`, `{{notification.company_sender.name}}`, '{{notification.company_sender.siret}}', '{{notification.send_at}}');"> 
-                                        {% translate 'see' %} 
-                                    </a>
-                                </td>                                
+                                </td>                               
                             </tr>
                         {% endfor %}
                     </table>
