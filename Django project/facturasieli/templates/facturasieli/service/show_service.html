@@ -12,6 +12,17 @@
 {% load custom_filters %}
 
 {% block content %}
+    <!-- display messages -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
 <div class="mt-4 d-flex justify-content-center">
     <div class="w-100 mt-4">
         <div class="row">
@@ -104,7 +115,7 @@
                     </ul>
                     <div class="card-body">
                       {% if service.company_provider.id == request.profile.company.id %}
-                      <a href="#" class="card-link">
+                      <a href="{% url 'facturasieli:update_invoice' service.id %}" class="card-link">
                         <?xml version="1.0" ?>
                         <svg height="30" version="1.1" viewBox="0 0 18 18" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/>
                             <desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#000000" id="Core" transform="translate(-213.000000, -129.000000)"><g id="create" transform="translate(213.000000, 129.000000)">

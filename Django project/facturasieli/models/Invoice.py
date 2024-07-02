@@ -32,6 +32,7 @@ class Invoice(models.Model):
     status = models.CharField(_("Status"), max_length=50, choices=STATUS_CHOICES, default=1)
     provider_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_provider')
     client_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_client')
+    update_timestamp = models.DateTimeField(_("Time of update"),null=True)
 
     def __str__(self):
         return f'Invoice {self.invoice_number} - {self.status}'
