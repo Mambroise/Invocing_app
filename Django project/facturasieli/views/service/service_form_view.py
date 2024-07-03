@@ -62,3 +62,8 @@ def handle_service(request):
         form = ServiceForm()
 
     return render(request, 'facturasieli/service/service_form.html', {"form": form})
+
+def update_service(request, service_id):
+    service = get_object_or_404(Service, pk=service_id)
+    form = ServiceForm(instance=service)
+    return render(request, 'facturasieli/service/service_form.html', {"form":form})

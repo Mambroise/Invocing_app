@@ -33,6 +33,7 @@ urlpatterns = [
     path('service/<int:company_id>/', views.display_service, name='service'),
     path('show_service/<int:service_id>/', views.show_service, name='show_service'),
     path('delete_service/<int:service_id>/', views.delete_service, name='delete_service'),
+    path('update_service/<int:service_id>/', views.update_service, name='update_service'),
 
     path('invoice/<int:service_id>/', views.invoice_view, name='invoice_form'),
     path('delete_invoice/<int:service_id>/', views.delete_invoice, name='delete_invoice'),
