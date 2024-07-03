@@ -43,8 +43,8 @@ def invoice_view(request, service_id):
             service.invoice = get_object_or_404(Invoice, pk=invoice_id) 
             service.save()
 
-            #sending notification in-app to the provider
-            send_notification(notification_type= NotificationType.FACTURE_SOUMISE,
+            #sending notification in-app to the client
+            send_notification(notification_type= NotificationType.INVOICE_SUBMITTED,
                             service_title= f"Facture pour l'intervention : {service.title}.",
                             company_sender_id= request.profile.company_id,
                             company_receiver_id=service.company_client.id
@@ -84,6 +84,14 @@ def update_invoice(request, service_id):
             updated_invoice.save()
             messages.success(request,_("Invoice successfully updated."))
 
+            
+            #sending notification in-app to the client
+            send_notification(notification_type= NotificationType.INVOICE_MODIFIED,
+                            service_title= f"Modification de facture pour l'intervention : {service.title}.",
+                            company_sender_id= request.profile.company_id,
+                            company_receiver_id=service.company_client.id
+                            )
+
             url = reverse('facturasieli:show_service', kwargs={'service_id': service.id})
             return redirect(url)
         else:
@@ -100,8 +108,16 @@ def delete_invoice(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
     invoice = service.invoice
     invoice.delete()
+
     #get service after invoice deletion
     service = get_object_or_404(Service, pk=service_id)
+
+    #sending notification in-app to the client
+    send_notification(notification_type= NotificationType.INVOICE_DELETED,
+                    service_title= f"Suppression de facture pour l'intervention : {service.title}.",
+                    company_sender_id= request.profile.company_id,
+                    company_receiver_id=service.company_client.id
+                    )
 
     return render(request, 'facturasieli/service/show_service.html', {'service': service})
 

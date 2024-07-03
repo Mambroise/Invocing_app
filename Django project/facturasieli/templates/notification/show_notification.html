@@ -56,8 +56,16 @@
                                     {% elif notification.type == 4%}
                                     {% translate 'Invoice Rejected' %}
                                     {% elif notification.type == 5%}
-                                    {% else %}
                                     {% translate 'Invoice Paid' %}
+                                    {% elif notification.type == 6%}
+                                    {% translate 'Invoice Modified' %}
+                                    {% elif notification.type == 7%}
+                                    {% translate 'Invoice Deleted' %}
+                                    {% elif notification.type == 8%}
+                                    {% translate 'Service Modified' %}
+                                    {% elif notification.type == 9%}
+                                    {% translate 'Service Deleted' %}
+                                    {% else %}
                                     {% endif %}      
                                 </td>
 
@@ -140,9 +148,17 @@
                                 {% elif notification.type == 4%}
                                 {% translate 'Invoice Rejected' %}
                                 {% elif notification.type == 5%}
-                                {% else %}
                                 {% translate 'Invoice Paid' %}
-                                {% endif %}        
+                                {% elif notification.type == 6%}
+                                {% translate 'Invoice Modified' %}
+                                {% elif notification.type == 7%}
+                                {% translate 'Invoice Deleted' %}
+                                {% elif notification.type == 8%}
+                                {% translate 'Service Modified' %}
+                                {% elif notification.type == 9%}
+                                {% translate 'Service Deleted' %}
+                                {% else %}
+                                {% endif %}       
                             </td>
 
                             <td>

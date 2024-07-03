@@ -44,7 +44,7 @@ def handle_service(request):
                 new_service.save()
                 
                 #sending notification in-app to the provider
-                send_notification(notification_type= NotificationType.DEMANDE_FACTURE,
+                send_notification(notification_type= NotificationType.INVOICE_REQUEST,
                                 service_title= f"Demande de facture pour l'intervention : {new_service.title}.",
                                 company_sender_id= request.profile.company_id,
                                 company_receiver_id=new_service.company_provider.id

@@ -113,7 +113,7 @@
                           </strong>  
                       </li>
                     </ul>
-                    <div class="card-body">
+                    <div class="card-body d-flex justify-content-around">
                       {% if service.company_provider.id == request.profile.company.id %}
                       <a href="{% url 'facturasieli:update_invoice' service.id %}" class="card-link">
                         <?xml version="1.0" ?>
