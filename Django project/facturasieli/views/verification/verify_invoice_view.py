@@ -38,9 +38,9 @@ def verify_invoice_view(request, invoice_id):
             #sending notification in-app to the provider
             provider_company = get_object_or_404(Company, name=invoice.name_provider)
             if invoice_status == "2":
-                NotificationType_enum = NotificationType.FACTURE_VERIFIEE
+                NotificationType_enum = NotificationType.INVOICE_VERIFIED
             else:
-                NotificationType_enum = NotificationType.FACTURE_REJETEE
+                NotificationType_enum = NotificationType.INVOICE_REJECTED
 
             send_notification(notification_type= NotificationType_enum,
                             service_title= f"Facture pour la facture : {invoice.invoice_number}.",
