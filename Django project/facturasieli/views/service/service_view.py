@@ -10,7 +10,8 @@ from django.shortcuts import get_list_or_404, get_object_or_404, render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from facturasieli.models import Service
+from facturasieli.models import Service,NotificationType
+from facturasieli.services.notification_service import send_notification
 
 
 def display_service(request, company_id):
@@ -33,6 +34,13 @@ def display_service(request, company_id):
 def delete_service(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
     service.delete()
+
+    #sending notification in-app to the provider
+    send_notification(notification_type= NotificationType.SERVICE_DELETED,
+                    service_title= f"Suppressiion de l'intervention : {service.title}.",
+                    company_sender_id= request.profile.company_id,
+                    company_receiver_id=service.company_provider.id
+                    )
     try:
         services = get_list_or_404(Service, company_client=request.profile.company) 
     except:

@@ -62,7 +62,7 @@
                 </div>
                 {% if service.company_client.id == request.profile.company.id %}
                 <div class="d-flex justify-content-around">
-                    <a href="#" class="btn btn-warning" >{% translate 'Edit' %}
+                    <a href="{% url 'facturasieli:update_service' service.id %}" class="btn btn-warning" >{% translate 'Edit' %}
                     </a>
                     <a href="{% url 'facturasieli:delete_service' service.id %}" 
                     class="btn btn-danger" 

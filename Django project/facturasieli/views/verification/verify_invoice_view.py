@@ -43,7 +43,7 @@ def verify_invoice_view(request, invoice_id):
                 NotificationType_enum = NotificationType.INVOICE_REJECTED
 
             send_notification(notification_type= NotificationType_enum,
-                            service_title= f"Facture pour la facture : {invoice.invoice_number}.",
+                            service_title= f"Vérification de la facture : {invoice.invoice_number}.",
                             company_sender_id= request.profile.company_id,
                             company_receiver_id=provider_company.id
                             )
