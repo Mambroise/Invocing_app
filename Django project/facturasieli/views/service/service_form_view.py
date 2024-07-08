@@ -103,4 +103,5 @@ def update_service(request, service_id):
 
 
     form = ServiceForm(instance=service)
-    return render(request, 'facturasieli/service/service_form.html', {"form":form})
+
+    return render(request, 'facturasieli/service/service_form.html', {"form":form, 'update':'update_mode'})
