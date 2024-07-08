@@ -98,9 +98,8 @@ def update_invoice(request, service_id):
             logger.error('Form is not valid:%s',form.errors)
             messages.error(request, _("There were errors in your form. Please correct them and try again."))
 
-
-    invoice = service.invoice
     form = InvoiceForm(instance=invoice)
+
     return render(request,'facturasieli/invoice/invoice_form.html',{'form':form, 'service':service} )
 
 
