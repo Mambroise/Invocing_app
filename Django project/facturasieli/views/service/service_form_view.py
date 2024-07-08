@@ -5,6 +5,7 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
+import logging
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -16,6 +17,7 @@ from facturasieli.forms import ServiceForm
 from facturasieli.models import Company, NotificationType, Service
 from facturasieli.services.notification_service import send_notification
 
+logger = logging.getLogger(__name__)
 
 def handle_service(request):
     if not request.user.is_authenticated:
@@ -65,5 +67,40 @@ def handle_service(request):
 
 def update_service(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
+    service = get_object_or_404(Service, pk=service_id)
+    previous_title = service.title
+    if request.method == 'POST':
+        form = ServiceForm(request.POST, instance=service)
+        if form.is_valid():
+            update_service = form.save(commit=False)
+            client_company = get_object_or_404(Company,pk=request.profile.company_id)
+
+            update_service.issue_date = service.issue_date
+            update_service.status = service.status
+            update_service.company_client = client_company
+            update_service.save()
+
+            #sending notification in-app to the provider
+            send_notification(notification_type= NotificationType.SERVICE_MODIFIED,
+                            service_title= f"Modification de l'intervention : {previous_title}. Facture supprimée",
+                            company_sender_id= request.profile.company_id,
+                            company_receiver_id=service.company_provider.id
+                            )
+
+            send_notification(notification_type= NotificationType.INVOICE_REQUEST,
+                            service_title= f"Demande de facture pour l'intervention : {service.title}.",
+                            company_sender_id= request.profile.company_id,
+                            company_receiver_id=service.company_provider.id
+                            )
+            
+            messages.success(request, _('Service successfully updated.'))
+
+            url = reverse('facturasieli:show_service', kwargs={'service_id':service.id})
+            return redirect(url)
+        else:
+            logger.error('Form is valid:%s',form.errors)
+            messages.error(request, _("There were errors in your form. Please correct them and try again."))
+
+
     form = ServiceForm(instance=service)
     return render(request, 'facturasieli/service/service_form.html', {"form":form})

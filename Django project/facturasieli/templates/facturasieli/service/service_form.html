@@ -27,7 +27,7 @@
     <div class="d-flex justify-content-center mt-4">
         <div>
             <a href="{% url 'facturasieli:service' request.profile.id %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
-            <form action="{% url 'facturasieli:service_form' %}" method="post">
+            <form method="post">
                 {% csrf_token %}
                 {{form.as_p}}
                 <button type="submit" class="btn btn-success" value="List">{% translate 'Create' %}</button>
