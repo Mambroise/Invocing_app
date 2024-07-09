@@ -13,6 +13,7 @@ from django.utils.translation import gettext_lazy as _
 from facturasieli.models import Invoice, NotificationType, Company
 from facturasieli.forms import VerificationForm
 from facturasieli.services.notification_service import send_notification
+from facturasieli.services.all_maths import invoice_total_amount
 
 
 
@@ -37,12 +38,12 @@ def verify_invoice_view(request, invoice_id):
             #sending notification in-app to the provider
             provider_company = get_object_or_404(Company, name=invoice.name_provider)
             if invoice_status == "2":
-                NotificationType_enum = NotificationType.FACTURE_VERIFIEE
+                NotificationType_enum = NotificationType.INVOICE_VERIFIED
             else:
-                NotificationType_enum = NotificationType.FACTURE_REJETEE
+                NotificationType_enum = NotificationType.INVOICE_REJECTED
 
             send_notification(notification_type= NotificationType_enum,
-                            service_title= f"Facture pour la facture : {invoice.invoice_number}.",
+                            service_title= f"Vérification de la facture : {invoice.invoice_number}.",
                             company_sender_id= request.profile.company_id,
                             company_receiver_id=provider_company.id
                             )
@@ -51,11 +52,8 @@ def verify_invoice_view(request, invoice_id):
             pending_invoices = Invoice.objects.filter(status='Pending')  # 1 corresponds to 'Pending'
             return render(request, 'facturasieli/verification/verification_list.html', {'invoices': pending_invoices})
     else:
-                # Total price math
-        try:
-            total_price = invoice.amount_excluding_tax * (1 + invoice.tax / 100)
-        except:
-            total_price=0
+ 
+        total_price = invoice_total_amount(invoice)
         form = VerificationForm()
 
         context = {'invoice': invoice, 'form': form, 'total': total_price}

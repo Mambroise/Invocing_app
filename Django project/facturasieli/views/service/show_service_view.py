@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Service
+from facturasieli.services.all_maths import invoice_total_amount
 
 
 def show_service(request, service_id):
@@ -19,19 +20,7 @@ def show_service(request, service_id):
 
     service = get_object_or_404(Service, id = service_id)
 
-    # Total price math
-    try:
-        if service.invoice.tax == 1:
-            vat = 20
-        elif service.invoice.tax == 2:
-            vat = 10
-        elif service.invoice.tax == 4:
-            vat = 5.5
-        elif service.invoice.tax == 5:
-            vat = 2.1
-        total_price = service.invoice.amount_excluding_tax + (service.invoice.amount_excluding_tax * (vat / 100))
-    except:
-        total_price = 0
+    total_price = invoice_total_amount(service.invoice)
 
     context = {'service':service, 'total':total_price}
     return render(request, 'facturasieli/service/show_service.html', context)

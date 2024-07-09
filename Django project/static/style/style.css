@@ -9,3 +9,13 @@
 .min-content{
     min-height: 400px ;
 }
+
+
+.hidden{
+    display: none;
+}
+
+.line_over:hover .hidden {
+    display: block;
+}
+

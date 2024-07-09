@@ -131,7 +131,7 @@ function createElementTREmeteur(companyName, companySiret){
     pSiret.append(sirentContent);
     pCompanyName.append(companyNameContent);
 
-    tdEmetteurKey.append("Emmeteur");
+    tdEmetteurKey.append("Emmeteur/destinataire");
     tdEmetteurValue.appendChild(pCompanyName);
     tdEmetteurValue.appendChild(pSiret);
 
@@ -142,7 +142,7 @@ function createElementTREmeteur(companyName, companySiret){
     return trEmetteur;
 }
 
-function show_modal_notification_received(notificationId,notificationType, serviceTitle, companyName, companySiret, send_at) {
+function show_modal_notification_received(notificationId, notificationType, serviceTitle, companyName, companySiret, send_at) {
 
     var a_close_button = document.getElementsByClassName("is_read")[0];
     var baseUrl = a_close_button.getAttribute("data-url");
@@ -191,7 +191,6 @@ function show_modal_notification_received(notificationId,notificationType, servi
         serviceTitleElement.replaceWith(spanService);
         emetteurElement.replaceWith(spanEmetteur);
         dateRecetionNotificationElement.replaceWith(spanDateRecetionNotification);
-        window.location.reload();
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -203,6 +202,7 @@ function show_modal_notification_received(notificationId,notificationType, servi
             serviceTitleElement.replaceWith(spanService);
             emetteurElement.replaceWith(spanEmetteur);
             dateRecetionNotificationElement.replaceWith(spanDateRecetionNotification);
+            
         }
     }
 }

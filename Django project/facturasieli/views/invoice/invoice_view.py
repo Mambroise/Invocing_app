@@ -14,7 +14,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 from facturasieli.forms.InvoiceForm import InvoiceForm
 from facturasieli.models import Service,Invoice,NotificationType
-from facturasieli.services.notification_service import send_notification
+from facturasieli.services.notification_service import invoice_submitted,invoice_updated,invoice_deleted
 
 logger = logging.getLogger(__name__)
 
@@ -43,17 +43,13 @@ def invoice_view(request, service_id):
             service.invoice = get_object_or_404(Invoice, pk=invoice_id) 
             service.save()
 
-            #sending notification in-app to the provider
-            send_notification(notification_type= NotificationType.FACTURE_SOUMISE,
-                            service_title= f"Facture pour l'intervention : {service.title}.",
-                            company_sender_id= request.profile.company_id,
-                            company_receiver_id=service.company_client.id
-                            )
+            #sending notification in-app to the client
+            invoice_submitted(request,service)
 
             messages.success(request, _("Invoice saved successfully."))
             #redirect towards company services
     
-            url = reverse('facturasieli:service', kwargs={'company_id': service.company_provider.id})
+            url = reverse('facturasieli:show_service', kwargs={'service_id': service.id})
             return redirect(url)
         else:
             logger.error("Form is not valid: %s", form.errors)
@@ -62,4 +58,52 @@ def invoice_view(request, service_id):
         form = InvoiceForm()
     
     return render(request, 'facturasieli/invoice/invoice_form.html', {'form': form, 'service': service})
+
+
+def update_invoice(request, service_id):
+    service = get_object_or_404(Service, pk=service_id)
+    invoice = service.invoice
+
+    if request.method == 'POST':
+        form = InvoiceForm(request.POST, instance=invoice)
+        if form.is_valid():
+            updated_invoice = form.save(commit=False)
+            
+            # Ensure required fields are set (re-assign existing values to unchanged fields)
+            updated_invoice.invoice_number = invoice.invoice_number
+            updated_invoice.client_address = invoice.client_address
+            updated_invoice.provider_address = invoice.provider_address
+            updated_invoice.name_provider = invoice.name_provider
+            updated_invoice.name_client = invoice.name_client
+            updated_invoice.update_timestamp = timezone.now()
+
+            updated_invoice.save()
+            messages.success(request,_("Invoice successfully updated."))
+           
+            #sending notification in-app to the client
+            invoice_updated(request,service)
+
+            url = reverse('facturasieli:show_service', kwargs={'service_id': service.id})
+            return redirect(url)
+        else:
+            logger.error('Form is not valid:%s',form.errors)
+            messages.error(request, _("There were errors in your form. Please correct them and try again."))
+
+    form = InvoiceForm(instance=invoice)
+
+    return render(request,'facturasieli/invoice/invoice_form.html',{'form':form, 'service':service} )
+
+
+def delete_invoice(request, service_id):
+    service = get_object_or_404(Service, pk=service_id)
+    invoice = service.invoice
+    invoice.delete()
+
+    #get service after invoice deletion
+    service = get_object_or_404(Service, pk=service_id)
+
+    #sending notification in-app to the client
+    invoice_deleted(request, service)
+
+    return render(request, 'facturasieli/service/show_service.html', {'service': service})
 
