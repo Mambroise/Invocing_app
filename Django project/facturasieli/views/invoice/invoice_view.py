@@ -14,7 +14,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 from facturasieli.forms.InvoiceForm import InvoiceForm
 from facturasieli.models import Service,Invoice,NotificationType
-from facturasieli.services.notification_service import send_notification
+from facturasieli.services.notification_service import invoice_submitted,invoice_updated,invoice_deleted
 
 logger = logging.getLogger(__name__)
 
@@ -44,11 +44,7 @@ def invoice_view(request, service_id):
             service.save()
 
             #sending notification in-app to the client
-            send_notification(notification_type= NotificationType.INVOICE_SUBMITTED,
-                            service_title= f"Facture pour l'intervention : {service.title}.",
-                            company_sender_id= request.profile.company_id,
-                            company_receiver_id=service.company_client.id
-                            )
+            invoice_submitted(request,service)
 
             messages.success(request, _("Invoice saved successfully."))
             #redirect towards company services
@@ -83,14 +79,9 @@ def update_invoice(request, service_id):
 
             updated_invoice.save()
             messages.success(request,_("Invoice successfully updated."))
-
-            
+           
             #sending notification in-app to the client
-            send_notification(notification_type= NotificationType.INVOICE_MODIFIED,
-                            service_title= f"Modification de facture pour l'intervention : {service.title}.",
-                            company_sender_id= request.profile.company_id,
-                            company_receiver_id=service.company_client.id
-                            )
+            invoice_updated(request,service)
 
             url = reverse('facturasieli:show_service', kwargs={'service_id': service.id})
             return redirect(url)
@@ -112,11 +103,7 @@ def delete_invoice(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
 
     #sending notification in-app to the client
-    send_notification(notification_type= NotificationType.INVOICE_DELETED,
-                    service_title= f"Suppression de facture pour l'intervention : {service.title}.",
-                    company_sender_id= request.profile.company_id,
-                    company_receiver_id=service.company_client.id
-                    )
+    invoice_deleted(request, service)
 
     return render(request, 'facturasieli/service/show_service.html', {'service': service})
 
