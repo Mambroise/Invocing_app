@@ -65,10 +65,13 @@
                                     {% translate 'Service Modified' %}
                                     {% elif notification.type == 9%}
                                     {% translate 'Service Deleted' %}
+                                    {% elif notification.type == 10%}
+                                    {% translate 'New Account created' %}
+                                    {% elif notification.type == 11%}
+                                    {% translate 'Account Modified' %}
                                     {% else %}
                                     {% endif %}      
                                 </td>
-
                                 <td>
                                     {{notification.service_title}}
                                 </td>
@@ -157,6 +160,10 @@
                                 {% translate 'Service Modified' %}
                                 {% elif notification.type == 9%}
                                 {% translate 'Service Deleted' %}
+                                {% elif notification.type == 10%}
+                                {% translate 'New Account created' %}
+                                {% elif notification.type == 11%}
+                                {% translate 'Account Modified' %}
                                 {% else %}
                                 {% endif %}       
                             </td>
