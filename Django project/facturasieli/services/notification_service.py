@@ -93,7 +93,7 @@ def invoice_request(request, service : Service):
     send_notification(notification_type= NotificationType.INVOICE_REQUEST,
                 service_title= f"{invoice_request_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
-                company_receiver_id=service.company_client.id
+                company_receiver_id=service.company_provider.id
                 )
 
 #sending notification in-app to the client after creating the invoice
@@ -102,7 +102,7 @@ def invoice_verified(request, service : Service):
     send_notification(notification_type= NotificationType.INVOICE_VERIFIED,
                 service_title= f"{invoice_verified_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
-                company_receiver_id=service.company_client.id
+                company_receiver_id=service.company_provider.id
                 )
     
 #sending notification in-app to the client after creating the invoice
@@ -111,7 +111,7 @@ def invoice_paid(request, service : Service):
     send_notification(notification_type= NotificationType.INVOICE_PAID,
                 service_title= f"{invoice_paid_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
-                company_receiver_id=service.company_client.id
+                company_receiver_id=service.company_provider.id
                 )
     
 #sending notification in-app to the client after creating the invoice
@@ -120,23 +120,23 @@ def invoice_rejected(request, service : Service):
     send_notification(notification_type= NotificationType.INVOICE_REJECTED,
                 service_title= f"{invoice_rejected_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
-                company_receiver_id=service.company_client.id
+                company_receiver_id=service.company_provider.id
                 )
 
 #sending notification in-app to the client after updating the invoice
 def service_updated(request, service : Service):
 
     send_notification(notification_type= NotificationType.SERVICE_MODIFIED,
-                service_title= f"{invoice_updated_message} {service.title}.",
+                service_title= f"{service_updated_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
-                company_receiver_id=service.company_client.id
+                company_receiver_id=service.company_provider.id
                 )
 
 #sending notification in-app to the client after updating the invoice
 def service_deleted(request, service : Service):
 
     send_notification(notification_type= NotificationType.SERVICE_DELETED,
-                service_title= f"{invoice_updated_message} {service.title}.",
+                service_title= f"{service_deleted_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
-                company_receiver_id=service.company_client.id
+                company_receiver_id=service.company_provider.id
                 )
