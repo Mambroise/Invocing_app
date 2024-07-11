@@ -19,8 +19,11 @@ invoice_submitted_message = _("Invoice submitted for service:")
 invoice_updated_message = _("Invoice modified for service:")
 invoice_deleted_message = _("Invoice deleted for service:")
 invoice_request_message = _("Invoice request for service:")
+invoice_verified_message = _("Invoice accepted and ready to be paid for service:")
 invoice_paid_message = _("Invoice paid for service:")
 invoice_rejected_message = _("Invoice rejected, check the file for service:")
+service_updated_message = _("Modification of service:")
+service_deleted_message = _("Deletion of service:")
 
 #----------------------------------------------------
 # MAIN FUNCTION, saving in database function
@@ -93,6 +96,15 @@ def invoice_request(request, service : Service):
                 company_receiver_id=service.company_client.id
                 )
 
+#sending notification in-app to the client after creating the invoice
+def invoice_verified(request, service : Service):
+
+    send_notification(notification_type= NotificationType.INVOICE_VERIFIED,
+                service_title= f"{invoice_verified_message} {service.title}.",
+                company_sender_id= request.profile.company_id,
+                company_receiver_id=service.company_client.id
+                )
+    
 #sending notification in-app to the client after creating the invoice
 def invoice_paid(request, service : Service):
 
