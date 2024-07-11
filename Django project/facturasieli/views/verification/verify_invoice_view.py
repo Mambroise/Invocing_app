@@ -10,9 +10,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import JsonResponse
 from django.utils.translation import gettext_lazy as _
-from facturasieli.models import Invoice, NotificationType, Company
+from facturasieli.models import Invoice, NotificationType, Company, Service
 from facturasieli.forms import VerificationForm
-from facturasieli.services.notification_service import send_notification
+from facturasieli.services.notification_service import invoice_verified, invoice_rejected
 from facturasieli.services.all_maths import invoice_total_amount
 
 
@@ -21,6 +21,7 @@ from facturasieli.services.all_maths import invoice_total_amount
 #@user_passes_test(is_company_verifier_or_admin)
 def verify_invoice_view(request, invoice_id):
     invoice = get_object_or_404(Invoice, id=invoice_id)
+    service = get_object_or_404(Service, invoice=invoice)
 
     if request.method == 'POST':
         form = VerificationForm(request.POST)
@@ -38,15 +39,9 @@ def verify_invoice_view(request, invoice_id):
             #sending notification in-app to the provider
             provider_company = get_object_or_404(Company, name=invoice.name_provider)
             if invoice_status == "2":
-                NotificationType_enum = NotificationType.INVOICE_VERIFIED
+                invoice_verified(request,service)
             else:
-                NotificationType_enum = NotificationType.INVOICE_REJECTED
-
-            send_notification(notification_type= NotificationType_enum,
-                            service_title= f"Vérification de la facture : {invoice.invoice_number}.",
-                            company_sender_id= request.profile.company_id,
-                            company_receiver_id=provider_company.id
-                            )
+                invoice_rejected(request, service)
 
             messages.success = _('Invoice status updated successfully')
             pending_invoices = Invoice.objects.filter(status='Pending')  # 1 corresponds to 'Pending'
