@@ -19,4 +19,6 @@ class NotificationType(models.IntegerChoices):
     INVOICE_DELETED = 7, _('Invoice Deleted')
     SERVICE_MODIFIED = 8, _('Service Modified')
     SERVICE_DELETED = 9, _('Service Deleted')
+    NEW_ACCOUNT = 10,_('New Account Created')
+    ACCOUNT_MODIFIED = 11,_('Account modified')
 
