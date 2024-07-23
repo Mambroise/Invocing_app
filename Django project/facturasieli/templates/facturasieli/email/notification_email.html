@@ -1,0 +1,25 @@
+<!-- # ---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/template/facturasieli/email/notification_email.py
+# Author : Morice
+# --------------------------------------------------------------------------- -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+</head>
+<body>
+    <h2>{{ title }}</h2>
+    <p><strong>Status:</strong> {{ notification_status }}</p>
+    <p><strong>Type:</strong> {{ notification_type }}</p>
+    <p><strong>Service:</strong> {{ notification_service }}</p>
+    <p><strong>Date:</strong> {{ notification_date }}</p>
+    <p><strong>Company Sender:</strong> {{ notification_company_sender }}</p>
+    <p><strong>Siret:</strong> {{ notification_company_siret }}</p>
+</body>
+</html>
