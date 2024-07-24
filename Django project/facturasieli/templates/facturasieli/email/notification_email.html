@@ -5,6 +5,7 @@
 # Author : Morice
 # --------------------------------------------------------------------------- -->
 
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +15,19 @@
     <title>Notification</title>
 </head>
 <body>
-    <h2>{{ title }}</h2>
-    <p><strong>Status:</strong> {{ notification_status }}</p>
-    <p><strong>Type:</strong> {{ notification_type }}</p>
-    <p><strong>Service:</strong> {{ notification_service }}</p>
-    <p><strong>Date:</strong> {{ notification_date }}</p>
-    <p><strong>Company Sender:</strong> {{ notification_company_sender }}</p>
-    <p><strong>Siret:</strong> {{ notification_company_siret }}</p>
+    <p>{% translate 'Dear' %} {{ username|capfirst }}</p>
+    <p>{% translate 'We are pleased to inform you that an operation concerning you is awaiting in your personal space.' %}</p>
+    <p>{% translate 'Below is the corresponding notification:' %}</p>
+    <br>
+    <br>
+    <h2>{{ title|capfirst }}</h2>
+    <p><strong>{% translate 'Status:' %}</strong> {{ notification_status }}</p>
+    <p><strong>{% translate 'Type:' %}</strong> {{ notification_type }}</p>
+    <p><strong>{% translate 'Service:' %}</strong> {{ notification_service }}</p>
+    <p><strong>{% translate 'Date:' %}</strong> {{ notification_date }}</p>
+    <p><strong>{% translate 'Company Sender:' %}</strong> {{ notification_company_sender }}</p>
+    <p><strong>{% translate 'Siret:' %}</strong> {{ notification_company_siret }}</p>
+    <br>
+    <p>{% translate 'See you soon on Facturasieli' %}</p>
 </body>
 </html>
