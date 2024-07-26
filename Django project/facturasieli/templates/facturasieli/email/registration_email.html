@@ -1,0 +1,25 @@
+<!-- # ---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/template/facturasieli/email/registration_email.py
+# Author : Morice
+# --------------------------------------------------------------------------- -->
+
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration email</title>
+</head>
+<body>
+    <p>{% translate 'Dear' %} {{ user_profile.first_name|capfirst }}</p>
+    <p>{% translate 'Thank you for registering and welcome to your new invocing app' %}</p>
+    <p>{% translate 'Nothing easier than getting paid for the services you offer.' %}</p>
+    <strong><a href="http://127.0.0.1:8000/fr/public_profile/{u}/"></a>{% translate 'Start now ' %}</strong>
+    <br>
+    <p>{% translate 'See you soon on Facturasieli' %}</p>
+</body>
+</html>
