@@ -30,7 +30,7 @@ def register_company_address(request: HttpRequest):
             profile.save()
 
             # send welcome message in-app
-            new_account(profile)
+            new_account(request,profile)
             
             return HttpResponseRedirect(reverse('facturasieli:welcome'))
     else:
