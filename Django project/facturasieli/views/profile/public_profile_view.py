@@ -19,4 +19,4 @@ def public_profile(request: HttpRequest, user_id):
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
     
-    return render(request, 'facturasieli/public_profile.html')
+    return render(request, 'facturasieli/profile/public_profile.html')

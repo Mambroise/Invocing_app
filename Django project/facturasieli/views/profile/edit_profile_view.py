@@ -43,7 +43,7 @@ def edit_profile(request: HttpRequest):
         )
 
     context = { 'form': form }
-    return render(request, 'facturasieli/edit_profile.html', context)
+    return render(request, 'facturasieli/profile/edit_profile.html', context)
 
 
 

@@ -9,4 +9,4 @@ class OTP(models.Model):
     otp = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.user.email  # Assuming the email is the unique identifier for your custom user model
+        return self.user.email  
