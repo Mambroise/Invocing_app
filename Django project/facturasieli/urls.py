@@ -21,7 +21,6 @@ urlpatterns = [
 
     path('custom_login/', views.custom_log_in, name='custom_log_in'),
     path('otp_validation/', views.otp_validation, name='otp_validation'),
-    # path('accounts/login/', auth_views.LoginView.as_view(), name='log_in'),
 
     path('logout/', views.log_out, name='log_out'),
     path('goodbye/', views.goodbye, name='goodbye'),
