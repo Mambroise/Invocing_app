@@ -6,6 +6,7 @@
 # ---------------------------------------------------------------------------
 
 import environ
+
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
@@ -42,7 +43,6 @@ def send_email(request, notification : Notification,receiver_profile : Profile):
 
     # In case of new_account
     if notification.type == 10:
-        print("========================================== in the condition")
         html_notification_content = render_to_string('facturasieli/email/registration_email.html', notification_body)
         html_new_user_content = render_to_string('facturasieli/email/new_user_email.html', notification_body)
 
