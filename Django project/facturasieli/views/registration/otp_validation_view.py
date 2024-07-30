@@ -7,6 +7,7 @@
 # ---------------------------------------------------------------------------
 
 from django.contrib.auth import login
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -32,12 +33,13 @@ def otp_validation(request: HttpRequest):
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     otp_instance = OTP.objects.filter(
         otp=user_otp,
-        user=pretended_user_id).first()
+        profile=pretended_user_id).first()
     if otp_instance:
         if otp_instance.expiration_timestamp > timezone.now():
-            login(request, otp_instance.user)
+            login(request, otp_instance.profile)
             return HttpResponseRedirect(reverse('facturasieli:index'))
         else:
+            messages.error(request,_('Time to sign in is out, please retry'))
             return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
 
     return render(request, 'registration/otp_validation.html', {'form': form})
