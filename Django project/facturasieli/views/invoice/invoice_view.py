@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from facturasieli.forms.InvoiceForm import InvoiceForm
 from facturasieli.models import Service,Invoice,NotificationType
 from facturasieli.services.notification_service import invoice_submitted,invoice_updated,invoice_deleted

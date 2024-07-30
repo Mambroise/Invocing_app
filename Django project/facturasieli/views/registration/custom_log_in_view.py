@@ -34,19 +34,8 @@ def custom_log_in(request: HttpRequest):
         return render(request, 'registration/custom_login.html', {'form': form})
 
     profile = get_object_or_404(Profile, email=username)
-    # if not profile.enable_2fa:
-    #     login(request, user)
-    #     return HttpResponseRedirect(reverse('facturasieli:index'))
-    # else:
-    #     otp_instance = create_otp(user)
-    #     send_otp_mail(otp_instance)
-    #     request.session['pretended_user_id'] = user.id
-    #     return HttpResponseRedirect(reverse('facturasieli:otp_validation'))
-    if not profile.enable_2fa:
-        otp_instance = create_otp(profile)
-        send_otp_mail(otp_instance)
-        request.session['pretended_user_id'] = user.id
-        return HttpResponseRedirect(reverse('facturasieli:otp_validation'))
-    else:
-        login(request, user)
-        return HttpResponseRedirect(reverse('facturasieli:index'))
+    otp_instance = create_otp(profile)
+    send_otp_mail(otp_instance)
+    request.session['pretended_user_id'] = user.id
+    return HttpResponseRedirect(reverse('facturasieli:otp_validation'))
+
