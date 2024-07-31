@@ -16,7 +16,7 @@ from facturasieli.models import Notification, Profile
 
 def show_notification(request: HttpRequest):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('facturasieli:custom_flog_in'))
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
     context = get_user_notification_pagination(request)
     return render(request, 'notification/show_notification.html', context)
