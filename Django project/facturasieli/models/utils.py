@@ -8,6 +8,7 @@ import environ
 from datetime import timedelta
 
 from django.utils import timezone
+from django.conf import settings
 
 
 # initialise environment
@@ -20,4 +21,4 @@ def get_avatar_path(instance, filename):
 
 
 def compute_expiration_timestamp():
-    return timezone.now() + timedelta(seconds=env.int('OTP_VALIDITY_DURATION'))
+    return timezone.now() + timedelta(seconds=settings.OTP_VALIDITY_DURATION)
