@@ -60,11 +60,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'facturasieli.middleware.ProfileMiddleware',
-    'facturasieli.middleware.notificationMiddleware',
+    'facturasieli.middleware.NotificationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'facturasieli.middleware.registrationCheckMiddleware',
+    'facturasieli.middleware.RegistrationCheckMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'facturasieli.middleware.InactivityLogoutMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
