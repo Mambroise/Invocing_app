@@ -13,6 +13,7 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.conf import settings
 
 from facturasieli.models import Profile,Notification
 
@@ -85,7 +86,7 @@ class InactivityLogoutMiddleware:
 
         if last_activity:
             last_activity = datetime.datetime.fromisoformat(last_activity).replace(tzinfo=pytz.UTC)
-            if now - last_activity > datetime.timedelta(minutes=15):
+            if now - last_activity > datetime.timedelta(minutes=settings.INACTIVITY_TIMEOUT_MINUTES):
                 messages.error(request, _('You have been logged out due to inactivity.'))
                 logout(request)
                 return self.get_response(request)
