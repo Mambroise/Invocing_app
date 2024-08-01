@@ -17,6 +17,7 @@ from facturasieli.models import Profile
 def public_profile(request: HttpRequest, user_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
-    
-    
-    return render(request, 'facturasieli/profile/public_profile.html')
+    profile = request.profile
+    company = profile.company
+    context = {"profile":profile, "company":company}
+    return render(request, 'facturasieli/profile/public_profile.html',context)

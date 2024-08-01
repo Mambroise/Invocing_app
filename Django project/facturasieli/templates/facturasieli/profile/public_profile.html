@@ -12,22 +12,47 @@
 
 {% block content %}
 <div class="mt-4">
-    <h3>{% translate 'Public profile of user' %} {{ profile.user.username }}{% translate ':' %}</h3>
-    <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
-    {% if request.user.id == profile.user.id %}
-        <a href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
-    {% endif %}
-    <table>
-        <tr>
-            <td>
-                <h3>{% translate 'Invoices:' %}</h3>
-                {% if invoices %}
-                    <p>TODO</p>
-                {% else %}
-                    <p>{{ profile.user.username }} {% translate 'has no invoice defined yet.' %}</p>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
+    <div class="d-flex justify-content-around">
+        <div class="">
+            <h3>{% translate 'Your profile' %}</h3>
+            <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
+            {% if request.profile.id == profile.id %}
+                <a href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
+            {% endif %}
+            <p><strong>{% translate 'First name: ' %}</strong>{{profile.first_name}}</p>
+            <p><strong>{% translate 'Last name: ' %}</strong>{{profile.last_name}}</p>
+            <p><strong>{% translate 'Email: ' %}</strong>{{profile.email}}</p>
+            <p><strong>{% translate 'Creation date: ' %}</strong>{{profile.creation_date}}</p>
+        </div>
+        <div>
+            <h3>{% translate 'Your company' %}</h3>
+            {% if request.profile.id == profile.id %}
+                <a href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit the company' %}</a>
+            {% endif %}
+            <p><strong>{% translate 'Name: ' %}</strong>{{company.name}}</p>
+            <p><strong>{% translate 'Siret: ' %}</strong>{{profile.siret}}</p>
+            <p><strong>{% translate 'Email: ' %}</strong>{{profile.email}}</p>
+            <p><strong>{% translate 'Number and street: ' %}</strong>{{profile.company.address.number}} {{profile.company.address.street}}</p>
+            {% if profile.company.address.addings %}
+            <p><strong>{% translate 'Addings: ' %}</strong>{{profile.company.address.addings}}</p>
+            {% endif %}
+            <p><strong>{% translate 'Zipcode: ' %}</strong>{{profile.company.address.zip_code}}</p>
+            <p><strong>{% translate 'City: ' %}</strong>{{profile.company.address.city}} ( {{profile.company.address.country}} )</p>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <h3>{% translate 'Invoices:' %}</h3>
+                        {% if invoices %}
+                            <p>TODO</p>
+                        {% else %}
+                            <p>{{ profile.user.username }} {% translate 'has no invoice defined yet.' %}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}
