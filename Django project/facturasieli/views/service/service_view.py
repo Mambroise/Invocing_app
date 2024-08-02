@@ -5,6 +5,7 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render,redirect
 from django.urls import reverse
@@ -36,7 +37,11 @@ def delete_service(request, service_id):
     service.delete()
 
     #sending notification in-app to the provider
-    service_deleted(request, service)
+    try:
+        service_deleted(request, service)
+        messages.success(request,_('Service successfully deleted'))
+    except Exception as e:
+        messages.warning(request,_('Service successfully deleted but we may had issues sending emails: %s' % str(e)))
     
     company_id = request.profile.company.id
     client_services = Service.objects.filter(company_client=company_id)

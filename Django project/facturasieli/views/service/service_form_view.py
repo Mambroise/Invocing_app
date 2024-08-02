@@ -14,7 +14,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.forms import ServiceForm
-from facturasieli.models import Company, NotificationType, Service
+from facturasieli.models import Company,Service
 from facturasieli.services.notification_service import invoice_request,service_updated
 
 logger = logging.getLogger(__name__)
@@ -46,9 +46,12 @@ def handle_service(request):
                 new_service.save()
                 
                 #sending notification in-app to the provider
-                invoice_request(request, new_service)
+                try:
+                    invoice_request(request, new_service)
+                    messages.success(request, _("Service created successfully."))
+                except Exception as e:
+                    messages.warning(request,_('Service successfully created but we may encountured issues: %s' % str(e)))
                 
-                messages.success(request, _("Service created successfully."))
                 
                 url = reverse('facturasieli:service', kwargs={'company_id': request.profile.company_id})
                 return redirect(url) 
