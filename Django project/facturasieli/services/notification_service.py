@@ -42,7 +42,7 @@ def send_notification(request,notification_type:str, service_title:str, company_
     notification.company_sender = company_sender
     notification.company_receiver = company_receiver
     notification.save()
-
+    
     send_email(request, notification=notification, receiver_profile=receiver_profile)
 #-----------------------------------------------------
 

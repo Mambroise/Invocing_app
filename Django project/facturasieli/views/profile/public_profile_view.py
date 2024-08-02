@@ -7,17 +7,22 @@
 
 from django.contrib.auth.models import User
 from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from facturasieli.models import Profile
+from facturasieli.models import Profile,Service
 
 
 def public_profile(request: HttpRequest, user_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
+    # gathering all user informations
     profile = request.profile
     company = profile.company
+
+    services_nbr = Service.objects.filter(company_provider=company.id).count()
+
     context = {"profile":profile, "company":company}
     return render(request, 'facturasieli/profile/public_profile.html',context)
