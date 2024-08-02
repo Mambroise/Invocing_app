@@ -1,0 +1,55 @@
+<!-- # ---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/template/facturasieli/email/new_user__email.py
+# Author : Morice
+# --------------------------------------------------------------------------- -->
+
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>new_user</title>
+</head>
+<body>
+    <p>{% translate 'Good news!!' %}</p>
+    <p>{% translate 'A new user just registerde to the app.' %}</p>
+    <p>{% translate 'Below is the corresponding profile:' %}</p>
+    <br>
+    <br>
+    <div class="d-flex justify-content-around">
+        <div>
+            <h2>{% translate 'Identity' %}</h2>
+            <p><strong>{% translate 'Last name:' %}</strong> {{ user_profile.last_name|capfirst }}</p>
+            <p><strong>{% translate 'Fisrt name:' %}</strong> {{ user_profile.first_name|capfirst }}</p>
+            <p><strong>{% translate 'Email:' %}</strong> {{ user_profile.email }}</p>
+            <p><strong>{% translate 'Role:' %}</strong> {{ user_profile.role.role }}</p>
+        </div>
+        <div>
+            <h2>{% translate 'Company' %}</h2>
+            <p><strong>{% translate 'Name:' %}</strong> {{ user_profile.company.name }}</p>
+            <p><strong>{% translate 'Siret:' %}</strong> {{ user_profile.company.siret }}</p>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <strong>{% translate 'Address:' %}</strong>
+                </div>
+                <div>
+                    <p>{{ user_profile.company.address.number }} {{ user_profile.company.address.street }}</p>
+                    {% if user_profile.company.address.adding %}
+                    <p>{{ user_profile.company.address.adding }}</p>
+                    {% endif %}
+                    <p>{{ user_profile.company.address.zip_code }} {{ user_profile.company.address.city }}</p>
+                    <p>{{ user_profile.company.address.country }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <p>{% translate 'See you soon on Facturasieli' %}</p>
+</body>
+</html>

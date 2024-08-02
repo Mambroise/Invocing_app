@@ -18,6 +18,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+import environ
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
@@ -59,11 +60,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'facturasieli.middleware.ProfileMiddleware',
-    'facturasieli.middleware.notificationMiddleware',
+    'facturasieli.middleware.NotificationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'facturasieli.middleware.registrationCheckMiddleware',
+    'facturasieli.middleware.RegistrationCheckMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'facturasieli.middleware.InactivityLogoutMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -160,11 +162,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# SMTP parameters
-
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-
 # Message tag in-app
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'debug',
@@ -177,9 +174,24 @@ MESSAGE_TAGS = {
 # pour utliser un autre model pour l'authentification django: ici user est délessé pour profile
 AUTH_USER_MODEL = 'facturasieli.Profile'
 
-# settings.py
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default backend
-    # Add other backends if you use them
 ]
+
+
+# email settings
+# initialise environment
+env = environ.Env()
+environ.Env.read_env(env_file='.env')
+
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT') 
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS') 
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+OTP_VALIDITY_DURATION = env.int('OTP_VALIDITY_DURATION')
+
+INACTIVITY_TIMEOUT_MINUTES= env.int('INACTIVITY_TIMEOUT_MINUTES')
 

@@ -5,13 +5,14 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
+from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import get_object_or_404, render,redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from facturasieli.models import Service,NotificationType
-from facturasieli.services.notification_service import send_notification
+from facturasieli.models import Service
+from facturasieli.services.notification_service import service_deleted
 
 
 def display_service(request, company_id):
@@ -36,14 +37,19 @@ def delete_service(request, service_id):
     service.delete()
 
     #sending notification in-app to the provider
-    send_notification(notification_type= NotificationType.SERVICE_DELETED,
-                    service_title= f"Suppressiion de l'intervention : {service.title}.",
-                    company_sender_id= request.profile.company_id,
-                    company_receiver_id=service.company_provider.id
-                    )
     try:
-        services = get_list_or_404(Service, company_client=request.profile.company) 
-    except:
-        return HttpResponseRedirect(reverse('facturasieli:service_form'))
+        service_deleted(request, service)
+        messages.success(request,_('Service successfully deleted'))
+    except Exception as e:
+        messages.warning(request,_('Service successfully deleted but we may had issues sending emails: %s' % str(e)))
     
-    return render(request, 'facturasieli/service/service.html', {'services': services})
+    company_id = request.profile.company.id
+    client_services = Service.objects.filter(company_client=company_id)
+    provider_services = Service.objects.filter(company_provider=company_id)
+
+    context = {
+        'client_services': client_services if client_services.exists() else None,
+        'provider_services': provider_services if provider_services.exists() else None
+    }
+    
+    return render(request, 'facturasieli/service/service.html', context)

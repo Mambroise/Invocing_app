@@ -5,11 +5,15 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
+import datetime
+import pytz
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from django.conf import settings
 
 from facturasieli.models import Profile,Notification
 
@@ -34,7 +38,7 @@ class ProfileMiddleware:
         return response
 
 
-class notificationMiddleware:
+class NotificationMiddleware:
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -52,7 +56,7 @@ class notificationMiddleware:
         return response
 
 
-class registrationCheckMiddleware:
+class RegistrationCheckMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
@@ -68,3 +72,24 @@ class registrationCheckMiddleware:
 
         response = self.get_response(request)
         return response
+
+class InactivityLogoutMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if not request.user.is_authenticated:
+            return self.get_response(request)
+        
+        now = timezone.now()
+        last_activity = request.session.get('last_activity')
+
+        if last_activity:
+            last_activity = datetime.datetime.fromisoformat(last_activity).replace(tzinfo=pytz.UTC)
+            if now - last_activity > datetime.timedelta(minutes=settings.INACTIVITY_TIMEOUT_MINUTES):
+                messages.error(request, _('You have been logged out due to inactivity.'))
+                logout(request)
+                return self.get_response(request)
+        
+        request.session['last_activity'] = now.isoformat()
+        return self.get_response(request)

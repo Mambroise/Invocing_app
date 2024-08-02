@@ -38,7 +38,7 @@
                             <th>{% translate 'Date' %}</th>
                         </thead>
                         {%for notification in  notifications_received %}
-                            <tr class="{% if not notification.is_read %}table-warning{% endif %} line_over"onclick="show_modal_notification_received({{notification.id}}, {{notification.type}}, `{{notification.service_title}}`, `{{notification.company_sender.name}}`, '{{notification.company_sender.siret}}', '{{notification.send_at}}');">
+                            <tr class="{% if not notification.is_read %}table-warning{% endif %} line_over" onclick="show_modal_notification_received({{notification.id}}, {{notification.type}}, `{{notification.service_title}}`, `{{notification.company_sender.name}}`, '{{notification.company_sender.siret}}', '{{notification.send_at}}');">
                                 <td>
                                     {% if notification.is_read %}
                                     {% translate 'Read' %}
@@ -65,10 +65,13 @@
                                     {% translate 'Service Modified' %}
                                     {% elif notification.type == 9%}
                                     {% translate 'Service Deleted' %}
+                                    {% elif notification.type == 10%}
+                                    {% translate 'New Account created' %}
+                                    {% elif notification.type == 11%}
+                                    {% translate 'Account Modified' %}
                                     {% else %}
                                     {% endif %}      
                                 </td>
-
                                 <td>
                                     {{notification.service_title}}
                                 </td>
@@ -157,6 +160,10 @@
                                 {% translate 'Service Modified' %}
                                 {% elif notification.type == 9%}
                                 {% translate 'Service Deleted' %}
+                                {% elif notification.type == 10%}
+                                {% translate 'New Account created' %}
+                                {% elif notification.type == 11%}
+                                {% translate 'Account Modified' %}
                                 {% else %}
                                 {% endif %}       
                             </td>
@@ -231,8 +238,7 @@
         <div class="modal-footer">
             FacturaSieli
         </div>
-    </div>
-  
+    </div> 
 </div>
   
 <!-- ================================================= -->

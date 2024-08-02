@@ -12,6 +12,7 @@ from django.urls import reverse
 from facturasieli.forms.CompanyForm import CompanyForm
 from facturasieli.forms.AddressForm import AddressForm
 from facturasieli.models import Profile
+from facturasieli.services.notification_service import new_account
 
 def register_company_address(request: HttpRequest):
     if request.method == 'POST':
@@ -27,6 +28,10 @@ def register_company_address(request: HttpRequest):
             
             profile.company = company
             profile.save()
+
+            # send welcome message in-app
+            new_account(request,profile)
+            
             return HttpResponseRedirect(reverse('facturasieli:welcome'))
     else:
         company_form = CompanyForm()

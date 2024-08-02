@@ -2,15 +2,18 @@
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
 # File   : facturasieli/models/utils.py
-# Author : Brice
+# Author : Brice,Morice
 # ---------------------------------------------------------------------------
-
+import environ
 from datetime import timedelta
 
 from django.utils import timezone
+from django.conf import settings
 
-from facturasieli.conf import OTP_VALIDITY_DURATION
 
+# initialise environment
+env = environ.Env()
+environ.Env.read_env(env_file='.env')
 
 def get_avatar_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/avatar
@@ -18,4 +21,4 @@ def get_avatar_path(instance, filename):
 
 
 def compute_expiration_timestamp():
-    return timezone.now() + timedelta(seconds=OTP_VALIDITY_DURATION)
+    return timezone.now() + timedelta(seconds=settings.OTP_VALIDITY_DURATION)

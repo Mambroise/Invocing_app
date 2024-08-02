@@ -14,8 +14,8 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.forms import ServiceForm
-from facturasieli.models import Company, NotificationType, Service
-from facturasieli.services.notification_service import send_notification
+from facturasieli.models import Company,Service
+from facturasieli.services.notification_service import invoice_request,service_updated
 
 logger = logging.getLogger(__name__)
 
@@ -46,13 +46,12 @@ def handle_service(request):
                 new_service.save()
                 
                 #sending notification in-app to the provider
-                send_notification(notification_type= NotificationType.INVOICE_REQUEST,
-                                service_title= f"Demande de facture pour l'intervention : {new_service.title}.",
-                                company_sender_id= request.profile.company_id,
-                                company_receiver_id=new_service.company_provider.id
-                                )
+                try:
+                    invoice_request(request, new_service)
+                    messages.success(request, _("Service created successfully."))
+                except Exception as e:
+                    messages.warning(request,_('Service successfully created but we may encountured issues: %s' % str(e)))
                 
-                messages.success(request, _("Service created successfully."))
                 
                 url = reverse('facturasieli:service', kwargs={'company_id': request.profile.company_id})
                 return redirect(url) 
@@ -81,17 +80,10 @@ def update_service(request, service_id):
             update_service.save()
 
             #sending notification in-app to the provider
-            send_notification(notification_type= NotificationType.SERVICE_MODIFIED,
-                            service_title= f"Modification de l'intervention : {previous_title}. Facture supprimée",
-                            company_sender_id= request.profile.company_id,
-                            company_receiver_id=service.company_provider.id
-                            )
+            service_updated(update_service)
 
-            send_notification(notification_type= NotificationType.INVOICE_REQUEST,
-                            service_title= f"Demande de facture pour l'intervention : {service.title}.",
-                            company_sender_id= request.profile.company_id,
-                            company_receiver_id=service.company_provider.id
-                            )
+            #sending notification in-app to the provider
+            invoice_request(request, update_service)
             
             messages.success(request, _('Service successfully updated.'))
 
