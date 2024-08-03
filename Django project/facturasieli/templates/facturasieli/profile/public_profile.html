@@ -14,21 +14,18 @@
 <div class="mt-4">
     <div class="d-flex justify-content-around">
         <div>
-            <h3>{% translate 'Your profile' %}</h3>
+            <h3 class="mb-3">{% translate 'Your profile' %}</h3>
             <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
-            {% if request.profile.id == profile.id %}
-                <a href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
-            {% endif %}
             <p><strong>{% translate 'First name: ' %}</strong>{{profile.first_name}}</p>
             <p><strong>{% translate 'Last name: ' %}</strong>{{profile.last_name}}</p>
             <p><strong>{% translate 'Email: ' %}</strong>{{profile.email}}</p>
             <p><strong>{% translate 'Creation date: ' %}</strong>{{profile.creation_date}}</p>
+            {% if request.profile.id == profile.id %}
+                <a class="mt-3" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
+            {% endif %}
         </div>
         <div>
-            <h3>{% translate 'Your company' %}</h3>
-            {% if request.profile.id == profile.id %}
-                <a href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit the company' %}</a>
-            {% endif %}
+            <h3 class="mb-3">{% translate 'Your company' %}</h3>
             <p><strong>{% translate 'Name: ' %}</strong>{{company.name}}</p>
             <p><strong>{% translate 'Siret: ' %}</strong>{{profile.siret}}</p>
             <p><strong>{% translate 'Email: ' %}</strong>{{profile.email}}</p>
@@ -38,24 +35,28 @@
             {% endif %}
             <p><strong>{% translate 'Zipcode: ' %}</strong>{{profile.company.address.zip_code}}</p>
             <p><strong>{% translate 'City: ' %}</strong>{{profile.company.address.city}} ( {{profile.company.address.country}} )</p>
+            {% if request.profile.id == profile.id %}
+            <a class="mt-3" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit the company' %}</a>
+            {% endif %}
         </div>
         {% if request.profile.id == profile.id %}
         <div class="d-flex flex-column p-1 shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h3 class="mb-3 text-center">{% translate 'Your activities' %}</h3>
             <div class="border-bottom">
                 <p class="text-center"><strong>{% translate 'Nbr of services' %}</strong></p>
                 <p class="fs-1 text-center">{{ services_nbr }}</p>
             </div>
             <div class="d-flex justify-content-around m-auto">
                 <div class="border p-1">
-                    <p class="text-center"><strong>{% translate 'Paid invoices' %}</strong></p>
+                    <p class="text-center"><strong>{% translate 'pending invoices' %}</strong></p>
                     <p class="fs-1 text-center">{{ pending_invoice_nbr }}</p>
                 </div>
                 <div class="border mx-2 p-1">
-                    <p class="text-center"><strong>{% translate 'Pending Invoices' %}</strong></p>
+                    <p class="text-center"><strong>{% translate 'invoices to be paid' %}</strong></p>
                     <p class="fs-1 text-center">{{ accepted_invoice_nbr }}</p>
                 </div>
                 <div class="border p-1">
-                    <p class="text-center"><strong>{% translate 'invoices to be paid' %}</strong></p>
+                    <p class="text-center"><strong>{% translate 'Paid Invoices' %}</strong></p>
                     <p class="fs-1 text-center">{{ paid_invoice_nbr }}</p>
                 </div>
             </div>
