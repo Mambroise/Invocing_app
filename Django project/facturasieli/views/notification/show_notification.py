@@ -40,6 +40,12 @@ def handle_open_notification(request: HttpRequest, notification_id):
     context = get_user_notification_pagination(request)
     return render(request, 'notification/show_notification.html', context)
 
+def delete_notification(request, notification_id):
+    notification_to_delete = Notification.objects.filter(pk=notification_id)
+    notification_to_delete.delete()
+
+    context = get_user_notification_pagination(request)
+    return render(request, 'notification/show_notification.html', context)
 
 def get_user_notification_pagination(request):
 

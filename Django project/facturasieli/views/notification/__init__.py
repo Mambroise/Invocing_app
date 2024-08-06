@@ -5,4 +5,4 @@
 # Author : Arnaud
 # ---------------------------------------------------------------------------
 
-from .show_notification import show_notification, handle_open_notification
+from .show_notification import show_notification, handle_open_notification,delete_notification
