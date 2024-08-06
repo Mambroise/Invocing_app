@@ -9,15 +9,22 @@ pipeline{
                 git branch: 'dev', url: 'https://github.com/Mambroise/Invocing_app.git'
             }
         }
-        // stage("Unit Test"){
-        //     steps{
-        //         
-        //     }
-        // }
-        // stage("Integration test"){
-        //     steps{
-        //         
-        //     }
-        // }
+        stage("Setup Python Environment") {
+            steps {
+                sh '''
+                python -m venv venv
+                source venv/bin/activate
+                pip install -r requirements.txt
+                '''
+            }
+        }
+        stage("Run Unit Tests") {
+            steps {
+                sh '''
+                source venv/bin/activate
+                python manage.py test
+                '''
+            }
+         }
     }
 }
