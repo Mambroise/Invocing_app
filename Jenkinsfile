@@ -13,7 +13,7 @@ pipeline{
             steps {
                 sh '''
                 python -m venv venv
-                .venv\Scripts\activate
+                source venv/bin/activate
                 pip install -r requirements.txt
                 '''
             }
@@ -21,10 +21,10 @@ pipeline{
         stage("Run Unit Tests") {
             steps {
                 sh '''
-                .venv\Scripts\activate
+                source venv/bin/activate
                 python manage.py test
                 '''
             }
-        }
+         }
     }
 }
