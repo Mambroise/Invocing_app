@@ -1,6 +1,17 @@
 pipeline {
     agent any
 
+    environment {
+        EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+        EMAIL_HOST = 'smtp.gmail.com'
+        EMAIL_PORT = '587'
+        EMAIL_USE_TLS = 'True'
+        EMAIL_HOST_USER = 'maurice.ambroise79@gmail.com'
+        EMAIL_HOST_PASSWORD = 'achw grjw fxad dfgh'
+        OTP_VALIDITY_DURATION = '90'
+        INACTIVITY_TIMEOUT_MINUTES = '30'
+    }
+
     stages {
         stage("Continuous Download") {
             steps {
@@ -10,12 +21,6 @@ pipeline {
         stage("Setup Python Environment") {
             steps {
                 sh 'bash -c "python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"'
-            }
-        }
-        stage("Copy .env file") {
-            steps {
-                // Copie le fichier .env dans le répertoire 'Django project'
-                sh 'cp .env "Django project/.env"'
             }
         }
         stage("Run Unit Tests") {
