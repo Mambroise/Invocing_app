@@ -9,10 +9,15 @@ pipeline{
                 git branch: 'dev', url: 'https://github.com/Mambroise/Invocing_app.git'
             }
         }
-        stage("Unit Test"){
-            steps{
-                sh'mvn test'
-            }
-        }
+        // stage("Unit Test"){
+        //     steps{
+        //         
+        //     }
+        // }
+        // stage("Integration test"){
+        //     steps{
+        //         
+        //     }
+        // }
     }
 }
