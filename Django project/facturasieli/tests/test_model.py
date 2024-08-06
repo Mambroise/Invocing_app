@@ -79,7 +79,7 @@ class InvoiceModelTest(TestCase):
             update_timestamp = timezone.now()
         )
     def test_invoice_creation(self):
-        self.assertEqual(self.invoice.number, 321654)
+        self.assertEqual(self.invoice.invoice_number, 321654)
         self.assertEqual(self.invoice.name_provider, "provider name")
         self.assertEqual(self.invoice.name_client, "client name")
         self.assertEqual(self.invoice.hours, 10.5)
