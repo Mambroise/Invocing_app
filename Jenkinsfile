@@ -14,7 +14,17 @@ pipeline {
         }
         stage("Run Unit Tests") {
             steps {
-                sh 'bash -c "source venv/bin/activate && python3 manage.py test"'
+                sh '''
+                    bash -c "
+                    source venv/bin/activate &&
+                    echo 'Current directory before cd:' &&
+                    pwd &&
+                    cd 'Django project' &&
+                    echo 'Current directory after cd:' &&
+                    pwd &&
+                    python3 manage.py test
+                    "
+                '''
             }
         }
     }
