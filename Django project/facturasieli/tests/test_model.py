@@ -1,9 +1,15 @@
-# facturasieli/tests/test_models.py
+# ---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/tests/test_model.py
+# Author : Morice
+# ---------------------------------------------------------------------------
+
 
 from django.test import TestCase
 from django.utils import timezone
 
-from facturasieli.models import Company, Address, Invoice, VAT_choice
+from facturasieli.models import Company, Address, Invoice, Notification, NotificationType
 
 
 class AddressAndCompanyModelTest(TestCase):
@@ -92,3 +98,41 @@ class InvoiceModelTest(TestCase):
     def test_due_date(self):
         # Verify that due_date is correctly set to 30 days after issue_date
         self.assertEqual(self.invoice.due_date, self.invoice.issue_date + timezone.timedelta(days=30))
+
+
+class NotificationModelTest(TestCase):
+
+    def setUp(self):
+
+        self.address = Address.objects.create(
+            number = 12,
+            street="123 Main Street",
+            addings="123 Main building",
+            city="Anytown",
+            zip_code="12345",
+            country="AnyCountry"
+        )
+        self.sending_company = Company.objects.create(
+            siret="1212454578785",
+            name="Company Corp.",
+            address= self.address
+        )
+        self.receiving_company = Company.objects.create(
+            siret="1212454574444",
+            name="Company Ltd.",
+            address= self.address
+        )
+
+        self.notification = Notification.objects.create(
+            send_at= timezone.now(),
+            type= NotificationType.INVOICE_REQUEST,
+            service_title= "good service",
+            company_sender= self.sending_company,
+            company_receiver= self.receiving_company
+        )
+
+    def testInvoiceCreation(self):
+        self.assertEqual(self.notification.type, 1)
+        self.assertEqual(self.notification.service_title, "good service")
+        self.assertEqual(self.notification.company_sender, self.sending_company)
+        self.assertEqual(self.notification.company_receiver, self.receiving_company)
