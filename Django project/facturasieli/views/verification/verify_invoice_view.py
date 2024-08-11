@@ -40,8 +40,17 @@ def verify_invoice_view(request, invoice_id):
             else:
                 invoice_rejected(request, service)
 
+
+            # select invoices according to the user role
+            if request.profile.has_role(['Company manager','Company Verifier']):
+                pending_invoices = Invoice.objects.filter(status=1,name_client=profile.company.name) 
+            elif profile.has_role(['Admin']):
+                pending_invoices = Invoice.objects.filter(status=1)
+            else:
+                pending_invoices = None
+
             messages.success = _('Invoice status updated successfully')
-            pending_invoices = Invoice.objects.filter(status='Pending')  # 1 corresponds to 'Pending'
+            pending_invoices = Invoice.objects.filter(status=1)  # 1 corresponds to 'Pending'
             return render(request, 'facturasieli/verification/verification_list.html', {'invoices': pending_invoices})
     else:
  
