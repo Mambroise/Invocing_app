@@ -41,5 +41,6 @@ def otp_validation(request: HttpRequest):
         else:
             messages.error(request,_('Time to sign in is out, please retry'))
             return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
-
+    else:
+        messages.error(request,_('Your one time password is not valid'))
     return render(request, 'registration/otp_validation.html', {'form': form})
