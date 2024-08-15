@@ -20,9 +20,9 @@ environ.Env.read_env(env_file='.env')
 def send_email(request, notification : Notification,receiver_profile : Profile):
     # Sample notification data
     if notification.type == 10:
-        object_content = _('new user recently registered:')
+        object_content = _('New user recently registered:')
     else:
-        object_text = _('new notification:')
+        object_text = _('New notification:')
         object_content = f"{receiver_profile.first_name}, {object_text} {notification.type}"
 
     notification_body = {
