@@ -19,7 +19,7 @@ from facturasieli.services.notification_service import invoice_request,service_u
 
 logger = logging.getLogger(__name__)
 
-def handle_service(request):
+def handle_service(request, company_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
 
@@ -30,7 +30,7 @@ def handle_service(request):
                 service_data = form.cleaned_data
                 
                 #get the companies envolved
-                company_provider = get_object_or_404(Company, pk=service_data['company_provider'].id)
+                company_provider = get_object_or_404(Company, pk=company_id)
                 company_client = get_object_or_404(Company, pk=request.profile.company_id)
 
                 # create the service object
