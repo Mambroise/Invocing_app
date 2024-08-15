@@ -1,0 +1,61 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/facturasieli/service/select_company.html
+# Author : Morice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="mt-4">
+    <!-- messages display -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}  
+    <h3 class="mt-3">{% translate 'Company selection' %}</h3>
+    <div class="d-flex justify-content-around mt-4">
+        <div>
+            <a href="{% url 'facturasieli:service' request.profile.id %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
+            <form method="post">
+                <button type="submit" class="btn btn-success" value="List">{% translate 'Search' %}</button>
+                {% csrf_token %}
+                {{form.search}}
+            </form>
+            {% if companies %}
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">{% translate 'Name' %}</th>
+                    <th scope="col">{% translate 'Siret' %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                        {% for company in companies %}
+                            <tr>
+                                <th scope="row">{{ company.name }}</th>
+                                <td>{{ company.siret }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                    <p class="mt-4">{% translate "-Write down the company name or siret-" %}</p>
+                    {% endif %}
+                </tbody>
+              </table>
+        </div>
+        <div>
+            <!-- To do adresse -->
+             <a href="{% url 'facturasieli:service_form' %}"></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

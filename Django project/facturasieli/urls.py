@@ -28,6 +28,7 @@ urlpatterns = [
     path('public_profile/<int:user_id>/', views.public_profile, name='public_profile'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
 
+    path('select_company/', views.search_company, name='select_company'),
     path('service_form/', views.handle_service, name='service_form'),
     path('service/<int:company_id>/', views.display_service, name='service'),
     path('show_service/<int:service_id>/', views.show_service, name='show_service'),
