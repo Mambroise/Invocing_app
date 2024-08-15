@@ -23,7 +23,7 @@
         </div>
     {% endif %}  
     <h3 class="mt-3">{% translate 'Company selection' %}</h3>
-    <div class="d-flex justify-content-around mt-4">
+    <div class="d-flex justify-content-center mt-4">
         <div>
             <a href="{% url 'facturasieli:service' request.profile.id %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
             <form method="post">
@@ -37,13 +37,19 @@
                   <tr>
                     <th scope="col">{% translate 'Name' %}</th>
                     <th scope="col">{% translate 'Siret' %}</th>
+                    <th scope="col">{% translate 'Address' %}</th>
+                    <th scope="col">{% translate 'Zipcode' %}</th>
+                    <th scope="col">{% translate 'City' %}</th>
                   </tr>
                 </thead>
                 <tbody>
                         {% for company in companies %}
-                            <tr>
+                            <tr class="clickable-row" data-href="{% url 'facturasieli:service_form' company.id %}">
                                 <th scope="row">{{ company.name }}</th>
                                 <td>{{ company.siret }}</td>
+                                <td>{{ company.address.number }} {{ company.address.street }}</td>
+                                <td>{{ company.address.zip_code }}</td>
+                                <td>{{ company.address.city }}</td>
                             </tr>
                         {% endfor %}
                     {% else %}
@@ -52,10 +58,10 @@
                 </tbody>
               </table>
         </div>
-        <div>
-            <!-- To do adresse -->
-             <a href="{% url 'facturasieli:service_form' %}"></a>
-        </div>
     </div>
 </div>
+
+<!-- Script for making table rows clickable -->
+<script src="{% static 'facturasieli/js/select_company.js' %}"></script>
+
 {% endblock %}

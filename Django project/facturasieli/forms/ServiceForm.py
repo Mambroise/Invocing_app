@@ -15,13 +15,13 @@ from facturasieli.models import Service
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        fields = ["title", "description", "intervention_start_date", "intervention_end_date", "company_provider"]  
+        fields = ["title", "description", "intervention_start_date", "intervention_end_date"]  
         labels = {
             'title': _('Service Title:'),
             'description': _('Description:'),
             'intervention_start_date': _('Start of the service:'),
             'intervention_end_date': _('End of the service:'),
-            'company_provider': _('Company:'),
+
         }
         widgets = {
             "intervention_start_date" : forms.DateInput(attrs={"type" : "date"}),
