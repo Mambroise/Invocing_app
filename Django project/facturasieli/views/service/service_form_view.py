@@ -65,6 +65,9 @@ def handle_service(request, company_id):
     return render(request, 'facturasieli/service/service_form.html', {"form": form})
 
 def update_service(request, service_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
     service = get_object_or_404(Service, pk=service_id)
     service = get_object_or_404(Service, pk=service_id)
     previous_title = service.title
