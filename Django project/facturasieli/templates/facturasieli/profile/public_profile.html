@@ -13,7 +13,7 @@
 {% block content %}
 <div class="mt-4">
     <div class="d-flex justify-content-around">
-        <div>
+        <div class="border-end pe-4">
             <h3 class="mb-3">{% translate 'Your profile:' %}</h3>
             <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
             <p><strong>{% translate 'First name: ' %} </strong>{{profile.first_name}}</p>
@@ -27,8 +27,7 @@
         <div>
             <h3 class="mb-3">{% translate 'Your company' %}</h3>
             <p><strong>{% translate 'Name: ' %} </strong>{{company.name}}</p>
-            <p><strong>{% translate 'Siret: ' %} </strong>{{profile.siret}}</p>
-            <p><strong>{% translate 'Email: ' %} </strong>{{profile.email}}</p>
+            <p><strong>{% translate 'Siret: ' %} </strong>{{profile.company.siret}}</p>
             <p><strong>{% translate 'Number and street: ' %} </strong>{{profile.company.address.number}} {{profile.company.address.street}}</p>
             {% if profile.company.address.addings %}
             <p><strong>{% translate 'Addings: ' %} </strong>{{profile.company.address.addings}}</p>

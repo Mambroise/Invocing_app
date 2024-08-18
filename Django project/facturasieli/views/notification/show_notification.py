@@ -25,7 +25,7 @@ def show_notification(request: HttpRequest):
 # changes the notification status to true (is_read)and timestamp opening time when the user opens it
 def handle_open_notification(request: HttpRequest, notification_id):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('facturasieli:custom_flog_in'))
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
     # Récupérer la notification dont la pk = notification_id
     notification = get_object_or_404(Notification, pk=notification_id)
@@ -41,6 +41,9 @@ def handle_open_notification(request: HttpRequest, notification_id):
     return render(request, 'notification/show_notification.html', context)
 
 def delete_notification(request, notification_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
     notification_to_delete = Notification.objects.filter(pk=notification_id)
     notification_to_delete.delete()
 
@@ -48,8 +51,10 @@ def delete_notification(request, notification_id):
     return render(request, 'notification/show_notification.html', context)
 
 def get_user_notification_pagination(request):
-
-    user_email = request.user.email
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
+    user_email = request.profile.email
     profil_user = get_object_or_404(Profile, email= user_email )
 
     # paginate received notifications by batches of 15

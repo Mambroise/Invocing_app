@@ -9,6 +9,7 @@
 import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -19,6 +20,9 @@ from facturasieli.services.notification_service import invoice_submitted,invoice
 logger = logging.getLogger(__name__)
 
 def invoice_view(request, service_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
     service = get_object_or_404(Service, id=service_id)
 
     if request.method == 'POST':
@@ -61,6 +65,9 @@ def invoice_view(request, service_id):
 
 
 def update_invoice(request, service_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
     service = get_object_or_404(Service, pk=service_id)
     invoice = service.invoice
 
@@ -95,6 +102,9 @@ def update_invoice(request, service_id):
 
 
 def delete_invoice(request, service_id):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
     service = get_object_or_404(Service, pk=service_id)
     invoice = service.invoice
     invoice.delete()
