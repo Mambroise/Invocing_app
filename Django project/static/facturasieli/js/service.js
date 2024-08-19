@@ -12,13 +12,11 @@ function active_service_tab(elt_id) {
         $( "button#home-tab" ).attr( "aria-selected", true );
         $( "button#home-tab" ).toggleClass('active', true);
         $( "div#home-tab-pane" ).toggleClass('show active', true);
-        console.log("dans le if");
         
         $( "button#profile-tab" ).attr( "aria-selected", false );
         $( "button#profile-tab" ).toggleClass('active', false);
         $( "div#profile-tab-pane" ).toggleClass('show active', false);
     }else{
-        console.log("dans le else");
         $( "button#profile-tab" ).attr( "aria-selected", true );
         $( "button#profile-tab" ).toggleClass('active', true);
         $( "div#profile-tab-pane" ).toggleClass('show active', true);
@@ -35,8 +33,6 @@ function active_service_tab(elt_id) {
 
 document.addEventListener('DOMContentLoaded', function(){
     const activeTabId = localStorage.getItem('active_service');
-    console.log("============");
-    console.log(activeTabId);
     
     if (activeTabId) {
         active_service_tab(activeTabId);
