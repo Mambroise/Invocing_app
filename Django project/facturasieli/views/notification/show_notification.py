@@ -19,7 +19,7 @@ def show_notification(request: HttpRequest):
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
     context = get_user_notification_pagination(request)
-    return render(request, 'notification/show_notification.html', context)
+    return render(request, 'facturasieli/notification/show_notification.html', context)
 
 
 # changes the notification status to true (is_read)and timestamp opening time when the user opens it
@@ -38,7 +38,7 @@ def handle_open_notification(request: HttpRequest, notification_id):
     notification.save()
 
     context = get_user_notification_pagination(request)
-    return render(request, 'notification/show_notification.html', context)
+    return render(request, 'facturasieli/notification/show_notification.html', context)
 
 def delete_notification(request, notification_id):
     if not request.user.is_authenticated:
@@ -48,7 +48,7 @@ def delete_notification(request, notification_id):
     notification_to_delete.delete()
 
     context = get_user_notification_pagination(request)
-    return render(request, 'notification/show_notification.html', context)
+    return render(request, 'facturasieli/notification/show_notification.html', context)
 
 def get_user_notification_pagination(request):
     if not request.user.is_authenticated:
