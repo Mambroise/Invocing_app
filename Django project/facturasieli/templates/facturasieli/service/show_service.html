@@ -78,8 +78,7 @@
             <!-- invoice side -->
             <div class="col-4 d-flex justify-content-center">
                 {% if service.invoice %}
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                <div class="card" style="width: 18rem;"><img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
                     <div class="card-body">
                       <h5 class="card-title">N° {{ service.invoice.invoice_number }}</h5>
                       <strong>{% translate 'Date:' %}</strong><small> {{ service.invoice.due_date }}</small> 
@@ -144,7 +143,20 @@
                         </svg>
                       </a>
                     </div>
+                    {% if not service.invoice.attachment %}
+                    <div class="card-body ">
+                      <form method="post" enctype="multipart/form-data" action="{% url 'facturasieli:show_service' service.id %}">
+                          {% csrf_token %}
+                          <div class="mb-3">
+                              <label for="attachment" class="form-label">{% translate 'Upload Attachment' %}</label>
+                              {{ form.attachment }}
+                          </div>
+                          <button type="submit" class="btn btn-warning float-end">{% translate 'Upload' %}</button>
+                      </form>
+                    </div>
+                    {% endif %}
                 </div>
+                
                 {% else %}
                 <!-- checking wether the user is the provider(if not, the user cannot create invoice) -->
                   {% if service.company_provider.id == request.profile.company.id %}
@@ -156,6 +168,7 @@
                       <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'New invoice' %}</a>
                   </div>
                   {% else %}
+                      <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
                       <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
                   {% endif %}
                 {% endif %}
