@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-15 20:53+0200\n"
+"POT-Creation-Date: 2024-08-20 10:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\config\settings.py:133 .\facturasieli\templates\base.html:72
+#: .\config\settings.py:133 .\facturasieli\templates\base.html:71
 msgid "English"
 msgstr "Anglais"
 
-#: .\config\settings.py:134 .\facturasieli\templates\base.html:71
+#: .\config\settings.py:134 .\facturasieli\templates\base.html:70
 msgid "French"
 msgstr "Français"
 
@@ -181,10 +181,10 @@ msgid "Tax"
 msgstr "Taxe"
 
 #: .\facturasieli\models\Invoice.py:32 .\facturasieli\models\Service.py:28
-#: .\facturasieli\templates\facturasieli\service\service.html:48
-#: .\facturasieli\templates\facturasieli\service\service.html:88
-#: .\facturasieli\templates\notification\show_notification.html:35
-#: .\facturasieli\templates\notification\show_notification.html:129
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:35
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:129
+#: .\facturasieli\templates\facturasieli\service\service.html:52
+#: .\facturasieli\templates\facturasieli\service\service.html:92
 msgid "Status"
 msgstr "Statut"
 
@@ -197,8 +197,8 @@ msgid "Send At"
 msgstr "Destinataire"
 
 #: .\facturasieli\models\Notification.py:17
-#: .\facturasieli\templates\notification\show_notification.html:36
-#: .\facturasieli\templates\notification\show_notification.html:130
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:36
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:130
 msgid "Type"
 msgstr "Type"
 
@@ -211,56 +211,56 @@ msgid "Opening time"
 msgstr "Lu le :"
 
 #: .\facturasieli\models\NotificationType.py:13
-#: .\facturasieli\templates\notification\show_notification.html:51
-#: .\facturasieli\templates\notification\show_notification.html:146
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:51
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:146
 msgid "Invoice Request"
 msgstr "Facture demandée"
 
 #: .\facturasieli\models\NotificationType.py:14
-#: .\facturasieli\templates\notification\show_notification.html:53
-#: .\facturasieli\templates\notification\show_notification.html:148
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:53
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:148
 msgid "Invoice Submitted"
 msgstr "Facture soumise"
 
 #: .\facturasieli\models\NotificationType.py:15
-#: .\facturasieli\templates\notification\show_notification.html:55
-#: .\facturasieli\templates\notification\show_notification.html:150
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:55
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:150
 msgid "Invoice Verified"
 msgstr "Facture vérifiée"
 
 #: .\facturasieli\models\NotificationType.py:16
-#: .\facturasieli\templates\notification\show_notification.html:57
-#: .\facturasieli\templates\notification\show_notification.html:152
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:57
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:152
 msgid "Invoice Rejected"
 msgstr "Facture rejetée"
 
 #: .\facturasieli\models\NotificationType.py:17
-#: .\facturasieli\templates\notification\show_notification.html:59
-#: .\facturasieli\templates\notification\show_notification.html:154
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:59
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:154
 msgid "Invoice Paid"
 msgstr "Facture payée"
 
 #: .\facturasieli\models\NotificationType.py:18
-#: .\facturasieli\templates\notification\show_notification.html:61
-#: .\facturasieli\templates\notification\show_notification.html:156
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:61
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:156
 msgid "Invoice Modified"
 msgstr "Facture modifiée"
 
 #: .\facturasieli\models\NotificationType.py:19
-#: .\facturasieli\templates\notification\show_notification.html:63
-#: .\facturasieli\templates\notification\show_notification.html:158
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:63
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:158
 msgid "Invoice Deleted"
 msgstr "Facture supprimée"
 
 #: .\facturasieli\models\NotificationType.py:20
-#: .\facturasieli\templates\notification\show_notification.html:65
-#: .\facturasieli\templates\notification\show_notification.html:160
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:65
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:160
 msgid "Service Modified"
 msgstr "Intervention modifié"
 
 #: .\facturasieli\models\NotificationType.py:21
-#: .\facturasieli\templates\notification\show_notification.html:67
-#: .\facturasieli\templates\notification\show_notification.html:162
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:67
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:162
 msgid "Service Deleted"
 msgstr "intervention supprimé"
 
@@ -329,8 +329,8 @@ msgid "Closed"
 msgstr "Fermé"
 
 #: .\facturasieli\models\Service.py:23
-#: .\facturasieli\templates\facturasieli\service\service.html:45
-#: .\facturasieli\templates\facturasieli\service\service.html:85
+#: .\facturasieli\templates\facturasieli\service\service.html:49
+#: .\facturasieli\templates\facturasieli\service\service.html:89
 msgid "Title"
 msgstr "Nom"
 
@@ -455,20 +455,15 @@ msgstr "Factures à valider"
 msgid "Notifications"
 msgstr "Notifications"
 
-#: .\facturasieli\templates\base.html:68
+#: .\facturasieli\templates\base.html:67
 msgid "Language"
 msgstr "Langue"
 
-#: .\facturasieli\templates\base.html:80
-#: .\facturasieli\templates\facturasieli\service\select_company.html:30
-msgid "Search"
-msgstr "Rechercher"
-
-#: .\facturasieli\templates\base.html:87
+#: .\facturasieli\templates\base.html:82
 msgid "Disconnection"
 msgstr "Déconnexion"
 
-#: .\facturasieli\templates\base.html:90
+#: .\facturasieli\templates\base.html:85
 msgid "Connection"
 msgstr "Connexion"
 
@@ -505,8 +500,8 @@ msgid "Role:"
 msgstr "Role :"
 
 #: .\facturasieli\templates\facturasieli\email\new_user_email.html:34
-#: .\facturasieli\templates\facturasieli\service\service.html:47
-#: .\facturasieli\templates\facturasieli\service\service.html:87
+#: .\facturasieli\templates\facturasieli\service\service.html:51
+#: .\facturasieli\templates\facturasieli\service\service.html:91
 msgid "Company"
 msgstr "Société"
 
@@ -610,6 +605,7 @@ msgid "Invoice Form for"
 msgstr "Formulaire de facture pour"
 
 #: .\facturasieli\templates\facturasieli\invoice\invoice_form.html:19
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:28
 msgid "Your company:"
 msgstr "Votre société :"
 
@@ -635,6 +631,57 @@ msgstr "Modifier"
 msgid "Create"
 msgstr "Enregistrer"
 
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:16
+msgid "Your notifications"
+msgstr "Vos notifications"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:20
+msgid "Incoming Notifications"
+msgstr "Notifications recues"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:23
+msgid "Outgoing Notifications"
+msgstr "Notifications envoyées"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:37
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:131
+msgid "Service"
+msgstr "Intervention"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:38
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:132
+msgid "Date"
+msgstr "Date"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:44
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:139
+msgid "Read"
+msgstr "Lu"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:46
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:141
+msgid "To Read"
+msgstr "A lire"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:69
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:164
+msgid "New Account created"
+msgstr "Nouveau compte enregistré"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:71
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:166
+msgid "Account Modified"
+msgstr "Compte modifié"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:120
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:217
+msgid "No notification available."
+msgstr "aucune Notification disponible"
+
+#: .\facturasieli\templates\facturasieli\notification\show_notification.html:232
+msgid "Incoming Notification"
+msgstr "Notifications recues"
+
 #: .\facturasieli\templates\facturasieli\profile\edit_profile.html:15
 msgid "Edit my profile:"
 msgstr "Modifier mon profil :"
@@ -657,21 +704,16 @@ msgid "Last name: "
 msgstr "Nom :"
 
 #: .\facturasieli\templates\facturasieli\profile\public_profile.html:21
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:31
 msgid "Email: "
 msgstr "Email :"
 
 #: .\facturasieli\templates\facturasieli\profile\public_profile.html:22
-msgid "Creation date: "
+msgid "Creation date:"
 msgstr "Date de création :"
 
 #: .\facturasieli\templates\facturasieli\profile\public_profile.html:24
 msgid "Edit my profile"
 msgstr "Modifier mon profil"
-
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:28
-msgid "Your company"
-msgstr "Votre société :"
 
 #: .\facturasieli\templates\facturasieli\profile\public_profile.html:29
 msgid "Name: "
@@ -681,43 +723,43 @@ msgstr "Nom :"
 msgid "Siret: "
 msgstr "SIRET :"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:32
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:31
 msgid "Number and street: "
 msgstr "Numéro et rue :"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:34
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:33
 msgid "Addings: "
 msgstr "Complément d'adresse :"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:36
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:35
 msgid "Zipcode: "
 msgstr "Code postal :"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:37
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:36
 msgid "City: "
 msgstr "Ville :"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:39
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:38
 msgid "Edit the company"
 msgstr "Modifier la société"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:44
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:43
 msgid "Your activities"
 msgstr "Vos activités"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:46
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:45
 msgid "Nbr of services"
 msgstr "Nbre d'interventions"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:51
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:50
 msgid "pending invoices"
 msgstr "Factures en attente"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:55
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:54
 msgid "invoices to be paid"
 msgstr "Factures à payer"
 
-#: .\facturasieli\templates\facturasieli\profile\public_profile.html:59
+#: .\facturasieli\templates\facturasieli\profile\public_profile.html:58
 msgid "Paid Invoices"
 msgstr "Factures payées"
 
@@ -730,6 +772,10 @@ msgstr "Selection de la société"
 #: .\facturasieli\templates\facturasieli\verification\verification_form.html:13
 msgid "Back"
 msgstr "Retour"
+
+#: .\facturasieli\templates\facturasieli\service\select_company.html:30
+msgid "Search"
+msgstr "Rechercher"
 
 #: .\facturasieli\templates\facturasieli\service\select_company.html:39
 msgid "Siret"
@@ -751,24 +797,24 @@ msgstr "-Tapez ici le nom ou le siret de la société-"
 msgid "Your services"
 msgstr "Vos interventions"
 
-#: .\facturasieli\templates\facturasieli\service\service.html:29
+#: .\facturasieli\templates\facturasieli\service\service.html:30
 msgid "I am the client"
 msgstr "Je suis le client"
 
-#: .\facturasieli\templates\facturasieli\service\service.html:32
+#: .\facturasieli\templates\facturasieli\service\service.html:35
 msgid "I am the provider"
 msgstr "Je suis le sous-traitant"
 
-#: .\facturasieli\templates\facturasieli\service\service.html:41
+#: .\facturasieli\templates\facturasieli\service\service.html:45
 msgid "New service"
 msgstr "Nouvelle intervention"
 
-#: .\facturasieli\templates\facturasieli\service\service.html:46
-#: .\facturasieli\templates\facturasieli\service\service.html:86
+#: .\facturasieli\templates\facturasieli\service\service.html:50
+#: .\facturasieli\templates\facturasieli\service\service.html:90
 msgid "Service creation date"
 msgstr "Date de création de l'intervention"
 
-#: .\facturasieli\templates\facturasieli\service\service.html:69
+#: .\facturasieli\templates\facturasieli\service\service.html:73
 msgid "You don't have services yet"
 msgstr "Vous n'avez pas d'interventions"
 
@@ -904,57 +950,6 @@ msgstr "Actions"
 msgid "Verify"
 msgstr "Vérifier"
 
-#: .\facturasieli\templates\notification\show_notification.html:16
-msgid "Your notifications"
-msgstr "Vos notifications"
-
-#: .\facturasieli\templates\notification\show_notification.html:20
-msgid "Incoming Notifications"
-msgstr "Notifications recues"
-
-#: .\facturasieli\templates\notification\show_notification.html:23
-msgid "Outgoing Notifications"
-msgstr "Notifications envoyées"
-
-#: .\facturasieli\templates\notification\show_notification.html:37
-#: .\facturasieli\templates\notification\show_notification.html:131
-msgid "Service"
-msgstr "Intervention"
-
-#: .\facturasieli\templates\notification\show_notification.html:38
-#: .\facturasieli\templates\notification\show_notification.html:132
-msgid "Date"
-msgstr "Date"
-
-#: .\facturasieli\templates\notification\show_notification.html:44
-#: .\facturasieli\templates\notification\show_notification.html:139
-msgid "Read"
-msgstr "Lu"
-
-#: .\facturasieli\templates\notification\show_notification.html:46
-#: .\facturasieli\templates\notification\show_notification.html:141
-msgid "To Read"
-msgstr "A lire"
-
-#: .\facturasieli\templates\notification\show_notification.html:69
-#: .\facturasieli\templates\notification\show_notification.html:164
-msgid "New Account created"
-msgstr "Nouveau compte enregistré"
-
-#: .\facturasieli\templates\notification\show_notification.html:71
-#: .\facturasieli\templates\notification\show_notification.html:166
-msgid "Account Modified"
-msgstr "Compte modifié"
-
-#: .\facturasieli\templates\notification\show_notification.html:120
-#: .\facturasieli\templates\notification\show_notification.html:217
-msgid "No notification available."
-msgstr "aucune Notification disponible"
-
-#: .\facturasieli\templates\notification\show_notification.html:232
-msgid "Incoming Notification"
-msgstr "Notifications recues"
-
 #: .\facturasieli\templates\registration\custom_login.html:15
 #: .\facturasieli\templates\registration\login.html:15
 msgid "Please enter your identifiers:"
@@ -1014,17 +1009,17 @@ msgstr "Retourner à la page de connexion"
 msgid "Your account has been created!"
 msgstr "Votre compte a bien été créé !"
 
-#: .\facturasieli\views\invoice\invoice_view.py:49
+#: .\facturasieli\views\invoice\invoice_view.py:53
 msgid "Invoice saved successfully."
 msgstr "La facture a bien été enregistrée."
 
-#: .\facturasieli\views\invoice\invoice_view.py:56
-#: .\facturasieli\views\invoice\invoice_view.py:90
-#: .\facturasieli\views\service\service_form_view.py:94
+#: .\facturasieli\views\invoice\invoice_view.py:60
+#: .\facturasieli\views\invoice\invoice_view.py:97
+#: .\facturasieli\views\service\service_form_view.py:97
 msgid "There were errors in your form. Please correct them and try again."
 msgstr "Le formulaire comporte des erreurs, merci de les corriger"
 
-#: .\facturasieli\views\invoice\invoice_view.py:81
+#: .\facturasieli\views\invoice\invoice_view.py:88
 msgid "Invoice successfully updated."
 msgstr "La facture a bien été mis à jour"
 
@@ -1054,15 +1049,15 @@ msgstr "Une errueur s'est produite lors de l'enregistrement : %s"
 msgid "Please correct the errors below."
 msgstr "Veuillez corriger les erreurs ci-dessous"
 
-#: .\facturasieli\views\service\service_form_view.py:88
+#: .\facturasieli\views\service\service_form_view.py:91
 msgid "Service successfully updated."
 msgstr "L'intervention a bien été mise à jour."
 
-#: .\facturasieli\views\service\service_view.py:42
+#: .\facturasieli\views\service\service_view.py:45
 msgid "Service successfully deleted"
 msgstr "L'intervention a bien été supprimée"
 
-#: .\facturasieli\views\service\service_view.py:44
+#: .\facturasieli\views\service\service_view.py:47
 #, python-format
 msgid "Service successfully deleted but we may had issues sending emails: %s"
 msgstr "Intervention supprimée mais il s'est peut-être produit une erreur : %s"
@@ -1070,6 +1065,9 @@ msgstr "Intervention supprimée mais il s'est peut-être produit une erreur : %s
 #: .\facturasieli\views\verification\verify_invoice_view.py:52
 msgid "Invoice status updated successfully"
 msgstr "Le statut de la facture a bien été mis à jour"
+
+#~ msgid "Your company"
+#~ msgstr "Votre société :"
 
 #~ msgid "Public profile of user"
 #~ msgstr "Profil public de l'utilisateur"

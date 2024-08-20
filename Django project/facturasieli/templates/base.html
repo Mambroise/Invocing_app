@@ -23,6 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{% static 'facturasieli/js/notification.js' %}" defer></script>
     <script src="{% static 'facturasieli/js/service.js' %}" defer></script>
+    <script src="{% static 'facturasieli/js/select_table_rows.js' %}" defer></script>
 
     <title>FacturaSieli</title>
 </head>
@@ -62,7 +63,6 @@
                 </a>
               </li>
               {% endif %}
-              {% if request.profile.email %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {% translate 'Language' %}
@@ -72,10 +72,9 @@
                   <li><a class="dropdown-item" href="/en/{{ request.path|slice:'4:' }}">🇬🇧 {% translate 'English' %}</a></li>
                 </ul>
               </li>
-              {% endif %}
             </ul>
 
-            <a class="border-end pe-2 nav-link">ToDo: accroche à trouver</a>
+            <a class="border-end pe-2 nav-link" href="#">ToDo: accroche à trouver</a>
 
             <div>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">

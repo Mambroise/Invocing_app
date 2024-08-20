@@ -38,3 +38,5 @@ document.addEventListener('DOMContentLoaded', function(){
         active_service_tab(activeTabId);
     }
 });
+
+// service list clickable rows
