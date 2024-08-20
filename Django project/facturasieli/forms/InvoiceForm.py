@@ -15,7 +15,7 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = [
             'due_date', 'kind_of_payment',
-            'hours','amount_excluding_tax', 'tax'
+            'hours','amount_excluding_tax', 'tax', 'attachment'
         ]
 
         widgets = {
