@@ -26,7 +26,7 @@ def invoice_view(request, service_id):
     service = get_object_or_404(Service, id=service_id)
 
     if request.method == 'POST':
-        form = InvoiceForm(request.POST)
+        form = InvoiceForm(request.POST, request.FILES)
         if form.is_valid():
             invoice = form.save(commit=False)
             invoice.service = service
@@ -72,7 +72,7 @@ def update_invoice(request, service_id):
     invoice = service.invoice
 
     if request.method == 'POST':
-        form = InvoiceForm(request.POST, instance=invoice)
+        form = InvoiceForm(request.POST, request.FILES, instance=invoice)
         if form.is_valid():
             updated_invoice = form.save(commit=False)
             
@@ -83,6 +83,8 @@ def update_invoice(request, service_id):
             updated_invoice.name_provider = invoice.name_provider
             updated_invoice.name_client = invoice.name_client
             updated_invoice.update_timestamp = timezone.now()
+            updated_invoice.attachment = invoice.attachment
+
 
             updated_invoice.save()
             messages.success(request,_("Invoice successfully updated."))

@@ -7,6 +7,8 @@
 
 from django.contrib.auth import views as auth_views
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from facturasieli import views
 
@@ -45,4 +47,4 @@ urlpatterns = [
 
     path('invoices/<int:invoice_id>/', views.verify_invoice_view, name='verify_invoice'),
     path('invoices/verification/', views.verify_invoice_list_view, name='verification_list'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
