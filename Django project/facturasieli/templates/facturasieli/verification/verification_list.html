@@ -12,7 +12,7 @@
 
 {% block content %}
 <h3 class="my-3">{% translate 'Pending Invoices Verification' %}</h3>
-<table class="table mt-4">
+<table class="table table-hover mt-4">
     <thead>
         <tr>
             <th>{% translate 'Invoice Number' %}</th>
@@ -20,20 +20,16 @@
             <th>{% translate 'Amount' %}</th>
             <th>{% translate 'Issue date' %}</th>
             <th>{% translate 'Due date' %}</th>
-            <th>{% translate 'Actions' %}</th>
         </tr>
     </thead>
     <tbody>
         {% for invoice in invoices %}
-        <tr>
+        <tr class="clickable-row" data-href="{% url 'facturasieli:verify_invoice' invoice.id %}">
             <td>{{ invoice.invoice_number }}</td>
             <td>{{ invoice.service.title }}</td>
             <td>{{ invoice.amount_excluding_tax }}</td>
             <td>{{ invoice.issue_date }}</td>
             <td>{{ invoice.due_date }}</td>
-            <td>
-                <a href="{% url 'facturasieli:verify_invoice' invoice.id %}" class="btn btn-warning">{% translate 'Verify' %}</a>
-            </td>
         </tr>
         {% endfor %}
     </tbody>

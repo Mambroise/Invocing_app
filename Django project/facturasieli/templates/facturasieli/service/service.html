@@ -26,10 +26,14 @@
 <!-- tabs gerées par bootstrap -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">{% translate 'I am the client' %}</button>
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" onclick="active_service_tab('home-tab')">
+        {% translate 'I am the client' %}
+      </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">{% translate 'I am the provider' %}</button>
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false" onclick="active_service_tab('profile-tab')">
+        {% translate 'I am the provider' %}
+    </button>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
@@ -46,23 +50,16 @@
                             <th scope="col">{% translate 'Service creation date' %}</th>
                             <th scope="col">{% translate 'Company' %}</th>
                             <th scope="col">{% translate 'Status' %}</th>
-                            <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody>
                             {% if client_services %}
                                 {% for service in client_services %}
-                                    <tr>
+                                    <tr class="clickable-row" data-href="{% url 'facturasieli:show_service' service.id %}">
                                         <th scope="row">{{ service.title }}</th>
                                         <td>{{ service.issue_date }}</td>
                                         <td>{{ service.company_provider.name }}</td>
                                         <td>{{ service.status }}</td>
-                                        <td><a href="{% url 'facturasieli:show_service' service.id %}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                                            </svg>
-                                        </a></td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
@@ -86,23 +83,16 @@
                             <th scope="col">{% translate 'Service creation date' %}</th>
                             <th scope="col">{% translate 'Company' %}</th>
                             <th scope="col">{% translate 'Status' %}</th>
-                            <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody>
                             {% if provider_services %}
                                 {% for service in provider_services %}
-                                    <tr>
+                                    <tr class="clickable-row" data-href="{% url 'facturasieli:show_service' service.id %}">
                                         <th scope="row">{{ service.title }}</th>
                                         <td>{{ service.issue_date }}</td>
                                         <td>{{ service.company_client.name }}</td>
                                         <td>{{ service.status }}</td>
-                                        <td><a href="{% url 'facturasieli:show_service' service.id %}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                                            </svg>
-                                        </a></td>
                                     </tr>
                                 {% endfor %}
                             {% else %}

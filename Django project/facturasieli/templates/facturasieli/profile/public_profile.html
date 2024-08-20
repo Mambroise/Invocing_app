@@ -13,30 +13,29 @@
 {% block content %}
 <div class="mt-4">
     <div class="d-flex justify-content-around">
-        <div>
-            <h3 class="mb-3">{% translate 'Your profile' %}</h3>
+        <div class="border-end pe-4">
+            <h3 class="mb-3">{% translate 'Your profile:' %}</h3>
             <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
-            <p><strong>{% translate 'First name: ' %}</strong>{{profile.first_name}}</p>
-            <p><strong>{% translate 'Last name: ' %}</strong>{{profile.last_name}}</p>
-            <p><strong>{% translate 'Email: ' %}</strong>{{profile.email}}</p>
-            <p><strong>{% translate 'Creation date: ' %}</strong>{{profile.creation_date}}</p>
+            <p><strong>{% translate 'First name: ' %} </strong>{{profile.first_name}}</p>
+            <p><strong>{% translate 'Last name: ' %} </strong>{{profile.last_name}}</p>
+            <p><strong>{% translate 'Email: ' %} </strong>{{profile.email}}</p>
+            <p><strong>{% translate 'Creation date:' %} </strong>{{profile.creation_date}}</p>
             {% if request.profile.id == profile.id %}
-                <a class="mt-3" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
+                <a class="mt-3 btn btn-warning" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
             {% endif %}
         </div>
         <div>
-            <h3 class="mb-3">{% translate 'Your company' %}</h3>
-            <p><strong>{% translate 'Name: ' %}</strong>{{company.name}}</p>
-            <p><strong>{% translate 'Siret: ' %}</strong>{{profile.siret}}</p>
-            <p><strong>{% translate 'Email: ' %}</strong>{{profile.email}}</p>
-            <p><strong>{% translate 'Number and street: ' %}</strong>{{profile.company.address.number}} {{profile.company.address.street}}</p>
+            <h3 class="mb-3">{% translate 'Your company:' %}</h3>
+            <p><strong>{% translate 'Name: ' %} </strong>{{company.name}}</p>
+            <p><strong>{% translate 'Siret: ' %} </strong>{{profile.company.siret}}</p>
+            <p><strong>{% translate 'Number and street: ' %} </strong>{{profile.company.address.number}} {{profile.company.address.street}}</p>
             {% if profile.company.address.addings %}
-            <p><strong>{% translate 'Addings: ' %}</strong>{{profile.company.address.addings}}</p>
+            <p><strong>{% translate 'Addings: ' %} </strong>{{profile.company.address.addings}}</p>
             {% endif %}
-            <p><strong>{% translate 'Zipcode: ' %}</strong>{{profile.company.address.zip_code}}</p>
-            <p><strong>{% translate 'City: ' %}</strong>{{profile.company.address.city}} ( {{profile.company.address.country}} )</p>
+            <p><strong>{% translate 'Zipcode: ' %} </strong>{{profile.company.address.zip_code}}</p>
+            <p><strong>{% translate 'City: ' %} </strong>{{profile.company.address.city}} ( {{profile.company.address.country}} )</p>
             {% if request.profile.id == profile.id %}
-            <a class="mt-3" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit the company' %}</a>
+            <a class="mt-3 btn btn-warning" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit the company' %}</a>
             {% endif %}
         </div>
         {% if request.profile.id == profile.id %}

@@ -2,7 +2,7 @@
 #============================================================================#
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )                   #
 #============================================================================#
-# File   : static/facturasieli/notification/js/notification.js               #
+# File   : static/facturasieli/js/notification.js               #
 # Author : Arnaud DJIM-ASSEl RIBAR, Morice                                         #
 #============================================================================#    
 */
@@ -29,9 +29,22 @@ function activer_tab(id_elt){
         $( "a#nav-notif-sended-tab" ).attr( "aria-selected", true );
         $( "a#nav-notif-sended-tab" ).toggleClass("active", true);
         $("div#nav-notif-sended").toggleClass("show active", true);
+
+        // save the active tab id in local storage
+        localStorage.setItem('activeTab', id_elt);
+        
     }
 
 }
+
+//load the active object form localstorage if exists
+document.addEventListener('DOMContentLoaded', function(){
+    const activeTabId = localStorage.getItem('activeTab');
+    
+    if (activeTabId){
+        activer_tab(activeTabId);
+    }
+});
 
 function tranformTypeNotificationFromIntToString(notificationType){
     var result;

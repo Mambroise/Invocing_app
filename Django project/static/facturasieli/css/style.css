@@ -10,7 +10,6 @@
     min-height: 400px ;
 }
 
-
 .hidden{
     display: none;
 }
@@ -19,3 +18,10 @@
     display: block;
 }
 
+.neutralLink{
+    text-decoration: none;
+}
+
+.clickable-row{
+    cursor: pointer;
+}
