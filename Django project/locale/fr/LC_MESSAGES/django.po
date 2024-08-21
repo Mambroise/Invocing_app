@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-21 17:14+0200\n"
+"POT-Creation-Date: 2024-08-21 19:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,19 @@ msgstr "Mot de passe"
 msgid "Password confirmation"
 msgstr "Confirmation du mot de passe"
 
-#: .\facturasieli\forms\ProfileForm.py:25
+#: .\facturasieli\forms\ProfileForm.py:32
+msgid "Provider"
+msgstr "Sous-traitant"
+
+#: .\facturasieli\forms\ProfileForm.py:33
+msgid "Company Manager"
+msgstr "Chef d'entreprise"
+
+#: .\facturasieli\forms\ProfileForm.py:34
+msgid "Company Verifier"
+msgstr "Comptable d'entreprise"
+
+#: .\facturasieli\forms\ProfileForm.py:42
 msgid "Passwords don't match"
 msgstr "Les deux mots de passes sont différents"
 
@@ -840,7 +852,6 @@ msgid "Create a new service"
 msgstr "Enregistrer une intervention"
 
 #: .\facturasieli\templates\facturasieli\service\show_service.html:36
-#: .\facturasieli\templates\facturasieli\verification\verification_form.html:67
 msgid "Edit"
 msgstr "Editer"
 
@@ -850,7 +861,6 @@ msgid "Do you really want to delete the service"
 msgstr "Voulez vous vraiment supprimer l'intervention"
 
 #: .\facturasieli\templates\facturasieli\service\show_service.html:40
-#: .\facturasieli\templates\facturasieli\verification\verification_form.html:68
 msgid "Delete"
 msgstr "Effacer"
 
@@ -937,7 +947,7 @@ msgid ""
 msgstr ""
 "Après avoir vérifié les informations, merci de valider ou rejeter la facture."
 
-#: .\facturasieli\templates\facturasieli\verification\verification_form.html:69
+#: .\facturasieli\templates\facturasieli\verification\verification_form.html:67
 msgid "Print"
 msgstr "Imprimer"
 

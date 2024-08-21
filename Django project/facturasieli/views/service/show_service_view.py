@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from facturasieli.models import Service, Invoice
+from facturasieli.models import Service
 from facturasieli.forms.InvoiceAttachmentForm import InvoiceAttachmentForm
 from facturasieli.services.all_maths import invoice_total_amount
 

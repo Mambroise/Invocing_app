@@ -18,6 +18,23 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('email', 'first_name', 'last_name', 'role')
 
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        # Filtrer les rôles par ID pour n'afficher que les rôles souhaités
+        self.fields['role'].queryset = Role.objects.filter(id__in=[2, 3, 4])
+
+        translated_choices = []
+        for role in self.fields['role'].queryset:
+            translated_name = _(role.role)  
+            translated_choices.append((role.id, translated_name))
+        
+        # creation of variable for i18n in .po file
+        provider = _("Provider")
+        Company_Manager = _("Company Manager")
+        Company_Verifier = _("Company Verifier")
+
+        self.fields['role'].choices = translated_choices
+
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
