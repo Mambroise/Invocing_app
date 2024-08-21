@@ -21,3 +21,7 @@
 .neutralLink{
     text-decoration: none;
 }
+
+.clickable-row{
+    cursor: pointer;
+}

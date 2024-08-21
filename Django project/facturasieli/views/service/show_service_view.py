@@ -6,21 +6,36 @@
 # ---------------------------------------------------------------------------
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Service
+from facturasieli.forms.InvoiceAttachmentForm import InvoiceAttachmentForm
 from facturasieli.services.all_maths import invoice_total_amount
-
 
 def show_service(request, service_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    #get the concerned service and invoice
+    service = get_object_or_404(Service, id=service_id)
+    invoice = service.invoice 
 
-    service = get_object_or_404(Service, id = service_id)
+    total_price = invoice_total_amount(invoice) if invoice else 0
 
-    total_price = invoice_total_amount(service.invoice)
+    #add the BIS attachment form
+    if request.method == 'POST':
+        form = InvoiceAttachmentForm(request.POST, request.FILES, instance=invoice)
+        if form.is_valid():
+            form.save()
 
-    context = {'service':service, 'total':total_price}
+            return redirect('facturasieli:show_service', service_id=service_id)
+    else:
+        form = InvoiceAttachmentForm(instance=invoice)
+
+    context = {
+        'service': service,
+        'total': total_price,
+        'form': form,
+    }
     return render(request, 'facturasieli/service/show_service.html', context)
