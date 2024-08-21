@@ -68,7 +68,7 @@ def account_modified(request,profile : Profile):
 def invoice_submitted(request, service : Service):
 
     send_notification(request,notification_type= NotificationType.INVOICE_SUBMITTED,
-                service_title= f"{invoice_deleted_message} {service.title}.",
+                service_title= f"{invoice_submitted_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
                 company_receiver_id=service.company_client.id
                 )
@@ -86,7 +86,7 @@ def invoice_updated(request, service : Service):
 def invoice_deleted(request, service : Service):
 
     send_notification(request,notification_type= NotificationType.INVOICE_DELETED,
-                service_title= f"{invoice_updated_message} {service.title}.",
+                service_title= f"{invoice_deleted_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
                 company_receiver_id=service.company_client.id
                 )
