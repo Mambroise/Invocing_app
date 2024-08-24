@@ -13,9 +13,11 @@
 {% block content %}
 <div class="mt-4">
     <h2>{% translate 'Are you sure you want to log out?' %}</h2>
-    <form method="post" action="{% url 'facturasieli:log_out' %}">
-        {% csrf_token %}
-        <input type="submit" name="submit" value="🔐 {% translate 'Disconnect' %}" />
-    </form>
+    <div class="d-flex justify-content-center">
+        <form method="post" action="{% url 'facturasieli:log_out' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-warning">🔐 {% translate 'Disconnect' %}</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
