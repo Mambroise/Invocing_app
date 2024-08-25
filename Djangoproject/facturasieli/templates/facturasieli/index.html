@@ -12,6 +12,17 @@
 {% load custom_filters %}
 
 {% block content %}
+    <!-- display messages -->
+    {% if messages %}
+    <div class="messages mt-3">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
 <h3 class="text-center mt-4">{% translate 'Welcome to Facturasieli' %} 
     {{ request.profile.first_name|capfirst }} !</h3>
 <div class="mt-4">

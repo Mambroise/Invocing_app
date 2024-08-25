@@ -23,7 +23,7 @@
     </div>
 {% endif %}
 
-<!-- tabs gerées par bootstrap -->
+<!-- bootstrap handled tabs -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true" onclick="active_service_tab('home-tab')">
@@ -42,7 +42,7 @@
         <div class="mt-4">   
             <div class="d-flex justify-content-center mt-4">
                 <div class="w-100">
-                    <a href="{% url 'facturasieli:select_company' %}" class="btn btn-warning mb-4">{% translate 'New service' %}</a>
+                    <a href="{% url 'facturasieli:select_company' %}" class="btn btn-warning mb-4 float-end">{% translate 'New service' %}</a>
                     <table class="table table-hover">
                         <thead>
                           <tr>

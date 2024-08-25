@@ -9,7 +9,7 @@
 {% load i18n %}
 
 {% block content %}
-    <h3>{% translate 'Invoice verification:' %} {{ invoice.invoice_number }}</h3>
+    <h3 class="my-3">{% translate 'Invoice verification:' %} {{ invoice.invoice_number }}</h3>
     <a href="{% url 'facturasieli:verification_list' %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
     <div class="d-flex justify-content-around mt-4">
         <form method="post">
