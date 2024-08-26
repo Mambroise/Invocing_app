@@ -1,12 +1,12 @@
 # ---------------------------------------------------------------------------
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
-# File   : facturasieli/views/profile/__init__.py
-# Author : Brice
+# File   : facturasieli/forms/EmailCheckForm.py
+# Author : Morice
 # ---------------------------------------------------------------------------
 
-from .edit_profile_view import edit_profile
-from .edit_company_view import edit_company
-from .public_profile_view import public_profile
-from .edit_password import account_check
+from django import forms
+from django.utils.translation import gettext_lazy as _
 
+class EmailCheckForm(forms.Form):
+    email = forms.EmailField(label=_('Email'))

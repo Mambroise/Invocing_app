@@ -30,6 +30,7 @@
                 {{ form.as_p }}
                 <button class="btn btn-warning" type="submit">{% translate 'Connect' %}</button>
             </form>
+            <a class="float-end" href="{% url 'facturasieli:account_check' %}">{% translate 'I forgot my password' %}</a>
             <br />
             <br />
             <h2>{% translate 'You are not registered yet?' %}</h2>

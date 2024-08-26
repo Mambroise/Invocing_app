@@ -35,7 +35,7 @@ def edit_profile(request: HttpRequest):
             request.user.email = request.POST.get('email', '')
             request.user.save()
 
-            return HttpResponseRedirect(reverse('facturasieli:index'))
+            return HttpResponseRedirect(reverse('facturasieli:public_profile'))
     else:
         form = ProfileForm(
             initial={'email': request.user.email},
