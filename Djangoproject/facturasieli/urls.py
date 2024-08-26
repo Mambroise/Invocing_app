@@ -20,7 +20,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('register2/', views.register_company_address, name='register2'),
     path('welcome/', views.welcome, name='welcome'),
-    path('account_check/', views.account_check, name='account_check'),
 
     path('custom_login/', views.custom_log_in, name='custom_log_in'),
     path('otp_validation/', views.otp_validation, name='otp_validation'),
@@ -31,6 +30,8 @@ urlpatterns = [
     path('public_profile/<int:user_id>/', views.public_profile, name='public_profile'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('edit_company/', views.edit_company, name='edit_company'),
+    path('account_check/', views.account_check, name='account_check'),
+    path('reset_password/<int:profile_id>/', views.reset_password, name='reset_password'),
 
     path('select_company/', views.search_company, name='select_company'),
     path('service_form/<int:company_id>', views.handle_service, name='service_form'),

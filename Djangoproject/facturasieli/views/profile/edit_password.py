@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages 
 
 from facturasieli.forms.EmailCheckForm import EmailCheckForm
+from facturasieli.forms.ResetPasswordForm import ResetPasswordForm
 from facturasieli.models import Profile
 from facturasieli.services.send_email import send_password_email
 
@@ -38,3 +39,10 @@ def account_check(request):
 
     context = { 'form': form }
     return render(request, 'facturasieli/profile/account_check.html', context)
+
+def reset_password(request,profile_id):
+    profile = Profile.objects.get(pk=profile_id)
+    form = ResetPasswordForm()
+
+    context = { 'form': form, 'profile': profile }
+    return render(request, 'facturasieli/profile/reset_password.html', context)
