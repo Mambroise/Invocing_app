@@ -45,7 +45,7 @@
               </li>
               {% if request.profile.company %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'facturasieli:service' request.profile.company_id %}">🔧 {% translate 'Services' %}</a>
+                <a class="nav-link" href="{% url 'facturasieli:service' %}">🔧 {% translate 'Services' %}</a>
               </li>
               {% endif %}
               

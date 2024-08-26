@@ -29,10 +29,13 @@ urlpatterns = [
 
     path('public_profile/<int:user_id>/', views.public_profile, name='public_profile'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('edit_company/', views.edit_company, name='edit_company'),
+    path('account_check/', views.account_check, name='account_check'),
+    path('reset_password/<int:profile_id>/', views.reset_password, name='reset_password'),
 
     path('select_company/', views.search_company, name='select_company'),
     path('service_form/<int:company_id>', views.handle_service, name='service_form'),
-    path('service/<int:company_id>/', views.display_service, name='service'),
+    path('service/', views.display_service, name='service'),
     path('show_service/<int:service_id>/', views.show_service, name='show_service'),
     path('delete_service/<int:service_id>/', views.delete_service, name='delete_service'),
     path('update_service/<int:service_id>/', views.update_service, name='update_service'),

@@ -1,7 +1,7 @@
 <!---------------------------------------------------------------------------
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
-# File   : facturasieli/templates/registration/register2.html
+# File   : facturasieli/templates/facturasieli/profile/edit_company.html
 # Author : Morice
 # -------------------------------------------------------------------------->
 
@@ -24,12 +24,11 @@
     </div>
     {% endif %}
     <div class="d-flex justify-content-center">
-        <form method="post" action="{% url 'facturasieli:register2' %}">
+        <form method="post" action="{% url 'facturasieli:edit_company' %}">
             {% csrf_token %}
             {{ company_form.as_p }}
             {{ address_form.as_p }}
-            <button class="btn btn-outline-warning" type="submit">🔐 {% translate 'Register' %}</button>
-        </form>
+        <button class="btn btn-outline-warning" type="submit">🔐 {% translate 'Register' %}</button>
     </div>
 </div>
 {% endblock %}

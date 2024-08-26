@@ -17,7 +17,7 @@ from facturasieli.models import Notification,Profile
 env = environ.Env()
 environ.Env.read_env(env_file='.env')
 
-def send_email(request, notification : Notification,receiver_profile : Profile):
+def send_email( notification : Notification,receiver_profile : Profile):
     # Sample notification data
     if notification.type == 10:
         object_content = _('New user recently registered:')
@@ -56,6 +56,35 @@ def send_email(request, notification : Notification,receiver_profile : Profile):
     # Create the email message
     email = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
     email.attach_alternative(html_notification_content, 'text/html')
+
+    # Send the email
+    email.send()
+
+def send_password_email(profile:Profile):
+    object_content = _('Facturasieli: reset your password with this link')
+    salute = _('Dear')
+    email_content = _('We are happy to annouce that you will have the opportunity to reset your password.')
+    email_content2 = _('Please select the link below.')
+    email_end = _('See you soon!!')
+
+    email_body = { 
+        'salute': salute,
+        'content': email_content,
+        'content2': email_content2,
+        'email_end': email_end,
+        'user_profile' : profile
+    }
+    # Render the email template with context data
+    subject = object_content
+    from_email = env('EMAIL_HOST_USER')
+    to_email = profile.email
+    text_content = 'Your email client does not support HTML content'
+
+    html_reset_password_content = render_to_string('facturasieli/email/reset_password_email.html', email_body)
+
+        # Create the email message
+    email = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
+    email.attach_alternative(html_reset_password_content, 'text/html')
 
     # Send the email
     email.send()

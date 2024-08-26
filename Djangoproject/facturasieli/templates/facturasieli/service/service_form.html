@@ -25,7 +25,7 @@
     <h3 class="mt-3">{% if update %}{% translate 'Update service:' %}{% else %}{% translate 'Create a new service' %}{% endif%}</h3>
     <div class="d-flex justify-content-center mt-4">
         <div>
-            <a href="{% url 'facturasieli:service' request.profile.id %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
+            <a href="{% url 'facturasieli:service' %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
             <form method="post">
                 {% csrf_token %}
                 {{form.as_p}}

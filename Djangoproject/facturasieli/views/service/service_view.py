@@ -15,15 +15,15 @@ from facturasieli.models import Service
 from facturasieli.services.notification_service import service_deleted
 
 
-def display_service(request, company_id):
+def display_service(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
 
-    client_services = Service.objects.filter(company_client=company_id)
-    provider_services = Service.objects.filter(company_provider=company_id)
+    client_services = Service.objects.filter(company_client=request.profile.company.id)
+    provider_services = Service.objects.filter(company_provider=request.profile.company.id)
 
     if not client_services and not provider_services:
-        return HttpResponseRedirect(reverse('facturasieli:service_form'))
+        return HttpResponseRedirect(reverse('facturasieli:select_company'))
 
     context = {
         'client_services': client_services if client_services.exists() else None,
@@ -47,8 +47,8 @@ def delete_service(request, service_id):
         messages.warning(request,_('Service successfully deleted but we may had issues sending emails: %s' % str(e)))
     
     company_id = request.profile.company.id
-    client_services = Service.objects.filter(company_client=company_id)
-    provider_services = Service.objects.filter(company_provider=company_id)
+    client_services = Service.objects.filter(company_client=request.profile.company.id)
+    provider_services = Service.objects.filter(company_provider=request.profile.company.id)
 
     context = {
         'client_services': client_services if client_services.exists() else None,

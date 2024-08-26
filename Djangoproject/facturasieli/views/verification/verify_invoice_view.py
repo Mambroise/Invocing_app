@@ -43,8 +43,8 @@ def verify_invoice_view(request, invoice_id):
 
             # select invoices according to the user role
             if request.profile.has_role(['Company manager','Company Verifier']):
-                pending_invoices = Invoice.objects.filter(status=1,name_client=profile.company.name) 
-            elif profile.has_role(['Admin']):
+                pending_invoices = Invoice.objects.filter(status=1,name_client=request.profile.company.name) 
+            elif request.profile.has_role(['Admin']):
                 pending_invoices = Invoice.objects.filter(status=1)
             else:
                 pending_invoices = None

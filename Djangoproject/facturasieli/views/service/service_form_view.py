@@ -53,7 +53,7 @@ def handle_service(request, company_id):
                     messages.warning(request,_('Service successfully created but we may encountured issues: %s' % str(e)))
                 
                 
-                url = reverse('facturasieli:service', kwargs={'company_id': request.profile.company_id})
+                url = reverse('facturasieli:service')
                 return redirect(url) 
             except Exception as e:
                 messages.error(request, _("An error occurred while saving the service: %s" % str(e)))
