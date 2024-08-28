@@ -1,0 +1,23 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/registration/logout.html
+# Author : Brice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="mt-4">
+    <h2>{% translate 'Are you sure you want to log out?' %}</h2>
+    <div class="d-flex justify-content-center">
+        <form method="post" action="{% url 'facturasieli:log_out' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-warning">🔐 {% translate 'Disconnect' %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

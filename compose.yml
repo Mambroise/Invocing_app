@@ -1,8 +1,9 @@
+version: '3'
 services:
   app:
     container_name: facturasieli
     build: .
     volumes:
-      - "./Django\ project:/FacturaSieli"
+      - "./DjangoProject:/DjangoProject"  # Ajustez le chemin pour Windows
     ports:
       - "8000:8000"

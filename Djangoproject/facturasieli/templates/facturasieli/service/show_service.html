@@ -1,0 +1,184 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/facturasieli/service/show_service.html
+# Author : Morice
+# -------------------------------------------------------------------------->
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block content %}
+    <!-- display messages -->
+    {% if messages %}
+    <div class="messages mt-3">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    </div>
+{% endif %}
+
+<div class="mt-4 d-flex justify-content-center">
+    <div class="w-100 mt-4">
+        <div class="row">
+            <!-- service side -->
+            <div class="col-7 p-2 border border-1 border-opacity-25 rounded-2 bg-body-tertiary">
+              <div class="p-3">
+
+                <h3 class="text-center"><u><strong>{{ service.title|capfirst }}</strong></u></h3>
+                {% if service.company_client.id == request.profile.company.id %}
+                <div class="float-end">
+                    <a href="{% url 'facturasieli:update_service' service.id %}" class="btn btn-warning" >{% translate 'Edit' %}
+                    </a>
+                    <a href="{% url 'facturasieli:delete_service' service.id %}" 
+                    class="btn btn-danger" 
+                    onclick="return confirm(`{% translate 'Do you really want to delete the service' %} ?`)">{% translate 'Delete' %}
+                    </a>
+                </div>
+                {% endif %}
+                  <p><i>{% translate 'Creation date' %}</i>: {{ service.issue_date }}</p>
+              </div>
+                <div class="border-top border-bottom my-3 p-3">
+                    <p class="text-center"><strong><u>{% translate 'Companies:' %}</u></strong></p>
+                    <div class="d-flex justify-content-between">
+                      <p><strong>{% translate 'Provider:' %} </strong>{{ service.company_provider.name }}</p>
+                      <p><strong>{% translate 'Siret:' %} </strong>{{ service.company_provider.siret }}</p>
+                    </div>
+                    <strong>{% translate 'Address:' %}</strong>
+                    <p>{{ service.company_provider.address.number }} {{ service.company_provider.address.street }} 
+                        {{ service.company_provider.address.zip_code }} {{ service.company_provider.address.city }}</p>
+                    <p>{{ service.company_provider.address.country }}</p>
+                </div>
+                <div class="border-bottom my-3 p-3">
+                  <div class="d-flex justify-content-between">
+                    <p><strong>{% translate 'Client:' %} </strong>{{ service.company_client.name }}</p>
+                    <p><strong>{% translate 'Siret:' %} </strong>{{ service.company_client.siret }}</p>
+                  </div>
+                    <strong>{% translate 'Address:' %}</strong>
+                    <p>{{ service.company_client.address.number }} {{ service.company_client.address.street }} 
+                        {{ service.company_client.address.zip_code }} {{ service.company_client.address.city }}</p>
+                        <p>{{ service.company_client.address.country }}</p>
+                </div>
+                <p class="text-center"><strong><u>{% translate 'Service dates:' %}</u></strong></p>
+                <div class="d-flex justify-content-around">
+                    <p><strong>{% translate 'From:' %}</strong> {{ service.intervention_start_date }}</p>
+                    <p><strong>{% translate 'To:' %}</strong> {{ service.intervention_end_date }}</p>
+                </div>
+                <div class="border-top my-3 p-3">
+                    <p class="text-center"><strong><u>{% translate 'Description:' %}</u></strong></p>
+                    <p>{{ service.description }}</p>
+                </div>
+
+            </div>
+            <!-- invoice side -->
+            <div class="col-4 d-flex justify-content-center">
+                {% if service.invoice %}
+                <div class="card" style="width: 18rem;"><img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                    <div class="card-body">
+                      <h5 class="card-title">N° {{ service.invoice.invoice_number }}</h5>
+                      <strong>{% translate 'Date:' %}</strong><small> {{ service.invoice.due_date }}</small> 
+                      <p class="card-text"></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <strong>{% translate 'Provider:' %}</strong> {{ service.invoice.name_provider }} 
+                      </li>
+                      <li class="list-group-item">
+                        <strong>{% translate 'Client:' %}</strong> {{ service.invoice.name_client }} 
+                      </li>
+                      <li class="list-group-item">
+                        <strong>{% translate 'Date of payment:' %}</strong><small> {{ service.invoice.due_date }}</small>    
+                      </li>
+                      <li class="list-group-item">
+                        <strong>{% translate 'worked hours:' %}</strong><small> {{ service.invoice.hours }}</small>    
+                      </li>
+                      <li class="list-group-item">
+                        <strong>{% translate 'Price:' %}</strong> {{ service.invoice.amount_excluding_tax }} € 
+                        <strong>{% translate 'VAT:' %}</strong> {{ service.invoice.tax }} %
+                      </li>
+                      <li class="list-group-item">
+                        <strong>{% translate 'Amount:' %}</strong> {{ total }} €  
+                        <i class="text-primary"><u>{{ service.invoice.kind_of_payment }}</u></i> 
+                      </li>
+                      <li class="list-group-item">
+                        <strong class="text-danger">
+                          {% if service.invoice.status == '1' %}
+                          {% translate 'Pending' %}
+                          {% elif service.invoice.status == '2' %}
+                          {% translate 'Verified' %}
+                          {% elif service.invoice.status == '3' %}
+                          {% translate 'Rejected' %}
+                          {% else %}
+                          {% translate 'Paid' %}
+                          {% endif %} 
+                          </strong>  
+                      </li>
+                    </ul>
+                    <div class="card-body d-flex justify-content-around">
+                      {% if service.company_provider.id == request.profile.company.id %}
+                      <a href="{% url 'facturasieli:update_invoice' service.id %}" class="card-link">
+                        <?xml version="1.0" ?>
+                        <svg height="30" version="1.1" viewBox="0 0 18 18" width="30" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/>
+                            <desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#000000" id="Core" transform="translate(-213.000000, -129.000000)"><g id="create" transform="translate(213.000000, 129.000000)">
+                            <path d="M0,14.2 L0,18 L3.8,18 L14.8,6.9 L11,3.1 L0,14.2 L0,14.2 Z M17.7,4 C18.1,3.6 18.1,3 17.7,2.6 L15.4,0.3 C15,-0.1 14.4,-0.1 14,0.3 L12.2,2.1 L16,5.9 L17.7,4 L17.7,4 Z" id="Shape"/></g></g></g>
+                        </svg>
+                      </a>
+                      <a href="{% url 'facturasieli:delete_invoice' service.id %}" class="card-link" onclick="return confirm(`{% translate 'Do you really want to delete the service' %} ?`)">
+                        <?xml version="1.0" ?>
+                        <svg enable-background="new 0 0 32 32" id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="30" height="30">
+                            <path d="M6,12v15c0,1.654,1.346,3,3,3h14c1.654,0,3-1.346,3-3V12H6z M12,25c0,0.552-0.448,1-1,1s-1-0.448-1-1v-9  c0-0.552,0.448-1,1-1s1,0.448,1,1V25z M17,25c0,0.552-0.448,1-1,1s-1-0.448-1-1v-9c0-0.552,0.448-1,1-1s1,0.448,1,1V25z M22,25  c0,0.552-0.448,1-1,1s-1-0.448-1-1v-9c0-0.552,0.448-1,1-1s1,0.448,1,1V25z" id="XMLID_237_"/>
+                            <path d="M27,6h-6V5c0-1.654-1.346-3-3-3h-4c-1.654,0-3,1.346-3,3v1H5C3.897,6,3,6.897,3,8v1c0,0.552,0.448,1,1,1h24  c0.552,0,1-0.448,1-1V8C29,6.897,28.103,6,27,6z M13,5c0-0.551,0.449-1,1-1h4c0.551,0,1,0.449,1,1v1h-6V5z" id="XMLID_243_"/>
+                        </svg>
+                      </a>
+                      {% endif %}
+                      <a href="#" class="card-link">
+                        <?xml version="1.0" ?><svg height="30" viewBox="0 0 48 48" width="30" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M38 16H10c-3.31 0-6 2.69-6 6v12h8v8h24v-8h8V22c0-3.31-2.69-6-6-6zm-6 22H16V28h16v10zm6-14c-1.11 0-2-.89-2-2s.89-2 2-2c1.11 0 2 .89 2 2s-.89 2-2 2zM36 6H12v8h24V6z"/>
+                          <path d="M0 0h48v48H0z" fill="none"/>
+                        </svg>
+                      </a>
+                    </div>
+                    {% if not service.invoice.attachment %}
+                    <div class="card-body ">
+                      <form method="post" enctype="multipart/form-data" action="{% url 'facturasieli:show_service' service.id %}">
+                          {% csrf_token %}
+                          <div class="mb-3">
+                              <label for="attachment" class="form-label">{% translate 'Upload Attachment' %}</label>
+                              {{ form.attachment }}
+                          </div>
+                          <button type="submit" class="btn btn-warning float-end">{% translate 'Upload' %}</button>
+                      </form>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                {% else %}
+                <!-- checking wether the user is the provider(if not, the user cannot create invoice) -->
+                  {% if service.company_provider.id == request.profile.company.id %}
+                  <div>
+                      <div class="card" style="width: 18rem;">
+                        <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                      </div>
+                      <p>No invoice registered yet.</p>
+                      <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'New invoice' %}</a>
+                  </div>
+                  {% else %}
+                      <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                      <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
+                  {% endif %}
+                {% endif %}
+            </div>
+            <div class="col-12">
+              <div class="">
+
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
