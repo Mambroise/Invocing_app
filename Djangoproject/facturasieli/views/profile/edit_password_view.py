@@ -10,8 +10,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages 
 
-from facturasieli.forms.EmailCheckForm import EmailCheckForm
-from facturasieli.forms.ResetPasswordForm import ResetPasswordForm
+from facturasieli.forms import ResetPasswordForm,EmailCheckForm
 from facturasieli.models import Profile
 from facturasieli.services.send_email import send_password_email
 
@@ -40,9 +39,23 @@ def account_check(request):
     context = { 'form': form }
     return render(request, 'facturasieli/profile/account_check.html', context)
 
-def reset_password(request,profile_id):
-    profile = Profile.objects.get(pk=profile_id)
-    form = ResetPasswordForm()
+def reset_password(request, profile_id):
+    try:
+        profile = Profile.objects.get(pk=profile_id)
+    except Profile.DoesNotExist:
+        messages.error(request, 'Profile not found.')
+        return HttpResponseRedirect(reverse('facturasieli:index'))
+
+    if request.method == 'POST':
+        form = ResetPasswordForm(request.POST)
+        if form.is_valid():
+            new_pwd = form.cleaned_data['new_pwd']
+            profile.set_password(new_pwd)
+            profile.save()
+            messages.success(request, 'Password successfully updated.')
+            return HttpResponseRedirect(reverse('facturasieli:index'))
+    else:
+        form = ResetPasswordForm()
 
     context = { 'form': form, 'profile': profile }
     return render(request, 'facturasieli/profile/reset_password.html', context)
