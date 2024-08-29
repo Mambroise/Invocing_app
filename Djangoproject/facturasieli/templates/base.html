@@ -51,7 +51,12 @@
               
               {% if request.profile|has_any_role:'Admin,Company Verifier,Company manager' %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'facturasieli:verification_list' %}">📜 {% translate 'Invoices to Verify' %}</a>
+                <a class="nav-link" href="{% url 'facturasieli:verification_list' %}">
+                  📜 {% translate 'Invoices to Verify' %}
+                  {% if request.invoices > 0 %}
+                  <span class="badge rounded-pill badge-notification bg-danger">{{ request.invoices }}</span>
+                  {% endif %}
+                </a>
               </li>
               {% endif %}
               <li class="nav-item">

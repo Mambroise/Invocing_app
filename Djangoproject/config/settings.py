@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'facturasieli.middleware.InactivityLogoutMiddleware',
+    'facturasieli.middleware.InvoiceToCheckMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
