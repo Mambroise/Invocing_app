@@ -8,5 +8,5 @@
 from .edit_profile_view import edit_profile
 from .edit_company_view import edit_company
 from .public_profile_view import public_profile
-from .edit_password import account_check,reset_password
+from .edit_password_view import account_check,reset_password
 

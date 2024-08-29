@@ -7,7 +7,7 @@
 
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from facturasieli.models import Company, Profile, Role
+from facturasieli.models import Profile, Role
 
 class ProfileForm(forms.ModelForm):
     password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)

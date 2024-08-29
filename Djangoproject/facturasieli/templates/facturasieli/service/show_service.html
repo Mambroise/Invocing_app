@@ -12,14 +12,14 @@
 {% load custom_filters %}
 
 {% block content %}
-    <!-- display messages -->
-    {% if messages %}
+<!-- display messages -->
+{% if messages %}
     <div class="messages mt-3">
-        {% for message in messages %}
+      {% for message in messages %}
         <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
             {{ message }}
         </div>
-    {% endfor %}
+      {% endfor %}
     </div>
 {% endif %}
 
