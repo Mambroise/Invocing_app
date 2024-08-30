@@ -14,7 +14,6 @@ from django.utils.translation import gettext_lazy as _
 
 from facturasieli.forms import ProfileForm
 
-
 def edit_profile(request: HttpRequest):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
