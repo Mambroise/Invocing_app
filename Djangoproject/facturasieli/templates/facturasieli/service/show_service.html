@@ -12,14 +12,14 @@
 {% load custom_filters %}
 
 {% block content %}
-    <!-- display messages -->
-    {% if messages %}
+<!-- display messages -->
+{% if messages %}
     <div class="messages mt-3">
-        {% for message in messages %}
+      {% for message in messages %}
         <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
             {{ message }}
         </div>
-    {% endfor %}
+      {% endfor %}
     </div>
 {% endif %}
 
@@ -73,7 +73,6 @@
                     <p class="text-center"><strong><u>{% translate 'Description:' %}</u></strong></p>
                     <p>{{ service.description }}</p>
                 </div>
-
             </div>
             <!-- invoice side -->
             <div class="col-4 d-flex justify-content-center">
@@ -168,8 +167,10 @@
                       <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'New invoice' %}</a>
                   </div>
                   {% else %}
-                      <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
-                      <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
+                  <div>
+                    <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                    <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
+                  </div>
                   {% endif %}
                 {% endif %}
             </div>

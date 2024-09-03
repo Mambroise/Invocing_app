@@ -15,7 +15,7 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.conf import settings
 
-from facturasieli.models import Profile,Notification
+from facturasieli.models import Profile,Notification,Invoice
 
 class ProfileMiddleware:
 
@@ -39,7 +39,6 @@ class ProfileMiddleware:
 
 
 class NotificationMiddleware:
-
     def __init__(self, get_response):
         self.get_response = get_response
 
@@ -55,6 +54,21 @@ class NotificationMiddleware:
         response = self.get_response(request)
         return response
 
+class InvoiceToCheckMiddleware:
+    def __init__(self,get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+
+        if request.user.is_authenticated:
+            try:
+                company_name = request.profile.company.name
+                Invoice_to_check = Invoice.objects.filter(name_client=company_name,status=1).count()
+                request.invoices = Invoice_to_check
+            except Invoice.DoesNotExist:
+                request.invoices = None
+        response = self.get_response(request)
+        return response
 
 class RegistrationCheckMiddleware:
     def __init__(self, get_response):

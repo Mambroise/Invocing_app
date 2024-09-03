@@ -43,7 +43,7 @@ def send_notification(request,notification_type:str, service_title:str, company_
     notification.company_receiver = company_receiver
     notification.save()
     
-    send_email(request, notification=notification, receiver_profile=receiver_profile)
+    send_email( notification=notification, receiver_profile=receiver_profile)
 #-----------------------------------------------------
 
 #sending notification in-app to the client after creating the invoice

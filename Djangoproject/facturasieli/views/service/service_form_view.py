@@ -22,15 +22,15 @@ logger = logging.getLogger(__name__)
 def handle_service(request, company_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
-
+    #selected company
+    company_provider = get_object_or_404(Company, pk=company_id)
     if request.method == 'POST':
         form = ServiceForm(request.POST)
         if form.is_valid():
             try:
                 service_data = form.cleaned_data
                 
-                #get the companies envolved
-                company_provider = get_object_or_404(Company, pk=company_id)
+                #get the user company
                 company_client = get_object_or_404(Company, pk=request.profile.company_id)
 
                 # create the service object
@@ -61,8 +61,8 @@ def handle_service(request, company_id):
             messages.error(request, _("Please correct the errors below."))
     else:
         form = ServiceForm()
-
-    return render(request, 'facturasieli/service/service_form.html', {"form": form})
+    context = {"form": form, "company_provider":company_provider}
+    return render(request, 'facturasieli/service/service_form.html', context)
 
 def update_service(request, service_id):
     if not request.user.is_authenticated:

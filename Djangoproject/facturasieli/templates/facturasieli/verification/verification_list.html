@@ -11,6 +11,17 @@
 {% load i18n %}
 
 {% block content %}
+<!-- display messages -->
+{% if messages %}
+    <div class="messages mt-3">
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+{% endif %}
+
 <h3 class="my-3">{% translate 'Pending Invoices Verification' %}</h3>
 <table class="table table-hover mt-4">
     <thead>
