@@ -73,7 +73,6 @@
                     <p class="text-center"><strong><u>{% translate 'Description:' %}</u></strong></p>
                     <p>{{ service.description }}</p>
                 </div>
-
             </div>
             <!-- invoice side -->
             <div class="col-4 d-flex justify-content-center">
@@ -168,8 +167,10 @@
                       <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'New invoice' %}</a>
                   </div>
                   {% else %}
-                      <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
-                      <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
+                  <div>
+                    <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                    <p>{% translate 'The provider will send you the invoice as soon as possible' %}</p>
+                  </div>
                   {% endif %}
                 {% endif %}
             </div>
