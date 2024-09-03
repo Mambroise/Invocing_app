@@ -118,4 +118,3 @@ def delete_invoice(request, service_id):
     invoice_deleted(request, service)
 
     return render(request, 'facturasieli/service/show_service.html', {'service': service})
-
