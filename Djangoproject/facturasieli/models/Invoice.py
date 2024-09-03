@@ -33,7 +33,7 @@ class Invoice(models.Model):
     provider_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_provider')
     client_address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='invoices_as_client')
     update_timestamp = models.DateTimeField(_("Time of update"),null=True)
-    attachment = models.FileField(upload_to="BIS/", null=True,blank=True)
+    attachment = models.FileField(_('BIS'),upload_to="BIS/", null=True,blank=True)
 
 
     def __str__(self):

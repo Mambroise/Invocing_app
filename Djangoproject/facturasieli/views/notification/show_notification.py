@@ -12,6 +12,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Notification, Profile
+from facturasieli.middleware import NotificationMiddleware
 
 
 def show_notification(request: HttpRequest):
@@ -30,13 +31,15 @@ def handle_open_notification(request: HttpRequest, notification_id):
     # Récupérer la notification dont la pk = notification_id
     notification = get_object_or_404(Notification, pk=notification_id)
     
-    # Marquer la notification comme lue
     notification.is_read = True
 
-    # Enregistrer l'heure de lecture
+    # save reading time
     notification.is_read_timestamp = timezone.now() 
     notification.save()
 
+    # call the middleware to update undead notification count
+    NotificationMiddleware(lambda req: None).__call__(request)
+    
     context = get_user_notification_pagination(request)
     return render(request, 'facturasieli/notification/show_notification.html', context)
 
