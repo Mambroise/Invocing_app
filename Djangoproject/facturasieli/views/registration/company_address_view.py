@@ -8,6 +8,8 @@
 from django.http import HttpRequest,HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 
 from facturasieli.forms.CompanyForm import CompanyForm
 from facturasieli.forms.AddressForm import AddressForm
@@ -19,20 +21,24 @@ def register_company_address(request: HttpRequest):
         company_form =CompanyForm(request.POST)
         address_form =AddressForm(request.POST)
         if company_form.is_valid() and address_form.is_valid():
-            profile = get_object_or_404(Profile, pk=request.profile.id)
-            address =address_form.save()
-            company = company_form.save(commit=False)
-            
-            company.address = address
-            company.save()
-            
-            profile.company = company
-            profile.save()
+            try:
+                profile = get_object_or_404(Profile, pk=request.profile.id)
+                address =address_form.save()
+                company = company_form.save(commit=False)
+                
+                company.address = address
+                company.save()
+                
+                profile.company = company
+                profile.save()
 
-            # send welcome message in-app
-            new_account(request,profile)
+                # send welcome message in-app
+                new_account(request,profile)
+                messages.success(request, _("Thanks for subscribing. Let's get to work!"))
+            except Exception as e:
+                messages.error(request,_('subscribtion unsuccessful by encounturing issue: %s' % str(e)))
             
-            return HttpResponseRedirect(reverse('facturasieli:welcome'))
+            return HttpResponseRedirect(reverse('facturasieli:index'))
     else:
         company_form = CompanyForm()
         address_form = AddressForm()
