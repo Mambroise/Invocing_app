@@ -6,6 +6,16 @@
 # --------------------------------------------------------------------------> */
 
 
+/* messages fadde out */
+.fade-out {
+    opacity: 1;
+    transition: opacity 2s ease-out;
+}
+
+.fade-out.hide {
+    opacity: 0;
+}
+
 .min-content{
     min-height: 400px ;
 }

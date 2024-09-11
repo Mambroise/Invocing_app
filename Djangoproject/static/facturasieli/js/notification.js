@@ -2,8 +2,8 @@
 #============================================================================#
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )                   #
 #============================================================================#
-# File   : static/facturasieli/js/notification.js               #
-# Author : Arnaud DJIM-ASSEl RIBAR, Morice                                         #
+# File   : static/facturasieli/js/notification.js                            #
+# Author : Morice                                                            #
 #============================================================================#    
 */
 
