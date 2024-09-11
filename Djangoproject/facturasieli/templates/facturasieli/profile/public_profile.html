@@ -34,6 +34,7 @@
                 <h3 class="mb-3">{% translate 'Your company:' %}</h3>
                 <p><strong>{% translate 'Name: ' %} </strong>{{company.name}}</p>
                 <p><strong>{% translate 'Siret: ' %} </strong>{{profile.company.siret}}</p>
+                <p><strong>{% translate 'Phone number: ' %} </strong>{{profile.company.phone}}</p>
                 <p><strong>{% translate 'Number and street: ' %} </strong>{{profile.company.address.number}} {{profile.company.address.street}}</p>
                 {% if profile.company.address.addings %}
                 <p><strong>{% translate 'Addings: ' %} </strong>{{profile.company.address.addings}}</p>

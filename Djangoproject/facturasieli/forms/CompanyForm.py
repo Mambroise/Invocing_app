@@ -12,4 +12,4 @@ from facturasieli.models import Company
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ['siret','name']
+        fields = ['siret','name', 'phone']
