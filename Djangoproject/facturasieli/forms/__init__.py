@@ -9,3 +9,4 @@ from .OTPForm import OTPForm
 from .ResetPasswordForm import ResetPasswordForm
 from .InvoiceAttachmentForm import InvoiceAttachmentForm
 from .EmailCheckForm import EmailCheckForm
+from .EditProfileForm import EditProfileForm
