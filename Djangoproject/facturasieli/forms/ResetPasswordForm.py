@@ -7,9 +7,10 @@
 
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from facturasieli.validators import validate_pwd
 
 class ResetPasswordForm(forms.Form):
-    new_pwd = forms.CharField(label=_('New password'),max_length=255)
+    new_pwd = forms.CharField(label=_('New password'),max_length=255, validators=[validate_pwd])
     new_pwd2 = forms.CharField(label=_('Password confirmation'),max_length=255)
 
     def clean_new_pwd2(self):
