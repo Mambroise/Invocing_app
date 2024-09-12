@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from facturasieli.models.Company import Company
 from facturasieli.models.Role import Role
 from facturasieli.models.utils import get_avatar_path
+from facturasieli.validators import validate_pwd
 
 class ProfileManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, password=None, **extra_fields):
@@ -37,7 +38,7 @@ class Profile(AbstractBaseUser, PermissionsMixin):
     last_request_timestamp = models.DateTimeField(_("Last Request Timestamp"), auto_now_add=True)
     enable_2fa = models.BooleanField(_("Enable 2FA"), default=False)
     avatar = models.ImageField(_("Avatar"), default='default_avatar.jpg', upload_to=get_avatar_path)
-    password = models.CharField(_("Password"), max_length=255)
+    password = models.CharField(_("Password"), max_length=255, validators=[validate_pwd])
     role = models.ManyToManyField(Role, related_name='users')
     company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name='employees', null=True)
 

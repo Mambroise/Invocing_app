@@ -10,4 +10,4 @@ from .ResetPasswordForm import ResetPasswordForm
 from .InvoiceAttachmentForm import InvoiceAttachmentForm
 from .EmailCheckForm import EmailCheckForm
 from .EditProfileForm import EditProfileForm
-from ..validators import validate_phone_number, validate_siret
+from ..validators import validate_phone_number, validate_siret, validate_pwd
