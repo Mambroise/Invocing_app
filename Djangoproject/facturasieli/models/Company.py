@@ -9,11 +9,11 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Address
-from facturasieli.validators import validate_phone_number
+from facturasieli.validators import validate_phone_number,validate_siret
 
 
 class Company(models.Model):
-    siret = models.CharField(_("SIRET"), max_length=15)
+    siret = models.CharField(_("SIRET"), max_length=15, validators=[validate_siret])
     name = models.CharField(_("Name"), max_length=255)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='companies')
     phone = models.CharField(_('Phone number'), max_length=15, null=True, validators=[validate_phone_number])
