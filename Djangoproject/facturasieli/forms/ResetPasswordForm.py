@@ -10,12 +10,12 @@ from django.utils.translation import gettext_lazy as _
 from facturasieli.validators import validate_pwd
 
 class ResetPasswordForm(forms.Form):
-    new_pwd = forms.CharField(label=_('New password'),max_length=255, validators=[validate_pwd])
-    new_pwd2 = forms.CharField(label=_('Password confirmation'),max_length=255)
+    password1 = forms.CharField(label=_('New password'),max_length=255, validators=[validate_pwd])
+    password2 = forms.CharField(label=_('Password confirmation'),max_length=255)
 
     def clean_new_pwd2(self):
-        new_pwd = self.cleaned_data.get('new_pwd')
-        new_pwd2 = self.cleaned_data.get('new_pwd2')
-        if new_pwd and new_pwd2 and new_pwd != new_pwd2:
+        password1 = self.cleaned_data.get('new_pwd')
+        password2 = self.cleaned_data.get('new_pwd2')
+        if password1 and password2 and password1 != password2:
             raise forms.ValidationError(_("The two new passwords don't match"))
-        return new_pwd2
+        return password2

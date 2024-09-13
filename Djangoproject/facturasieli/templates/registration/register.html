@@ -16,7 +16,34 @@
     <div class="d-flex justify-content-center my-4">
         <form method="post" action="{% url 'facturasieli:register' %}">
             {% csrf_token %}
-            {{ form.as_p }}
+            <!-- {{ form.as_p }} -->
+            <div>
+                <div class="d-flex justify-content-between">
+                    <p>{{ form.email.label }}:</p>
+                    <p>{{ form.email }}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>{{ form.first_name.label }}:</p>
+                    <p>{{ form.first_name }}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>{{ form.last_name.label }}:</p>
+                    <p>{{ form.last_name }}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>{{ form.role.label }}:</p>
+                    <p>{{ form.role }}</p>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <p>{{ form.password1.label }}: </p>
+                    <p>{{ form.password1 }}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p>{{ form.password2.label }}: </p>
+                    <p>{{ form.password2 }}</p>
+                </div>
+            </div>
+            <div id="pwd-param-guide"></div>
             <button class="btn btn-warning" type="submit">👤 {% translate 'Register' %}</button>
         </form>
     </div>
