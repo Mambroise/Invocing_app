@@ -8,9 +8,10 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from facturasieli.models import Profile, Role
+from facturasieli.validators import validate_pwd
 
 class ProfileForm(forms.ModelForm):
-    password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+    password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput,validators=[validate_pwd])
     password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
     role = forms.ModelMultipleChoiceField(queryset=Role.objects.all(), widget=forms.CheckboxSelectMultiple, required=True)
 
