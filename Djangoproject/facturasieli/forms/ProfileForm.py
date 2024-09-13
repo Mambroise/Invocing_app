@@ -11,7 +11,7 @@ from facturasieli.models import Profile, Role
 from facturasieli.validators import validate_pwd
 
 class ProfileForm(forms.ModelForm):
-    password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+    password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput,validators=[validate_pwd])
     password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
     role = forms.ModelMultipleChoiceField(queryset=Role.objects.all(), widget=forms.CheckboxSelectMultiple, required=True)
 
@@ -39,7 +39,6 @@ class ProfileForm(forms.ModelForm):
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-        validate_pwd(password1)
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError(_("Passwords don't match"))
         return password2
