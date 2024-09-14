@@ -52,7 +52,7 @@ function tranformTypeNotificationFromIntToString(language, notificationType){
     if (language=='fr') {
         switch (notificationType) {
             case 1:
-                result = "Facture demendée";
+                result = "Facture demandée";
                 break;
             case 2:
                 result = "Facture soumise";
@@ -65,6 +65,24 @@ function tranformTypeNotificationFromIntToString(language, notificationType){
                 break;
             case 5:
                 result = "Facture payée";
+                break;
+            case 6:
+                result = "Facture Modifiée";
+                break;
+            case 7:
+                result = "Facture supprimée";
+                break;
+            case 8:
+                result = "Intervention modifiée";
+                break;
+            case 9:
+                result = "Interventon supprimée";
+                break;
+            case 10:
+                result = "Création de compte";
+                break;
+            case 11:
+                result = "Modification de compte";
                 break;
             default:
                 result= "Type de notification inconnu";
@@ -87,15 +105,41 @@ function tranformTypeNotificationFromIntToString(language, notificationType){
             case 5:
                 result = "Invoice Paid";
                 break;
+            case 6:
+                result = "Invoice Modified";
+                break;
+            case 7:
+                result = "Invoice Deleted";
+                break;
+            case 8:
+                result = "Service Modified";
+                break;
+            case 9:
+                result = "Service Deleted";
+                break;
+            case 10:
+                result = "New Account Created";
+                break;
+            case 11:
+                result = "Account modified";
+                break;
             default:
                 result= "unknown notification type";
         }
     }
+    
     return result;
 }
 
 
 function show_modal_notification_received(notificationId, notificationType, language, serviceTitle, companyName, companySiret, send_at) {
+    console.log('notiD '+notificationId);
+    console.log('notiTyp '+notificationType);
+    console.log('notiLang '+language);
+    console.log('notiServTitl '+serviceTitle);
+    console.log('notiComp '+companyName);
+    console.log('notiSiret '+companySiret);
+    console.log('notisend '+send_at);
     
     var a_close_button = document.getElementsByClassName("is_read")[0];
     var baseUrl = a_close_button.getAttribute("data-url");
@@ -104,9 +148,8 @@ function show_modal_notification_received(notificationId, notificationType, lang
 
     var modal = document.getElementById("modal_nofification_received");
 
-    var notificationTypeElement =
-        tranformTypeNotificationFromIntToString(language,notificationType);
-    console.log(typeof(language), language);
+    var notificationTypeElement = tranformTypeNotificationFromIntToString(language,notificationType);
+    console.log('coucou'+notificationTypeElement);
     
     
     var service = $('td#service')
@@ -140,7 +183,6 @@ function show_modal_notification_received(notificationId, notificationType, lang
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
-            
         }
     }
 }
