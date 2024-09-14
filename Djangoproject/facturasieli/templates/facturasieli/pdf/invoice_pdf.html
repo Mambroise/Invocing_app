@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .invoice-header, .invoice-footer {
+            background-color: #f8f8f8;
+            padding: 10px;
+            text-align: center;
+        }
+        .invoice-details {
+            width: 100%;
+            margin: 20px auto;
+        }
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .invoice-table th, .invoice-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .invoice-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="invoice-header">
+    <h1>Invoice {{ invoice.invoice_number }}</h1>
+    <p>Issue Date: {{ invoice.issue_date }}</p>
+</div>
+
+<div class="invoice-details">
+    <h3>Provider: {{ invoice.name_provider }}</h3>
+    <p>Address: {{ invoice.provider_address.full_address }}</p>
+    
+    <h3>Client: {{ invoice.name_client }}</h3>
+    <p>Address: {{ invoice.client_address.full_address }}</p>
+</div>
+
+<table class="invoice-table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Hours</th>
+            <th>Amount Excl. Tax</th>
+            <th>Tax</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ invoice.kind_of_payment }}</td>
+            <td>{{ invoice.hours }}</td>
+            <td>{{ invoice.amount_excluding_tax }}</td>
+            <td>{{ invoice.tax }}%</td>
+            <td>{{ invoice.amount_excluding_tax }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="invoice-footer">
+    <p>Status: {{ invoice.get_status_display }}</p>
+</div>
+
+</body>
+</html>

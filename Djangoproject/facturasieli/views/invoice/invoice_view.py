@@ -16,6 +16,7 @@ from django.utils.translation import gettext_lazy as _
 from facturasieli.forms.InvoiceForm import InvoiceForm
 from facturasieli.models import Service,Invoice
 from facturasieli.services.notification_service import invoice_submitted,invoice_updated,invoice_deleted
+from facturasieli.services.generate_PDF import generate_pdf_invoice
 
 logger = logging.getLogger(__name__)
 
@@ -118,3 +119,6 @@ def delete_invoice(request, service_id):
     invoice_deleted(request, service)
 
     return render(request, 'facturasieli/service/show_service.html', {'service': service})
+
+def print_invoice(request, invoice_id):
+    return generate_pdf_invoice(request, invoice_id, method='inline')
