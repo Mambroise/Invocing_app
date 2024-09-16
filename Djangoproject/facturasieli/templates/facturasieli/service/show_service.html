@@ -80,7 +80,7 @@
                 <div class="card" style="width: 18rem;"><img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
                     <div class="card-body">
                       <h5 class="card-title">N° {{ service.invoice.invoice_number }}</h5>
-                      <strong>{% translate 'Date:' %}</strong><small> {{ service.invoice.due_date }}</small> 
+                      <strong>{% translate 'Date:' %}</strong><small> {{ service.invoice.issue_date }}</small> 
                       <p class="card-text"></p>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -98,7 +98,7 @@
                       </li>
                       <li class="list-group-item">
                         <strong>{% translate 'Price:' %}</strong> {{ service.invoice.amount_excluding_tax }} € 
-                        <strong>{% translate 'VAT:' %}</strong> {{ service.invoice.tax }} %
+                        <strong>{% translate 'VAT:' %}</strong> {{ service.invoice.get_tax_display }} %
                       </li>
                       <li class="list-group-item">
                         <strong>{% translate 'Amount:' %}</strong> {{ total }} €  
@@ -106,15 +106,7 @@
                       </li>
                       <li class="list-group-item">
                         <strong class="text-danger">
-                          {% if service.invoice.status == '1' %}
-                          {% translate 'Pending' %}
-                          {% elif service.invoice.status == '2' %}
-                          {% translate 'Verified' %}
-                          {% elif service.invoice.status == '3' %}
-                          {% translate 'Rejected' %}
-                          {% else %}
-                          {% translate 'Paid' %}
-                          {% endif %} 
+                          {{ service.invoice.get_status_display }}
                           </strong>  
                       </li>
                     </ul>
