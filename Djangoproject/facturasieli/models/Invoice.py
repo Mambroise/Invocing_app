@@ -14,10 +14,10 @@ from facturasieli.models import Address,VAT_choice
 
 class Invoice(models.Model):
     STATUS_CHOICES = [
-        (1, _('Pending')),
-        (2, _('Verified')),
-        (3, _('Rejected')),
-        (4, _('Paid'))
+        ('1', _('Pending')),
+        ('2', _('Verified')),
+        ('3', _('Rejected')),
+        ('4', _('Paid'))
     ]
 
     invoice_number = models.IntegerField(_("Invoice Number"),null=True,unique=True)

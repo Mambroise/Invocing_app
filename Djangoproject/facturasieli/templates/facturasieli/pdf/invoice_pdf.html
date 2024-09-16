@@ -1,3 +1,11 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/facturasieli/pdf/invoice_pdf.html
+# Author : Morice
+# -------------------------------------------------------------------------->
+
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,18 +44,28 @@
 <body>
 
 <div class="invoice-header">
-    <h1>Invoice {{ invoice.invoice_number }}</h1>
-    <p>Issue Date: {{ invoice.issue_date }}</p>
+    <h1>{% translate 'Invoice' %} {{ invoice.invoice_number }}</h1>
+    <p>{% translate 'Issue Date:' %} {{ invoice.issue_date }}</p>
 </div>
 
 <div class="invoice-details">
-    <h3>Provider: {{ invoice.name_provider }}</h3>
-    <p>Address: {{ invoice.provider_address.full_address }}</p>
-    
-    <h3>Client: {{ invoice.name_client }}</h3>
-    <p>Address: {{ invoice.client_address.full_address }}</p>
+    <h3>{% translate 'Provider:' %} {{ provider.name }}</h3>
+    <p>{% translate 'Siret:' %} {{ provider.siret }}</p>
+    <p>{% translate 'Address:' %} {{ invoice.provider_address.number }} {{ invoice.provider_address.street }}</p>
+    {% if invoice.provider_address.addings %}
+    <p>{{ invoice.provider_address.addings }}</p>
+    {% endif %}
+    <p>{{ invoice.provider_address.zip_code }} {{ invoice.provider_address.city }}</p>
+    <hr>
+    <h3>{% translate 'Client:' %} {{ client.name }}</h3>
+    <p>{% translate 'Siret:' %} {{ client.siret }}</p>
+    <p>{% translate 'Address:' %} {{ invoice.client_address.number }} {{ invoice.client_address.street }}</p>
+    {% if invoice.client_address.addings %}
+    <p>{{ invoice.client_address.addings }}</p>
+    {% endif %}
+    <p>{{ invoice.client_address.zip_code }} {{ invoice.client_address.city }}</p>
 </div>
-
+<hr>
 <table class="invoice-table">
     <thead>
         <tr>
@@ -64,7 +82,7 @@
             <td>{{ invoice.hours }}</td>
             <td>{{ invoice.amount_excluding_tax }}</td>
             <td>{{ invoice.tax }}%</td>
-            <td>{{ invoice.amount_excluding_tax }}</td>
+            <td>{{ total_price }}</td>
         </tr>
     </tbody>
 </table>

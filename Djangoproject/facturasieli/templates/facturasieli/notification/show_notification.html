@@ -47,30 +47,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if notification.type == 1%}
-                                    {% translate 'Invoice Request' %}
-                                    {% elif notification.type == 2%}
-                                    {% translate 'Invoice Submitted' %}
-                                    {% elif notification.type == 3%}
-                                    {% translate 'Invoice Verified' %}
-                                    {% elif notification.type == 4%}
-                                    {% translate 'Invoice Rejected' %}
-                                    {% elif notification.type == 5%}
-                                    {% translate 'Invoice Paid' %}
-                                    {% elif notification.type == 6%}
-                                    {% translate 'Invoice Modified' %}
-                                    {% elif notification.type == 7%}
-                                    {% translate 'Invoice Deleted' %}
-                                    {% elif notification.type == 8%}
-                                    {% translate 'Service Modified' %}
-                                    {% elif notification.type == 9%}
-                                    {% translate 'Service Deleted' %}
-                                    {% elif notification.type == 10%}
-                                    {% translate 'New Account created' %}
-                                    {% elif notification.type == 11%}
-                                    {% translate 'Account Modified' %}
-                                    {% else %}
-                                    {% endif %}      
+                                    {{ notification.get_type_display }}    
                                 </td>
                                 <td>
                                     {{notification.service_title}}
@@ -142,30 +119,7 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% if notification.type == 1%}
-                                {% translate 'Invoice Request' %}
-                                {% elif notification.type == 2%}
-                                {% translate 'Invoice Submitted' %}
-                                {% elif notification.type == 3%}
-                                {% translate 'Invoice Verified' %}
-                                {% elif notification.type == 4%}
-                                {% translate 'Invoice Rejected' %}
-                                {% elif notification.type == 5%}
-                                {% translate 'Invoice Paid' %}
-                                {% elif notification.type == 6%}
-                                {% translate 'Invoice Modified' %}
-                                {% elif notification.type == 7%}
-                                {% translate 'Invoice Deleted' %}
-                                {% elif notification.type == 8%}
-                                {% translate 'Service Modified' %}
-                                {% elif notification.type == 9%}
-                                {% translate 'Service Deleted' %}
-                                {% elif notification.type == 10%}
-                                {% translate 'New Account created' %}
-                                {% elif notification.type == 11%}
-                                {% translate 'Account Modified' %}
-                                {% else %}
-                                {% endif %}       
+                                {{ notification.get_type_display }}    
                             </td>
 
                             <td>
