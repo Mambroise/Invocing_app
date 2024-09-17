@@ -1,0 +1,95 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/facturasieli/pdf/invoice_pdf.html
+# Author : Morice
+# -------------------------------------------------------------------------->
+
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .invoice-header, .invoice-footer {
+            background-color: #f8f8f8;
+            padding: 10px;
+            text-align: center;
+        }
+        .invoice-details {
+            width: 100%;
+            margin: 20px auto;
+        }
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .invoice-table th, .invoice-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .invoice-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="invoice-header">
+    <h1>{% translate 'Invoice' %} {{ invoice.invoice_number }}</h1>
+    <p>{% translate 'Issue Date:' %} {{ invoice.issue_date }}</p>
+</div>
+
+<div class="invoice-details">
+    <h3>{% translate 'Provider:' %} {{ provider.name }}</h3>
+    <p>{% translate 'Siret:' %} {{ provider.siret }}</p>
+    <p>{% translate 'Address:' %} {{ invoice.provider_address.number }} {{ invoice.provider_address.street }}</p>
+    {% if invoice.provider_address.addings %}
+    <p>{{ invoice.provider_address.addings }}</p>
+    {% endif %}
+    <p>{{ invoice.provider_address.zip_code }} {{ invoice.provider_address.city }}</p>
+    <hr>
+    <h3>{% translate 'Client:' %} {{ client.name }}</h3>
+    <p>{% translate 'Siret:' %} {{ client.siret }}</p>
+    <p>{% translate 'Address:' %} {{ invoice.client_address.number }} {{ invoice.client_address.street }}</p>
+    {% if invoice.client_address.addings %}
+    <p>{{ invoice.client_address.addings }}</p>
+    {% endif %}
+    <p>{{ invoice.client_address.zip_code }} {{ invoice.client_address.city }}</p>
+</div>
+<hr>
+<table class="invoice-table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Hours</th>
+            <th>Amount Excl. Tax</th>
+            <th>Tax</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ invoice.kind_of_payment }}</td>
+            <td>{{ invoice.hours }}</td>
+            <td>{{ invoice.amount_excluding_tax }}</td>
+            <td>{{ invoice.tax }}%</td>
+            <td>{{ total_price }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="invoice-footer">
+    <p>Status: {{ invoice.get_status_display }}</p>
+</div>
+
+</body>
+</html>

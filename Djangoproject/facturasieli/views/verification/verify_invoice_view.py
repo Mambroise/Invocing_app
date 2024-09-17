@@ -7,9 +7,9 @@
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext_lazy as _
-from facturasieli.models import Invoice, Service
+from facturasieli.models import Invoice, Service, Verification
 from facturasieli.forms import VerificationForm
 from facturasieli.services.notification_service import invoice_verified, invoice_rejected
 from facturasieli.services.all_maths import invoice_total_amount
@@ -40,23 +40,34 @@ def verify_invoice_view(request, invoice_id):
             else:
                 invoice_rejected(request, service)
 
-
-            # select invoices according to the user role
-            if request.profile.has_role(['Company manager','Company Verifier']):
-                pending_invoices = Invoice.objects.filter(status=1,name_client=request.profile.company.name) 
-            elif request.profile.has_role(['Admin']):
-                pending_invoices = Invoice.objects.filter(status=1)
-            else:
-                pending_invoices = None
-
             messages.success = _('Invoice status updated successfully')
-            pending_invoices = Invoice.objects.filter(status=1)  # 1 corresponds to 'Pending'
-            return render(request, 'facturasieli/verification/verification_list.html', {'invoices': pending_invoices})
-    else:
+
+        return redirect('facturasieli:show_service', service_id=service.id)
  
-        total_price = invoice_total_amount(invoice)
-        form = VerificationForm()
+def update_verification(request, invoice_id):
 
-        context = {'invoice': invoice, 'form': form, 'total': total_price}
+    invoice = get_object_or_404(Invoice, id=invoice_id)
+    service = get_object_or_404(Service, invoice=invoice)
+    verification = Verification.objects.get(invoice=invoice)
 
-    return render(request, 'facturasieli/verification/verification_form.html', context )
+    if request.method == 'POST':
+        form = VerificationForm(request.POST, instance=verification)
+        if form.is_valid():
+            verification = form.save(commit=False)
+            verification.verified_by = request.profile  
+            verification.comments = form.cleaned_data['comments']
+            verification.save()
+
+            invoice_status = form.cleaned_data['status']
+            invoice.status = invoice_status
+            invoice.save()
+
+            #sending notification in-app to the provider
+            if invoice_status == "2":
+                invoice_verified(request,service)
+            else:
+                invoice_rejected(request, service)
+
+            messages.success(request,_('Invoice status updated successfully'))
+
+        return redirect('facturasieli:show_service', service_id=service.id)
