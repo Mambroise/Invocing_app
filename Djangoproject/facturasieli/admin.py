@@ -7,10 +7,11 @@
 
 from django.contrib import admin
 
-from facturasieli.models import Invoice, Profile, Role, Service
+from facturasieli.models import Invoice, Profile, Role, Service, Verification
 
 
 admin.site.register(Profile)
 admin.site.register(Invoice)
 admin.site.register(Role)
 admin.site.register(Service)
+admin.site.register(Verification)

@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext_lazy as _
-from facturasieli.models import Invoice, Service
+from facturasieli.models import Invoice, Service, Verification
 from facturasieli.forms import VerificationForm
 from facturasieli.services.notification_service import invoice_verified, invoice_rejected
 from facturasieli.services.all_maths import invoice_total_amount
@@ -44,3 +44,30 @@ def verify_invoice_view(request, invoice_id):
 
         return redirect('facturasieli:show_service', service_id=service.id)
  
+def update_verification(request, invoice_id):
+
+    invoice = get_object_or_404(Invoice, id=invoice_id)
+    service = get_object_or_404(Service, invoice=invoice)
+    verification = Verification.objects.get(invoice=invoice)
+
+    if request.method == 'POST':
+        form = VerificationForm(request.POST, instance=verification)
+        if form.is_valid():
+            verification = form.save(commit=False)
+            verification.verified_by = request.profile  
+            verification.comments = form.cleaned_data['comments']
+            verification.save()
+
+            invoice_status = form.cleaned_data['status']
+            invoice.status = invoice_status
+            invoice.save()
+
+            #sending notification in-app to the provider
+            if invoice_status == "2":
+                invoice_verified(request,service)
+            else:
+                invoice_rejected(request, service)
+
+            messages.success(request,_('Invoice status updated successfully'))
+
+        return redirect('facturasieli:show_service', service_id=service.id)

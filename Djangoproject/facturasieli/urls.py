@@ -5,7 +5,6 @@
 # Author : Team
 # ---------------------------------------------------------------------------
 
-from django.contrib.auth import views as auth_views
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -49,5 +48,6 @@ urlpatterns = [
     path('delete_notification/<int:notification_id>', views.delete_notification, name='delete_notification'),
 
     path('invoices_verif/<int:invoice_id>/', views.verify_invoice_view, name='verify_invoice'),
+    path('update_verification/<int:invoice_id>/', views.update_verification, name='update_verification'),
     path('invoices/verification/', views.verify_invoice_list_view, name='verification_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

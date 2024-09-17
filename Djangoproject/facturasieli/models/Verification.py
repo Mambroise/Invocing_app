@@ -17,5 +17,10 @@ class Verification(models.Model):
     date_verified = models.DateTimeField(_("Date Verified"), auto_now_add=True)
     comments = models.TextField(_("Comments"))
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['invoice'], name='unique_verification_per_invoice')
+        ]
+
     def __str__(self):
         return f"{self.invoice.invoice_number} by {self.verified_by.email}"
