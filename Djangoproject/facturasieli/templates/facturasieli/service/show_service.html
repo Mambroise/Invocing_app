@@ -29,7 +29,6 @@
             <!-- service side -->
             <div class="col-7 p-2 border border-1 border-opacity-25 rounded-2 bg-body-tertiary">
               <div class="p-3">
-
                 <h3 class="text-center"><u><strong>{{ service.title|capfirst }}</strong></u></h3>
                 {% if service.company_client.id == request.profile.company.id %}
                 <div class="float-end">
@@ -41,7 +40,7 @@
                     </a>
                 </div>
                 {% endif %}
-                  <p><i>{% translate 'Creation date' %}</i>: {{ service.issue_date }}</p>
+                  <p><strong>{% translate 'Creation date' %}</strong>: {{ service.issue_date }}</p>
               </div>
                 <div class="border-top border-bottom my-3 p-3">
                     <p class="text-center"><strong><u>{% translate 'Companies:' %}</u></strong></p>
@@ -73,11 +72,59 @@
                     <p class="text-center"><strong><u>{% translate 'Description:' %}</u></strong></p>
                     <p>{{ service.description }}</p>
                 </div>
+
+                <!-- case : your the cleint and verificition not yet done -->
+                {% if not verification and service.invoice and request.profile.company.id == service.company_client.id %}
+                   <form action="{% url 'facturasieli:verify_invoice' service.invoice.id %}" method="post">
+                     <div class="d-flex justify-content-around border-top border-bottom my-3 p-3">
+                       {% csrf_token %}
+                       <div class="d-flex flex-column justify-content-between">
+                          <div>
+                            {{verif_form.status.label}}
+                            {{verif_form.status}}
+                          </div>
+                          <button class="btn btn-warning" type="submit">{% translate 'Save' %}</button>
+                      </div>
+                      <div>
+                          {{ verif_form.comments.label }}
+                          {{ verif_form.comments }}
+                      </div>
+                    </div>
+                  </form>
+                {% elif not verification and service.invoice and request.profile.company.id == service.company_provider.id %}
+                <div class="border-top border-bottom my-3 p-3">
+                  <p class="fs-1">{% translate 'Please wait for the client to check your invoice' %}</p>
+                </div>
+                {% elif verification %}
+                <form class="border-top border-bottom my-3 p-3" action="{% url 'facturasieli:verify_invoice' service.invoice.id %}" method="post">
+                  <p><strong>{% translate 'Verification made by:' %}</strong> {{ verification.verified_by.first_name }} {{ verification.verified_by.last_name }}</p>
+                  <div class="d-flex justify-content-around">
+                      {% csrf_token %}
+                      <div class="d-flex flex-column justify-content-between">
+                        {% if service.invoice and request.profile.company.id == service.company_client.id %}
+                        <div>
+                          {{verif_form.status.label}}
+                          {{verif_form.status}}
+                        </div>
+                        <button class="btn btn-warning" type="submit">{% translate 'Save' %}</button>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {{ verif_form.comments.label }}
+                        {{ verif_form.comments }}
+                    </div>
+                  </div>
+                </form>
+                {% endif %}
             </div>
+
             <!-- invoice side -->
             <div class="col-4 d-flex justify-content-center">
+              <div class="d-flex flex-column">
+
                 {% if service.invoice %}
-                <div class="card" style="width: 18rem;"><img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
+                <div class="card" >
+                  <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
                     <div class="card-body">
                       <h5 class="card-title">N° {{ service.invoice.invoice_number }}</h5>
                       <strong>{% translate 'Date:' %}</strong><small> {{ service.invoice.issue_date }}</small> 
@@ -104,11 +151,6 @@
                         <strong>{% translate 'Amount:' %}</strong> {{ total }} €  
                         <i class="text-primary"><u>{{ service.invoice.kind_of_payment }}</u></i> 
                       </li>
-                      <li class="list-group-item">
-                        <strong class="text-danger">
-                          {{ service.invoice.get_status_display }}
-                          </strong>  
-                      </li>
                     </ul>
                     <div class="card-body d-flex justify-content-around">
                       {% if service.company_provider.id == request.profile.company.id %}
@@ -134,6 +176,11 @@
                         </svg>
                       </a>
                     </div>
+
+                </div>
+
+                <!-- attachment part -->
+                <div>
                     {% if not service.invoice.attachment %}
                     <div class="card-body ">
                       <form method="post" enctype="multipart/form-data" action="{% url 'facturasieli:show_service' service.id %}">
@@ -148,6 +195,12 @@
                     {% endif %}
                 </div>
                 
+                <!-- invoice status part -->
+                <div class="invoice-status">
+                    <strong class="text-danger">
+                      {{ service.invoice.get_status_display }}
+                    </strong>  
+                </div>
                 {% else %}
                 <!-- checking wether the user is the provider(if not, the user cannot create invoice) -->
                   {% if service.company_provider.id == request.profile.company.id %}
@@ -165,10 +218,6 @@
                   </div>
                   {% endif %}
                 {% endif %}
-            </div>
-            <div class="col-12">
-              <div class="">
-
               </div>
             </div>
         </div>

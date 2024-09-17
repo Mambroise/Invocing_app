@@ -48,6 +48,6 @@ urlpatterns = [
     path('notification/<int:notification_id>', views.handle_open_notification, name='change_notif_status'),
     path('delete_notification/<int:notification_id>', views.delete_notification, name='delete_notification'),
 
-    path('invoices/<int:invoice_id>/', views.verify_invoice_view, name='verify_invoice'),
+    path('invoices_verif/<int:invoice_id>/', views.verify_invoice_view, name='verify_invoice'),
     path('invoices/verification/', views.verify_invoice_list_view, name='verification_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
