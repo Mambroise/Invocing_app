@@ -7,7 +7,7 @@
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext_lazy as _
 from facturasieli.models import Invoice, Service
 from facturasieli.forms import VerificationForm
@@ -40,23 +40,7 @@ def verify_invoice_view(request, invoice_id):
             else:
                 invoice_rejected(request, service)
 
-
-            # select invoices according to the user role
-            if request.profile.has_role(['Company manager','Company Verifier']):
-                pending_invoices = Invoice.objects.filter(status=1,name_client=request.profile.company.name) 
-            elif request.profile.has_role(['Admin']):
-                pending_invoices = Invoice.objects.filter(status=1)
-            else:
-                pending_invoices = None
-
             messages.success = _('Invoice status updated successfully')
-            pending_invoices = Invoice.objects.filter(status=1)  # 1 corresponds to 'Pending'
-            return render(request, 'facturasieli/verification/verification_list.html', {'invoices': pending_invoices})
-    else:
+
+        return redirect('facturasieli:show_service', service_id=service.id)
  
-        total_price = invoice_total_amount(invoice)
-        form = VerificationForm()
-
-        context = {'invoice': invoice, 'form': form, 'total': total_price}
-
-    return render(request, 'facturasieli/verification/verification_form.html', context )
