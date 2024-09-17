@@ -5,6 +5,5 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
-from .verify_invoice_view import verify_invoice_view,update_verification
-from .verify_invoice_list_view import verify_invoice_list_view
+from .verify_invoice_view import verify_invoice_view
 from .verify_invoice_view import update_verification
