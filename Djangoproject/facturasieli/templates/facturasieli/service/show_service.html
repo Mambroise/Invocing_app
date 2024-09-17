@@ -74,7 +74,27 @@
                 </div>
 
                 <!-- case : your the cleint and verificition not yet done -->
-                {% if not verification and service.invoice and request.profile.company.id == service.company_client.id %}
+                {% if verification %}
+                <form class="border-top border-bottom my-3 p-3" action="{% url 'facturasieli:update_verification' service.invoice.id %}" method="post">
+                  <p><strong>{% translate 'Verification made by:' %}</strong> {{ verification.verified_by.first_name }} {{ verification.verified_by.last_name }}</p>
+                  <div class="d-flex justify-content-around">
+                      {% csrf_token %}
+                      <div class="d-flex flex-column justify-content-between">
+                        {% if service.invoice and request.profile.company.id == service.company_client.id %}
+                        <div>
+                          {{verif_form.status.label}}
+                          {{verif_form.status}}
+                        </div>
+                        <button class="btn btn-warning" type="submit">{% translate 'Update' %}</button>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {{ verif_form.comments.label }}
+                        {{ verif_form.comments }}
+                    </div>
+                  </div>
+                </form>
+                {% elif not verification and service.invoice and request.profile.company.id == service.company_client.id %}
                    <form action="{% url 'facturasieli:verify_invoice' service.invoice.id %}" method="post">
                      <div class="d-flex justify-content-around border-top border-bottom my-3 p-3">
                        {% csrf_token %}
@@ -95,26 +115,6 @@
                 <div class="border-top border-bottom my-3 p-3">
                   <p class="fs-1">{% translate 'Please wait for the client to check your invoice' %}</p>
                 </div>
-                {% elif verification %}
-                <form class="border-top border-bottom my-3 p-3" action="{% url 'facturasieli:verify_invoice' service.invoice.id %}" method="post">
-                  <p><strong>{% translate 'Verification made by:' %}</strong> {{ verification.verified_by.first_name }} {{ verification.verified_by.last_name }}</p>
-                  <div class="d-flex justify-content-around">
-                      {% csrf_token %}
-                      <div class="d-flex flex-column justify-content-between">
-                        {% if service.invoice and request.profile.company.id == service.company_client.id %}
-                        <div>
-                          {{verif_form.status.label}}
-                          {{verif_form.status}}
-                        </div>
-                        <button class="btn btn-warning" type="submit">{% translate 'Save' %}</button>
-                        {% endif %}
-                    </div>
-                    <div>
-                        {{ verif_form.comments.label }}
-                        {{ verif_form.comments }}
-                    </div>
-                  </div>
-                </form>
                 {% endif %}
             </div>
 
