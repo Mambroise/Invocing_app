@@ -49,5 +49,4 @@ urlpatterns = [
 
     path('invoices_verif/<int:invoice_id>/', views.verify_invoice_view, name='verify_invoice'),
     path('update_verification/<int:invoice_id>/', views.update_verification, name='update_verification'),
-    path('invoices/verification/', views.verify_invoice_list_view, name='verification_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

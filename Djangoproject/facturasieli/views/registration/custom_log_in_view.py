@@ -5,7 +5,7 @@
 # Author : Zineb
 # ---------------------------------------------------------------------------
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render

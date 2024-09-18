@@ -11,6 +11,10 @@ from facturasieli.models import OTP, Profile
 
 def create_otp(profile : Profile):
     OTP.objects.filter(profile=profile).delete()
-    new_otp = OTP(profile=profile,otp=secrets.token_urlsafe(4))
+    
+    new_otp_code = ''.join(str(secrets.randbelow(10)) for _ in range(6))
+    
+    new_otp = OTP(profile=profile, otp=new_otp_code)
     new_otp.save()
+    
     return new_otp
