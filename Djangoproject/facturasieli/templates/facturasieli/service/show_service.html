@@ -116,10 +116,10 @@
                   <p class="fs-2">{% translate 'Please wait for the client to check your invoice' %}</p>
                 </div>
                 {% endif %}
-                {% if verification and service.invoice.status == 2 and request.profile.company.id == service.company_client.id %}
-                <a href="#" class="btn btn-warning">{% translate 'Pay' %}</a>
-                {% elif verification and service.invoice.status == 2 and request.profile.company.id == service.company_provider.id %}
-                <p class="fs-1 text-danger">{% translate 'Please wait for the client to pay' %}</p>
+                {% if verification and service.invoice.status == '2' and request.profile.company.id == service.company_client.id %}
+                <a href="#" class="btn btn-warning float-end">{% translate 'Pay' %}</a>
+                {% elif verification and service.invoice.status == '2' and request.profile.company.id == service.company_provider.id %}
+                <p class="fs-2 text-danger">{% translate 'Please wait for the client to pay' %}</p>
                 {% endif %}
             </div>
 
