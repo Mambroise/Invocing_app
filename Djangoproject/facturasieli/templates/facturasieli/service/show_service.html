@@ -112,9 +112,14 @@
                     </div>
                   </form>
                 {% elif not verification and service.invoice and request.profile.company.id == service.company_provider.id %}
-                <div class="border-top border-bottom my-3 p-3">
-                  <p class="fs-1">{% translate 'Please wait for the client to check your invoice' %}</p>
+                <div class="border-top my-3 p-3 pt-5">
+                  <p class="fs-2">{% translate 'Please wait for the client to check your invoice' %}</p>
                 </div>
+                {% endif %}
+                {% if verification and service.invoice.status == 2 and request.profile.company.id == service.company_client.id %}
+                <a href="#" class="btn btn-warning">{% translate 'Pay' %}</a>
+                {% elif verification and service.invoice.status == 2 and request.profile.company.id == service.company_provider.id %}
+                <p class="fs-1 text-danger">{% translate 'Please wait for the client to pay' %}</p>
                 {% endif %}
             </div>
 
@@ -196,8 +201,8 @@
                 </div>
                 
                 <!-- invoice status part -->
-                <div class="invoice-status">
-                    <strong class="text-danger">
+                <div id="status-div" class="">
+                    <strong id="invoice-status" class="" data-meta="{{ service.invoice.status }}">
                       {{ service.invoice.get_status_display }}
                     </strong>  
                 </div>

@@ -133,13 +133,6 @@ function tranformTypeNotificationFromIntToString(language, notificationType){
 
 
 function show_modal_notification_received(notificationId, notificationType, language, serviceTitle, companyName, companySiret, send_at) {
-    console.log('notiD '+notificationId);
-    console.log('notiTyp '+notificationType);
-    console.log('notiLang '+language);
-    console.log('notiServTitl '+serviceTitle);
-    console.log('notiComp '+companyName);
-    console.log('notiSiret '+companySiret);
-    console.log('notisend '+send_at);
     
     var a_close_button = document.getElementsByClassName("is_read")[0];
     var baseUrl = a_close_button.getAttribute("data-url");
@@ -149,7 +142,6 @@ function show_modal_notification_received(notificationId, notificationType, lang
     var modal = document.getElementById("modal_nofification_received");
 
     var notificationTypeElement = tranformTypeNotificationFromIntToString(language,notificationType);
-    console.log('coucou'+notificationTypeElement);
     
     
     var service = $('td#service')
