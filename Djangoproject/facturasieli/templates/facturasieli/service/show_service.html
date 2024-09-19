@@ -12,6 +12,34 @@
 {% load custom_filters %}
 
 {% block content %}
+
+<!-- Frise horizontale -->
+<div class="timeline">
+  <div class="step completed">
+    1. {% if request.profile.company.id == service.invoice.company_client %}
+    {% translate 'You have ' %}{% else %}{% translate 'Client has ' %}
+    {% translate 'created the service' %}
+    {% endif %}
+  </div>
+  <div class="step {% if service.invoice.status >= '1' %}completed{% endif %}">
+    2. {% if request.profile.company.id == service.invoice.company_client %}
+    {% translate 'You have ' %}{% else %}{% translate 'Provider has ' %}
+    {% translate 'submitted the invoice' %}
+    {% endif %}
+  </div>
+  <div class="step {% if service.invoice.status >= '2' %}completed{% endif %}{% if service.invoice.status >= '3' %}failed{% endif %}">
+    3. {% if request.profile.company.id == service.invoice.company_client %}
+    {% translate 'You have ' %}{% else %}{% translate 'Client has ' %}
+    {% translate 'accepted the invoice' %}
+    {% endif %}
+  </div>
+  <div class="step {% if service.invoice.status == '4' %}completed{% endif %}">
+    4. {% if request.profile.company.id == service.invoice.company_client %}
+    {% translate 'You have been paid ' %}{% else %}{% translate 'The client has paid you ' %}
+    {% endif %}
+  </div>
+</div>
+
 <!-- display messages -->
 {% if messages %}
     <div class="messages mt-3">
@@ -113,13 +141,13 @@
                   </form>
                 {% elif not verification and service.invoice and request.profile.company.id == service.company_provider.id %}
                 <div class="border-top my-3 p-3 pt-5">
-                  <p class="fs-2">{% translate 'Please wait for the client to check your invoice' %}</p>
+                  <i class="fs-2 text-center">{% translate 'Please wait for the client to check your invoice' %}</i>
                 </div>
                 {% endif %}
                 {% if verification and service.invoice.status == '2' and request.profile.company.id == service.company_client.id %}
                 <a href="#" class="btn btn-warning float-end">{% translate 'Pay' %}</a>
                 {% elif verification and service.invoice.status == '2' and request.profile.company.id == service.company_provider.id %}
-                <p class="fs-2 text-danger">{% translate 'Please wait for the client to pay' %}</p>
+                <i class="fs-2 text-center">{% translate 'Please wait for the client to pay' %}</i>
                 {% endif %}
             </div>
 
