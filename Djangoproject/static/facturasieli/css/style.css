@@ -45,3 +45,74 @@
     border-radius: 50px;
     font-size: 2rem;
 }
+
+/* timeline in service */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Style de chaque étape */
+.step {
+    position: relative;
+    padding: 10px 20px;
+    width: 30%;
+    height: 70px;
+    background-color: lightgray;
+    border-radius: 30px;
+    color: white;
+    text-align: center;
+    margin-right: 20px;
+}
+
+/* Pour la dernière étape, enlever la marge droite */
+.step:last-child {
+    margin-right: 0;
+}
+
+/* Style pour la flèche à droite */
+.step::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: -5px;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 30px solid lightgray;
+}
+
+/* Pour la dernière étape, ajout d'une flèche */
+.step:last-child::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: -5px;
+    border-top: 40px solid transparent;
+    border-bottom: 40px solid transparent;
+    border-left: 30px solid lightgray;
+}
+
+
+/* Étape complétée (couleur verte) */
+.completed {
+    background-color: #28a745;
+}
+
+.failed{
+    background-color: #c31816;
+}
+
+/* Flèche pour l'étape complétée (verte) */
+.completed::after {
+    border-left-color: #28a745;
+}
+
+/* Flèche finale verte si toutes les étapes sont complétées */
+.timeline.completed::after {
+    border-left-color: #28a745;
+}
