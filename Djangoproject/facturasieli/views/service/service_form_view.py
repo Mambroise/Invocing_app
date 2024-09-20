@@ -83,7 +83,7 @@ def update_service(request, service_id):
             update_service.save()
 
             #sending notification in-app to the provider
-            service_updated(update_service)
+            service_updated(request,update_service)
 
             #sending notification in-app to the provider
             invoice_request(request, update_service)

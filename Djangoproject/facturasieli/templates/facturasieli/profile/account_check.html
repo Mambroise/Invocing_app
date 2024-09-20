@@ -11,6 +11,17 @@
 {% load i18n %}
 
 {% block content %}
+<!-- display messages -->
+{% if messages %}
+    <div class="messages mt-3">
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+{% endif %}
+
 <div class="mt-4">
     <h2>{% translate 'Please enter your account email:' %}</h2>
     <div class="d-flex justify-content-center mt-4 ">
