@@ -42,6 +42,6 @@ function showPasswordGuide() {
         <li style="color: ${uppercaseValid ? 'green' : 'red'};">At least one uppercase letter</li>
         <li style="color: ${lowercaseValid ? 'green' : 'red'};">At least one lowercase letter</li>
         <li style="color: ${numberValid ? 'green' : 'red'};">At least one number</li>
-        <li style="color: ${specialCharValid ? 'green' : 'red'};">At least one special character</li>
+        <li style="color: ${specialCharValid ? 'green' : 'red'};">At least one special character @$!%*?&#</li>
     </ul>`;
 }

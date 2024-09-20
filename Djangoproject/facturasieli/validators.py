@@ -18,6 +18,6 @@ def validate_siret(value):
         raise ValidationError(_('14 numbers are necessary'))
     
 def validate_pwd(value):
-    if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$', value):
+    if not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&#]{10,}$', value):
         raise ValidationError(_('Invalid password'))
 

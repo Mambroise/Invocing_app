@@ -31,8 +31,10 @@ def account_check(request):
             except Profile.DoesNotExist:
                 # Si l'utilisateur n'existe pas, afficher un message d'erreur
                 messages.error(request, 'No account found with this email address.')
-                return HttpResponseRedirect(reverse('facturasieli:index'))
-    
+                return HttpResponseRedirect(reverse('facturasieli:account_check'))
+        else:
+            messages.error(request, 'Invalid email address')
+            return HttpResponseRedirect(reverse('facturasieli:account_check'))
     
     form = EmailCheckForm()
 
@@ -49,7 +51,7 @@ def reset_password(request, profile_id):
     if request.method == 'POST':
         form = ResetPasswordForm(request.POST)
         if form.is_valid():
-            new_pwd = form.cleaned_data['new_pwd']
+            new_pwd = form.cleaned_data['password1']
             profile.set_password(new_pwd)
             profile.save()
             messages.success(request, 'Password successfully updated.')
