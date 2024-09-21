@@ -16,6 +16,20 @@
     opacity: 0;
 }
 
+/* Forms css */
+/* Error message css */
+.errorlist {
+    color: red;
+    margin-top: 5px;
+}
+
+/*  */
+.errorlist li {
+    font-size: 14px;
+}
+
+
+
 .min-content{
     min-height: 400px ;
 }
@@ -32,10 +46,12 @@
     text-decoration: none;
 }
 
+/* Tables css */
 .clickable-row{
     cursor: pointer;
 }
 
+/* Showservice css */
 .invoice-status{
     width: 80%;
     margin-top: 10px;
@@ -116,3 +132,4 @@
 .timeline.completed::after {
     border-left-color: #28a745;
 }
+
