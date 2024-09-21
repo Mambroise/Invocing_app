@@ -24,12 +24,59 @@
     </div>
     {% endif %}
     <div class="d-flex justify-content-center">
-        <form method="post" action="{% url 'facturasieli:register2' %}">
-            {% csrf_token %}
-            {{ company_form.as_p }}
-            {{ address_form.as_p }}
-            <button class="btn btn-outline-warning" type="submit">🔐 {% translate 'Register' %}</button>
-        </form>
+        <div class="border-top pt-5">
+            <form method="post" action="{% url 'facturasieli:register2' %}">
+                {% csrf_token %}
+                <div>
+                    <p>{{ company_form.siret.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ company_form.siret.label }}:</p>
+                        <p>{{ company_form.siret }}</p>
+                    </div>
+                    <p>{{ company_form.name.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ company_form.name.label }}:</p>
+                        <p>{{ company_form.name }}</p>
+                    </div>
+                    <p>{{ company_form.phone.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ company_form.phone.label }}:</p>
+                        <p>{{ company_form.phone }}</p>
+                    </div>
+                    <p>{{ address_form.number.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ address_form.number.label }}:</p>
+                        <p>{{ address_form.number }}</p>
+                    </div>
+                    <p>{{ address_form.street.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ address_form.street.label }}:</p>
+                        <p>{{ address_form.street }}</p>
+                    </div>
+                    <p>{{ address_form.addings.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ address_form.addings.label }}:</p>
+                        <p>{{ address_form.addings }}</p>
+                    </div>
+                    <p>{{ address_form.zip_code.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ address_form.zip_code.label }}:</p>
+                        <p>{{ address_form.zip_code }}</p>
+                    </div>
+                    <p>{{ address_form.city.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ address_form.city.label }}:</p>
+                        <p>{{ address_form.city }}</p>
+                    </div>
+                    <p>{{ address_form.country.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ address_form.country.label }}:</p>
+                        <p>{{ address_form.country }}</p>
+                    </div>
+                    <button class="btn btn-outline-warning" type="submit">🔐 {% translate 'Register' %}</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
