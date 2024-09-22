@@ -30,15 +30,15 @@
                 <div class="w-75 m-auto">
                     <p>{{ form.username.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.username.label }}:</p>
+                        <strong>{{ form.username.label }}:</strong>
                         <p>{{ form.username }}</p>
                     </div>
                     <p>{{ form.password.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.password.label }}:</p>
+                        <strong>{{ form.password.label }}:</strong>
                         <p>{{ form.password }}</p>
                     </div>
-                    <button class="btn btn-warning" type="submit">{% translate 'Connect' %}</button>
+                    <button class="btn btn-warning" type="submit">{% translate 'Sign in' %}</button>
                     <a class="float-end neutralLink" href="{% url 'facturasieli:account_check' %}"><i>{% translate 'I forgot my password' %}</i></a>
                 </div>
             </form>

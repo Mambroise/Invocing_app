@@ -22,7 +22,7 @@ class ProfileForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         # Filtrer les rôles par ID pour n'afficher que les rôles souhaités
-        self.fields['role'].queryset = Role.objects.filter(id__in=[2, 3, 4])
+        self.fields['role'].queryset = Role.objects.filter(id__in=[2, 3])
 
         translated_choices = []
         for role in self.fields['role'].queryset:
