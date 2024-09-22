@@ -32,9 +32,22 @@
                         <p>{{ form.last_name.label }}:</p>
                         <p>{{ form.last_name }}</p>
                     </div>
+                    <p>{{ form.role.label }}:</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.role.label }}:</p>
-                        <p>{{ form.role }}</p>
+                        {% for checkbox in form.role %}
+                        <div class="border rounded p-5 role-item">
+                            <span class="text-center ">{{ checkbox.tag }}</span> 
+                            <p>{{ checkbox.choice_label }}</p>
+                            <hr>
+                            {% if checkbox.choice_label == 'Provider' %}
+                            <p>{% translate 'Choose this option if your company only provide skilled works to other companies but never intend to ' %}</p>
+                            {% elif checkbox.choice_label == 'Company Manager' %}
+                            <p>{% translate 'Choose this option if your company only provide skilled worked to other companies' %}</p>
+                            {% elif checkbox.choice_label == 'Company verifier' %}
+                            <p>{% translate 'Choose this option if your company only provide skilled worked to other companies' %}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
                     </div>
                     <p>{{ form.password1.errors }}</p>
                     <div class="d-flex justify-content-between mt-2">
