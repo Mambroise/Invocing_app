@@ -30,30 +30,30 @@
                 <div>
                     <p>{{ form.due_date.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.due_date.label }}:</p>
+                        <strong>{{ form.due_date.label }}:</strong>
                         <p>{{ form.due_date }}</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.kind_of_payment.label }}:</p>
+                        <strong>{{ form.kind_of_payment.label }}:</strong>
                         <p>{{ form.kind_of_payment }}</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.hours.label }}:</p>
+                        <strong>{{ form.hours.label }}:</strong>
                         <p>{{ form.hours }}</p>
                     </div>
                     <p>{{ form.amount_excluding_tax.errors }}</p>
                     <div class="d-flex justify-content-between mt-2">
-                        <p>{{ form.amount_excluding_tax.label }}: </p>
+                        <strong>{{ form.amount_excluding_tax.label }}: </strong>
                         <p>{{ form.amount_excluding_tax }}</p>
                     </div>
                     <p>{{ form.tax.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.tax.label }}: </p>
+                        <strong>{{ form.tax.label }}: </strong>
                         <p>{{ form.tax }}</p>
                     </div>
                     <p>{{ form.attachment.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.attachment.label }}: </p>
+                        <strong>{{ form.attachment.label }}:</strong>
                         <p>{{ form.attachment }}</p>
                     </div>
                     <button type="submit" class="btn btn-warning">{% if service.invoice %} {% translate 'Update' %}{% else %}{% translate 'Create' %}{% endif %}</button>

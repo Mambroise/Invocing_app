@@ -21,42 +21,42 @@
                 <div>
                     <p>{{ form.email.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.email.label }}:</p>
+                        <strong>{{ form.email.label }}:</strong>
                         <p>{{ form.email }}</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.first_name.label }}:</p>
+                        <strong>{{ form.first_name.label }}:</strong>
                         <p>{{ form.first_name }}</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.last_name.label }}:</p>
+                        <strong>{{ form.last_name.label }}:</strong>
                         <p>{{ form.last_name }}</p>
                     </div>
-                    <p>{{ form.role.label }}:</p>
+                    <strong>{{ form.role.label }}:</strong>
                     <div class="d-flex justify-content-between">
                         {% for checkbox in form.role %}
-                        <div class="border rounded p-5 role-item">
-                            <span class="text-center ">{{ checkbox.tag }}</span> 
-                            <p>{{ checkbox.choice_label }}</p>
+                        <div class="border rounded p-2 role-item">
+                            <div class="d-flex justify-content-center">
+                                <span>{{ checkbox.tag }}</span> 
+                            </div>
+                            <p class="text-center fw-bold">{{ checkbox.choice_label }}</p>
                             <hr>
                             {% if checkbox.choice_label == 'Provider' %}
-                            <p>{% translate 'Choose this option if your company only provide skilled works to other companies but never intend to ' %}</p>
-                            {% elif checkbox.choice_label == 'Company Manager' %}
-                            <p>{% translate 'Choose this option if your company only provide skilled worked to other companies' %}</p>
-                            {% elif checkbox.choice_label == 'Company verifier' %}
-                            <p>{% translate 'Choose this option if your company only provide skilled worked to other companies' %}</p>
+                            <small>{% translate 'The service provider offers its services to other companies but does not intend to use the services of another. The user will not be able to make transfers to another company.' %}</small>
+                            {% elif checkbox.choice_label == 'Company manager' %}
+                            <small>{% translate 'The Company Manager has access to create service reports, generate invoices, and manage payment settlements.' %}</small>
                             {% endif %}
                         </div>
                         {% endfor %}
                     </div>
                     <p>{{ form.password1.errors }}</p>
                     <div class="d-flex justify-content-between mt-2">
-                        <p>{{ form.password1.label }}: </p>
+                        <strong>{{ form.password1.label }}: </strong>
                         <p>{{ form.password1 }}</p>
                     </div>
                     <p>{{ form.password2.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <p>{{ form.password2.label }}: </p>
+                        <strong>{{ form.password2.label }}: </strong>
                         <p>{{ form.password2 }}</p>
                     </div>
                     <div id="pwd-param-guide"></div>

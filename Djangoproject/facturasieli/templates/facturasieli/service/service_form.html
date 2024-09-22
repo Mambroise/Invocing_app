@@ -30,7 +30,20 @@
             <a href="{% url 'facturasieli:service' %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
             <form method="post">
                 {% csrf_token %}
-                {{form.as_p}}
+                <div class="d-flex justify-content-between">
+                    <strong>{{ form.title.label }}</strong>
+                    <p>{{ form.title }}</p>
+                </div>                    <div class="d-flex justify-content-between">
+                    <strong>{{ form.description.label }}</strong>
+                    <p>{{ form.description }}</p>
+                </div>                    <div class="d-flex justify-content-between">
+                    <strong>{{ form.intervention_start_date.label }}</strong>
+                    <p>{{ form.intervention_start_date }}</p>
+                </div>                    <div class="d-flex justify-content-between">
+                    <strong>{{ form.intervention_end_date.label }}</strong>
+                    <p>{{ form.intervention_end_date }}</p>
+                </div>
+
                 <button type="submit" class="btn btn-success" value="List">
                     {% if update %}{% translate 'Update' %}{% else %}{% translate 'Create' %}{% endif%}</button>
             </form>
