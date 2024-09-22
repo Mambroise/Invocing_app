@@ -24,13 +24,24 @@
         </div>
         {% endif %}
     <div class="d-flex justify-content-center my-4">
-        <div>
+        <div class="border-top pt-5">
             <form method="post" action="{% url 'facturasieli:custom_log_in' %}">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button class="btn btn-warning" type="submit">{% translate 'Connect' %}</button>
+                <div class="w-75 m-auto">
+                    <p>{{ form.username.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ form.username.label }}:</p>
+                        <p>{{ form.username }}</p>
+                    </div>
+                    <p>{{ form.password.errors }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p>{{ form.password.label }}:</p>
+                        <p>{{ form.password }}</p>
+                    </div>
+                    <button class="btn btn-warning" type="submit">{% translate 'Connect' %}</button>
+                    <a class="float-end neutralLink" href="{% url 'facturasieli:account_check' %}"><i>{% translate 'I forgot my password' %}</i></a>
+                </div>
             </form>
-            <a class="float-end neutralLink" href="{% url 'facturasieli:account_check' %}"><i>{% translate 'I forgot my password' %}</i></a>
             <br />
             <br />
             <h2>{% translate 'You are not registered yet?' %}</h2>

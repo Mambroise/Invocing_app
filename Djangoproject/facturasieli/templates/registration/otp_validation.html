@@ -25,11 +25,11 @@
 <div class="mt-4">
     <h2>{% translate 'Please enter your one time password:' %}</h2>
     <div class="d-flex justify-content-center mt-4 ">
-        <div class="shadow p-5 rounded">
+        <div class="border-top pt-5">
             <form method="post" action="{% url 'facturasieli:otp_validation' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-outline-warning mt-4" type="submit">🔑 {% translate 'Connect' %}</button>
+                <button class="btn btn-warning mt-4" type="submit">{% translate 'Connect' %}</button>
             </form>
         </div>
     </div>
