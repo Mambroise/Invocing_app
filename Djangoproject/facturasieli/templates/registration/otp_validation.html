@@ -26,7 +26,7 @@
 
     <div class="d-flex justify-content-center mt-4 ">
         <div class="border-top pt-5">
-            <form method="post" action="{% url 'facturasieli:otp_validation' %}">
+            <form id="otp-form" method="post" action="{% url 'facturasieli:otp_validation' %}">
                 {% csrf_token %}
                 <div class="d-flex justify-content-between">
                     <strong class="mx-2">{{ form.otp.label }}: </strong>
