@@ -23,21 +23,10 @@
     </div>
 {% endif %}
 
-<h3 class="text-center mt-4">{% translate 'Welcome to Facturasieli' %} 
-    {{ request.profile.first_name|capfirst }} !</h3>
-<div class="mt-4">
-    <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
-    <table>
-        <tr style="vertical-align:top">
-            <td>
-                <h2>{% translate 'My invoices:' %}</h2>
-                {% if invoices %}
-                    <p>TODO</p>
-                {% else %}
-                    <p>{% translate 'You have no invoice defined yet.' %}</p>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
+<div class="landingPage">
+    <div class="titleFrame">
+        <h1>{% translate 'Welcome to Easynvoice' %} 
+            {{ request.profile.first_name|capfirst }} !</h1>
+    </div>
 </div>
 {% endblock %}
