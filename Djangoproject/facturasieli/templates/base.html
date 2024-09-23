@@ -24,10 +24,9 @@
     <script src="{% static 'facturasieli/js/notification.js' %}" defer></script>
     <script src="{% static 'facturasieli/js/service.js' %}" defer></script>
     <script src="{% static 'facturasieli/js/message.js' %}" defer></script>
-    <script src="{% static 'facturasieli/js/select_table_rows.js' %}" defer></script>
-    <script src="{% static 'facturasieli/js/forms.js' %}" defer></script>
+    <script src="{% static 'facturasieli/js/tableAndforms.js' %}" defer></script>
 
-    <title>FacturaSieli</title>
+    <title>Easynvoice</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm ">
@@ -58,7 +57,7 @@
               {% endif %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {% translate 'Language' %}
+                    {% translate 'Langage' %}
                 </a>
                 <ul class="dropdown-menu">  
                   <li><a class="dropdown-item" href="/fr/{{ request.path|slice:'4:' }}">🇫🇷 {% translate 'French' %}</a></li>
@@ -92,7 +91,7 @@
         </div>
       </main>
     <!-- Footer -->
-    <footer class="text-center text-lg-start bg-dark  text-muted mt-4">
+    <footer class="text-center text-lg-start bg-dark  text-muted">
       <!-- Section: Social media -->
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <div class="text-light">
