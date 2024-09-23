@@ -125,6 +125,11 @@
     background-color: #c31816;
 }
 
+/* fleche pour l'étape failed */
+.failed::after {
+    border-left-color: #c31816;
+}
+
 /* Flèche pour l'étape complétée (verte) */
 .completed::after {
     border-left-color: #28a745;

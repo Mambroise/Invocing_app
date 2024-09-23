@@ -11,9 +11,8 @@
 {% load i18n %}
 
 {% block content %}
-<div>
-    
-    <h2 class="my-3">{% translate 'Your notifications' %}</h2>
+<div>  
+    <h3 class="my-5">{% translate 'Your notifications' %}</h3>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-notif-received-tab" data-toggle="tab" href="#nav-notif-received" role="tab" aria-controls="nav-notif-received" aria-selected="true" onclick="activer_tab('nav-notif-received-tab')">
@@ -94,7 +93,7 @@
                     </nav>
                 </div>
             {%else %}
-                <p>{% translate 'No notification available.' %}</p>
+                <p class="fs-1 p-5 text-center">{% translate 'No notification available.' %}</p>
             {% endif %}
         </div>
         <div class="tab-pane fade" id="nav-notif-sended" role="tabpanel" aria-labelledby="nav-notif-sended-tab">
@@ -168,7 +167,7 @@
                 </nav>
             </div>
         {% else %}
-            <p>{% translate 'No notification available.' %}</p>   
+            <p class="fs-1 p-5 text-center">{% translate 'No notification available.' %}</p>   
         {% endif %}
         </div>
     </div>

@@ -2,7 +2,7 @@
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
 # File   : facturasieli/templates/facturasieli/invoice_form.html
-# Author : Margaux
+# Author : Morice
 # -------------------------------------------------------------------------->
 
 {% extends 'base.html' %}
@@ -11,8 +11,8 @@
 {% load i18n %}
 
 {% block content %} 
-<div class="mt-4">
-    <h3>{% if service.invoice %} {% translate 'Invoice number:' %} {{service.invoice.invoice_number}} {% translate 'for service:' %}{% else %}{% translate 'Invoice Form for' %}{% endif %} {{service.title}}</h3>
+<div>
+    <h3 class="my-5">{% if service.invoice %} {% translate 'Invoice number:' %} {{service.invoice.invoice_number}} {% translate 'for service:' %}{% else %}{% translate 'Invoice Form for' %}{% endif %} {{service.title}}</h3>
     <div class="d-flex justify-content-around mt-4 border-top pt-5">
         <div>
             <div class="mt-3 p-3">
