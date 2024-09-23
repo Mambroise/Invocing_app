@@ -14,7 +14,7 @@
 {% block content %}
 
 <!-- Frise horizontale -->
-<div class="timeline">
+<div class="timeline mt-5">
   <div class="step completed">
     1. {% if request.profile.company.id == service.invoice.company_client %}
     {% translate 'You have ' %}{% else %}{% translate 'Client has ' %}
@@ -27,7 +27,7 @@
     {% translate 'submitted the invoice' %}
     {% endif %}
   </div>
-  <div class="step {% if service.invoice.status >= '2' %}completed{% endif %}{% if service.invoice.status >= '3' %}failed{% endif %}">
+  <div class="step {% if service.invoice.status >= '2' and service.invoice.status != '3' %}completed {% endif %}{% if service.invoice.status >= '3' %}failed{% endif %}">
     3. {% if request.profile.company.id == service.invoice.company_client %}
     {% translate 'You have ' %}{% else %}{% translate 'Client has ' %}
     {% translate 'accepted the invoice' %}

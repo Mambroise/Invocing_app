@@ -21,7 +21,7 @@ class Service(models.Model):
     ]
 
     title = models.CharField(_("Title"), max_length=255)
-    description = models.CharField(_("Description"), max_length=255)
+    description = models.TextField(_("Description"), max_length=500)
     issue_date = models.DateField(_("Issue Date"))
     intervention_start_date = models.DateField(_("Intervention Start Date"))
     intervention_end_date = models.DateField(_("Intervention End Date"))
