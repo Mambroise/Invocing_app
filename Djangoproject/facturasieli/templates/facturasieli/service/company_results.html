@@ -1,0 +1,34 @@
+<!---------------------------------------------------------------------------
+#                    F a c t u r a S i e l i   ( 2 0 2 4 )
+# ---------------------------------------------------------------------------
+# File   : facturasieli/templates/facturasieli/service/company_results.html
+# Author : Morice
+# -------------------------------------------------------------------------->
+
+{% load i18n %}
+{% if companies %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">{% translate 'Name' %}</th>
+        <th scope="col">{% translate 'Siret' %}</th>
+        <th scope="col">{% translate 'Address' %}</th>
+        <th scope="col">{% translate 'Zipcode' %}</th>
+        <th scope="col">{% translate 'City' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for company in companies %}
+            <tr class="clickable-row" data-href="{% url 'facturasieli:service_form' company.id %}">
+                <th scope="row">{{ company.name }}</th>
+                <td>{{ company.siret }}</td>
+                <td>{{ company.address.number }} {{ company.address.street }}</td>
+                <td>{{ company.address.zip_code }}</td>
+                <td>{{ company.address.city }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="mt-4">{% translate "-Write down the company name or siret-" %}</p>
+{% endif %}

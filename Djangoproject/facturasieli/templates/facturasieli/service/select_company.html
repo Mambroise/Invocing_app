@@ -26,37 +26,14 @@
     <div class="d-flex justify-content-center mt-4">
         <div>
             <a href="{% url 'facturasieli:service' %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
-            <form method="post">
+            <form id="search-form" method="post">
                 <button type="submit" class="btn btn-success" value="List">{% translate 'Search' %}</button>
                 {% csrf_token %}
                 {{form.search}}
             </form>
-            {% if companies %}
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">{% translate 'Name' %}</th>
-                    <th scope="col">{% translate 'Siret' %}</th>
-                    <th scope="col">{% translate 'Address' %}</th>
-                    <th scope="col">{% translate 'Zipcode' %}</th>
-                    <th scope="col">{% translate 'City' %}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                        {% for company in companies %}
-                            <tr class="clickable-row" data-href="{% url 'facturasieli:service_form' company.id %}">
-                                <th scope="row">{{ company.name }}</th>
-                                <td>{{ company.siret }}</td>
-                                <td>{{ company.address.number }} {{ company.address.street }}</td>
-                                <td>{{ company.address.zip_code }}</td>
-                                <td>{{ company.address.city }}</td>
-                            </tr>
-                        {% endfor %}
-                    {% else %}
-                    <p class="mt-4">{% translate "-Write down the company name or siret-" %}</p>
-                    {% endif %}
-                </tbody>
-              </table>
+            <div id="company-results">  <!-- ajax results container -->
+                {% include 'facturasieli/service/company_results.html' %}
+            </div>
         </div>
     </div>
 </div>
