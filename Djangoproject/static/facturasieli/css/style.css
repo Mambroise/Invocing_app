@@ -28,7 +28,9 @@
     font-size: 14px;
 }
 
-
+.role-item{
+    width: 150px;
+}
 
 .min-content{
     min-height: 400px ;
