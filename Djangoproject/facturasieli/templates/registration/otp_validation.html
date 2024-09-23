@@ -12,18 +12,18 @@
 
 {% block content %}
 <!-- display messages -->
-{% if messages %}
-    <div class="messages mt-3">
-      {% for message in messages %}
-        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
-            {{ message }}
+<div>
+    <h2 class="my-5">{% translate 'Please enter your one time password:' %}</h2>
+    {% if messages %}
+        <div class="messages mt-3">
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
         </div>
-      {% endfor %}
-    </div>
-{% endif %}
+    {% endif %}
 
-<div class="mt-4">
-    <h2>{% translate 'Please enter your one time password:' %}</h2>
     <div class="d-flex justify-content-center mt-4 ">
         <div class="border-top pt-5">
             <form method="post" action="{% url 'facturasieli:otp_validation' %}">

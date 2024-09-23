@@ -11,7 +11,7 @@
 {% load i18n %}
 
 {% block content %} 
-<h3 class=" my-3">{% translate 'Your services' %}</h3>
+<h3 class=" my-5">{% translate 'Your services' %}</h3>
     <!-- display messages -->
     {% if messages %}
     <div class="messages">
@@ -43,6 +43,7 @@
             <div class="d-flex justify-content-center mt-4">
                 <div class="w-100">
                     <a href="{% url 'facturasieli:select_company' %}" class="btn btn-warning mb-4 float-end">{% translate 'New service' %}</a>
+                    {% if client_services %}
                     <table class="table table-hover">
                         <thead>
                           <tr>
@@ -53,7 +54,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                            {% if client_services %}
                                 {% for service in client_services %}
                                     <tr class="clickable-row" data-href="{% url 'facturasieli:show_service' service.id %}">
                                         <th scope="row">{{ service.title }}</th>
@@ -63,7 +63,7 @@
                                     </tr>
                                 {% endfor %}
                             {% else %}
-                            <p>{% translate "You don't have services yet" %}</p>
+                            <p class="fs-1 p-5 text-center">{% translate "You don't have services yet" %}</p>
                             {% endif %}
                         </tbody>
                       </table>
@@ -76,6 +76,7 @@
         <div class="mt-4">   
             <div class="d-flex justify-content-center mt-4">
                 <div class="w-100">
+                  {% if provider_services %}
                     <table class="table table-hover">
                         <thead>
                           <tr>
@@ -86,7 +87,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                            {% if provider_services %}
                                 {% for service in provider_services %}
                                     <tr class="clickable-row" data-href="{% url 'facturasieli:show_service' service.id %}">
                                         <th scope="row">{{ service.title }}</th>
@@ -96,7 +96,7 @@
                                     </tr>
                                 {% endfor %}
                             {% else %}
-        
+                              <p class="fs-1 p-5 text-center">{% translate "You don't have services yet" %}</p>
                             {% endif %}
                         </tbody>
                       </table>
