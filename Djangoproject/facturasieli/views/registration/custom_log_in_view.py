@@ -5,6 +5,7 @@
 # Author : Zineb
 # ---------------------------------------------------------------------------
 
+from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpRequest, HttpResponseRedirect
@@ -24,6 +25,7 @@ def custom_log_in(request: HttpRequest):
     
     form = AuthenticationForm(request, data=request.POST)
     if not form.is_valid():
+        messages.error(request,_('Invalid email or password .'))
         return render(request, 'registration/custom_login.html', {'form': form})
 
     username = form.cleaned_data['username']
@@ -31,6 +33,7 @@ def custom_log_in(request: HttpRequest):
     user = authenticate(request, username=username, password=password)
     
     if user is None:
+        messages.error(request,_('No user was found.'))
         return render(request, 'registration/custom_login.html', {'form': form})
 
     profile = get_object_or_404(Profile, email=username)

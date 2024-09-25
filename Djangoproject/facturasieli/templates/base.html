@@ -55,19 +55,33 @@
                 </a>
               </li>
               {% endif %}
+              {% if not request.path == '/en/' or request.path == '/fr/' %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {% translate 'Langage' %}
+                    {% translate 'Language' %}
                 </a>
                 <ul class="dropdown-menu">  
                   <li><a class="dropdown-item" href="/fr/{{ request.path|slice:'4:' }}">🇫🇷 {% translate 'French' %}</a></li>
                   <li><a class="dropdown-item" href="/en/{{ request.path|slice:'4:' }}">🇬🇧 {% translate 'English' %}</a></li>
                 </ul>
               </li>
+              {% endif %}
             </ul>
-
-            <a class="border-end pe-2 nav-link" href="#">ToDo: accroche à trouver</a>
-
+            {% if request.path == '/en/' or request.path == '/fr/' %}
+            <ul class="navbar-nav border-end pe-2">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {% translate 'Language' %}
+              </a>
+              <ul class="dropdown-menu">  
+                <li><a class="dropdown-item" href="/fr/{{ request.path|slice:'4:' }}">🇫🇷 {% translate 'French' %}</a></li>
+                <li><a class="dropdown-item" href="/en/{{ request.path|slice:'4:' }}">🇬🇧 {% translate 'English' %}</a></li>
+              </ul>
+            </li>
+          </ul>
+            {% else %}
+            <a class="border-end pe-2 nav-link fw-bold fst-italic" href="#">Business's why you're here.</a>
+            {% endif %}
             <div>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
