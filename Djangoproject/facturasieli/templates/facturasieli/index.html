@@ -24,9 +24,12 @@
 {% endif %}
 
 <div class="landingPage">
+    <div class="appHook">
+        <p class="hook">{% translate "Business's why you're here." %}</p>
+    </div>
     <div class="titleFrame">
-        <h1>{% translate 'Welcome to Easynvoice' %} 
-            {{ request.profile.first_name|capfirst }} !</h1>
+        <h1>{% translate 'Easynvoice' %}</h1>
+        <p class="welcome">{% translate 'Welcome' %} {{ request.profile.first_name|capfirst }} !</p>
     </div>
 </div>
 {% endblock %}
