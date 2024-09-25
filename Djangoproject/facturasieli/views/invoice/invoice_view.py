@@ -6,10 +6,12 @@
 # ---------------------------------------------------------------------------
 
 
+import mimetypes
+import os
 import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -59,6 +61,7 @@ def invoice_view(request, service_id):
         else:
             logger.error("Form is not valid: %s", form.errors)
             messages.error(request, _("There were errors in your form. Please correct them and try again."))
+            return render(request, 'facturasieli/invoice/invoice_form.html', {'form': form})
     else:
         form = InvoiceForm()
     
@@ -122,3 +125,30 @@ def delete_invoice(request, service_id):
 
 def print_invoice(request, invoice_id):
     return generate_pdf_invoice(request, invoice_id, method='inline')
+
+def download_bis(request, invoice_id):
+    invoice = get_object_or_404(Invoice, pk=invoice_id)
+
+    # is there an attachment in invoice
+    if not invoice.attachment:
+        messages.error(request, _("No attachment found for this invoice."))
+        return HttpResponseRedirect(reverse('facturasieli:show_service', kwargs={'service_id': invoice.service.id}))
+    
+    # get the complete attachment path
+    attachment_path = invoice.attachment.path  # path on the server
+    #  check wether the file exists
+    if not os.path.exists(attachment_path):
+        messages.error(request, _("The requested file does not exist."))
+        return HttpResponseRedirect(reverse('facturasieli:show_service', kwargs={'service_id': invoice.service.id}))
+   
+    # check out the file MIME type
+    mime_type, _ = mimetypes.guess_type(attachment_path)
+    if mime_type is None:
+        mime_type = 'application/octet-stream'
+
+    # Ouvre le fichier et prépare la réponse HTTP pour le téléchargement
+    with open(attachment_path, 'rb') as f:
+        response = HttpResponse(f.read(), content_type=mime_type)
+        response['Content-Disposition'] = f'attachment; filename={os.path.basename(attachment_path)}'
+
+    return response
