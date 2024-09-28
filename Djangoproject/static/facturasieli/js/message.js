@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// show_service page handle invoice status colors
 document.addEventListener("DOMContentLoaded", function () {
     const message = document.getElementById('invoice-status');
     const statusDiv = document.getElementById('status-div');
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         '1': { messageClass: 'text-warning', divClass: 'border-warning' },
         '2': { messageClass: 'text-success', divClass: 'border-success' },
         '3': { messageClass: 'text-danger', divClass: 'border-danger' },
-        '4': { messageClass: 'text-danger', divClass: 'border-success' }
+        '4': { messageClass: 'text-success', divClass: 'border-success' }
     };
 
     // Appliquer les classes si le statut existe dans l'objet

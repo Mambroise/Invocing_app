@@ -123,23 +123,38 @@ def delete_invoice(request, service_id):
 
     return render(request, 'facturasieli/service/show_service.html', {'service': service})
 
+def invoice_paid(request,service_id):
+    service = Service.objects.get(pk=service_id)
+    invoice = service.invoice
+
+    if invoice.status == '2':
+        invoice.status = '4'
+        invoice.save()
+
+        service.status = Service.TERMINE
+    else:
+        messages.error(request, _('Invoice must be verified before being paid'))
+        
+    return HttpResponseRedirect(reverse('facturasieli:show_service', kwargs={'service_id': service.id}))
+
 def print_invoice(request, invoice_id):
     return generate_pdf_invoice(request, invoice_id, method='inline')
 
 def download_bis(request, invoice_id):
     invoice = get_object_or_404(Invoice, pk=invoice_id)
+    service = Service.objects.get(invoice=invoice)
 
     # is there an attachment in invoice
     if not invoice.attachment:
         messages.error(request, _("No attachment found for this invoice."))
-        return HttpResponseRedirect(reverse('facturasieli:show_service', kwargs={'service_id': invoice.service.id}))
+        return HttpResponseRedirect(reverse('facturasieli:show_service', kwargs={'service_id': service.id}))
     
     # get the complete attachment path
     attachment_path = invoice.attachment.path  # path on the server
     #  check wether the file exists
     if not os.path.exists(attachment_path):
         messages.error(request, _("The requested file does not exist."))
-        return HttpResponseRedirect(reverse('facturasieli:show_service', kwargs={'service_id': invoice.service.id}))
+        return HttpResponseRedirect(reverse('facturasieli:show_service', kwargs={'service_id': service.id}))
    
     # check out the file MIME type
     mime_type, _ = mimetypes.guess_type(attachment_path)
