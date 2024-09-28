@@ -12,7 +12,7 @@ from facturasieli.validators import validate_pwd
 
 class ProfileForm(forms.ModelForm):
     password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput,validators=[validate_pwd])
-    password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation:"), widget=forms.PasswordInput)
     role = forms.ModelMultipleChoiceField(queryset=Role.objects.all(), widget=forms.CheckboxSelectMultiple, required=True)
 
     class Meta:

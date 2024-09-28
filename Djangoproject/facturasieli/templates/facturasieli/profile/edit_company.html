@@ -11,7 +11,7 @@
 {% load i18n %}
 
 {% block content %}
-<div class="mt-4">
+<div class="my-4">
     <h3>{% translate 'Please register your company:' %}</h3>
     <!-- Affichage des messages -->
     {% if messages %}
@@ -39,7 +39,7 @@
                 </div>
                 <p>{{ company_form.phone.errors }}</p>
                 <div class="d-flex justify-content-between">
-                    <strong>{{ company_form.phone.label }}:</strong>
+                    <strong class="me-4">{{ company_form.phone.label }}:</strong>
                     <p>{{ company_form.phone }}</p>
                 </div>
                 <p>{{ address_form.number.errors }}</p>

@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------> */
 
 
-/* landing */
+/************************************ Index *******************************/
 .landingPage{
     position: relative;
     background-image: url('../../images/landing_easynvoice.png');
@@ -74,13 +74,18 @@
     color: rgb(255, 255, 255);
 }
 
-/* messages fadde out */
+/******************************* messages fadde out ***********************************/
 .hide {
     opacity: 0;
     transition: opacity 3s ease-out;
 }
 
-/* Forms css */
+/********************************** Forms css *****************************************/
+/* Register page form */
+.role-item{
+    width: 150px;
+}
+
 /* Error message css */
 .errorlist {
     color: red;
@@ -92,14 +97,11 @@
     font-size: 14px;
 }
 
-.role-item{
-    width: 150px;
-}
-
 .min-content{
-    min-height: 400px ;
+    min-height: 600px ;
 }
 
+/****************************** Tables *********************************/
 .hidden{
     display: none;
 }
@@ -108,16 +110,16 @@
     display: block;
 }
 
-.neutralLink{
-    text-decoration: none;
-}
-
-/* Tables css */
 .clickable-row{
     cursor: pointer;
 }
 
-/* Showservice css */
+.neutralLink{
+    text-decoration: none;
+}
+
+
+/**************************************** Show_service css ********************************/
 .invoice-status{
     width: 80%;
     margin-top: 10px;
@@ -139,7 +141,7 @@
     padding: 0 20px;
 }
 
-/* Style de chaque étape */
+/* timeline step css */
 .step {
     position: relative;
     padding: 10px 20px;
@@ -167,18 +169,6 @@
     border-bottom: 40px solid transparent;
     border-left: 30px solid lightgray;
 }
-
-/* Pour la dernière étape, ajout d'une flèche */
-.step:last-child::after {
-    content: '';
-    position: absolute;
-    right: -15px;
-    top: -5px;
-    border-top: 40px solid transparent;
-    border-bottom: 40px solid transparent;
-    border-left: 30px solid lightgray;
-}
-
 
 /* Étape complétée (couleur verte) */
 .completed {
