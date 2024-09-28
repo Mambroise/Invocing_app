@@ -41,6 +41,7 @@ urlpatterns = [
     path('invoice/<int:service_id>/', views.invoice_view, name='invoice_form'),
     path('delete_invoice/<int:service_id>/', views.delete_invoice, name='delete_invoice'),
     path('update_invoice/<int:service_id>/', views.update_invoice, name='update_invoice'),
+    path('invoice_paid/<int:service_id>/', views.invoice_paid, name='invoice_paid'),
     path('print_invoice/<int:invoice_id>/', views.print_invoice, name='print_invoice'),
     path('download_bis/<int:invoice_id>/', views.download_bis, name='download_bis'),
     

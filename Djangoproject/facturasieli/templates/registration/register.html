@@ -11,7 +11,7 @@
 {% load i18n %}
 
 {% block content %}
-<div class="mt-4">
+<div class="my-4">
     <h3>🔐 {% translate 'Please choose your identifiers:' %}</h3>
     <div class="d-flex justify-content-center my-4">
         <div class="border-top pt-5">
@@ -56,7 +56,7 @@
                     </div>
                     <p>{{ form.password2.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <strong>{{ form.password2.label }}: </strong>
+                        <strong class="me-4">{{ form.password2.label }}:</strong>
                         <p>{{ form.password2 }}</p>
                     </div>
                     <div id="pwd-param-guide"></div>
