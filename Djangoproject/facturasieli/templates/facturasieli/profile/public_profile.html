@@ -11,6 +11,17 @@
 {% load i18n %}
 
 {% block content %}
+<!-- display messages -->
+{% if messages %}
+    <div class="messages mt-3">
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+{% endif %}
+
 <div class="mt-4">
     <div class="d-flex justify-content-around">
         <div>
