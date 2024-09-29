@@ -20,19 +20,13 @@ def edit_profile(request: HttpRequest):
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
 
     profile = request.profile
-    old_avatar = profile.avatar.path
 
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, request.FILES, instance=profile)
+        form = EditProfileForm(request.POST, request.FILES, instance=profile, user = request.user)
         if form.is_valid():
-            profile = form.save(commit=False) 
-            if request.FILES:
-                if not 'default_avatar' in old_avatar:
-                    try:
-                        os.remove(old_avatar)
-                    except:
-                        pass
-            profile.save() 
+
+            request.user.last_name = request.POST.get('last_name', '')
+            request.user.first_name = request.POST.get('first_name', '')
             request.user.email = request.POST.get('email', '')
             request.user.save() 
 
@@ -41,7 +35,7 @@ def edit_profile(request: HttpRequest):
         else:
             print(form.errors)
     else:
-        form = EditProfileForm(initial={'email': request.user.email}, instance=profile)
+        form = EditProfileForm(initial={'email': request.user.email}, instance=profile, user = request.user)
 
     context = {'form': form}
     return render(request, 'facturasieli/profile/edit_profile.html', context)
