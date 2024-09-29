@@ -26,12 +26,12 @@
                     <strong>{{ form.last_name.label }}:</strong>
                     <p>{{ form.last_name }}</p>
                 </div>
+                <p>{{ form.email.errors }}</p>
+                <div class="d-flex justify-content-between">
+                    <strong>{{ form.email.label }}:</strong>
+                    <p>{{ form.email }}</p>
+                </div>
                 {% if request.profile|has_any_role:'Admin' %}
-                    <p>{{ form.email.errors }}</p>
-                    <div class="d-flex justify-content-between">
-                        <strong>{{ form.email.label }}:</strong>
-                        <p>{{ form.email }}</p>
-                    </div>
                     <div class="d-flex justify-content-between">
                         <strong>{{ form.role.label }}:</strong>
                         <p>{{ form.role }}</p>
