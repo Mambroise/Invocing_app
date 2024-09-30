@@ -30,6 +30,7 @@ urlpatterns = [
     path('edit_company/', views.edit_company, name='edit_company'),
     path('account_check/', views.account_check, name='account_check'),
     path('reset_password/<int:profile_id>/', views.reset_password, name='reset_password'),
+    path('change_password/', views.change_password, name='change_password'),
 
     path('select_company/', views.search_company, name='select_company'),
     path('service_form/<int:company_id>', views.handle_service, name='service_form'),

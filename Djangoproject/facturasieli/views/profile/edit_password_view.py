@@ -49,7 +49,7 @@ def reset_password(request, profile_id):
         return HttpResponseRedirect(reverse('facturasieli:index'))
 
     if request.method == 'POST':
-        form = ResetPasswordForm(request.POST)
+        form = ResetPasswordForm(request,request.POST)
         if form.is_valid():
             new_pwd = form.cleaned_data['password1']
             profile.set_password(new_pwd)
@@ -57,7 +57,7 @@ def reset_password(request, profile_id):
             messages.success(request, 'Password successfully updated.')
             return HttpResponseRedirect(reverse('facturasieli:index'))
     else:
-        form = ResetPasswordForm()
+        form = ResetPasswordForm(request)
 
     context = { 'form': form, 'profile': profile }
     return render(request, 'facturasieli/profile/reset_password.html', context)
