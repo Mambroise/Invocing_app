@@ -5,7 +5,7 @@
 # Author : Brice
 # ---------------------------------------------------------------------------
 
-from .edit_profile_view import edit_profile
+from .edit_profile_view import edit_profile,change_password
 from .edit_company_view import edit_company
 from .public_profile_view import public_profile
 from .edit_password_view import account_check,reset_password

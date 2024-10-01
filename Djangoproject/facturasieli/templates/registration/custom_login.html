@@ -28,7 +28,6 @@
         <div class="border-top pt-5">
             <form method="post" action="{% url 'facturasieli:custom_log_in' %}">
                 {% csrf_token %}
-                <div class="w-75 m-auto">
                     <p>{{ form.username.errors }}</p>
                     <div class="d-flex justify-content-between">
                         <strong>{{ form.username.label }}:</strong>
@@ -36,16 +35,15 @@
                     </div>
                     <p>{{ form.password.errors }}</p>
                     <div class="d-flex justify-content-between">
-                        <strong>{{ form.password.label }}:</strong>
+                        <strong class="me-4">{{ form.password.label }}:</strong>
                         <p>{{ form.password }}</p>
                     </div>
                     <button class="btn btn-warning" type="submit">{% translate 'Sign in' %}</button>
                     <a class="float-end neutralLink" href="{% url 'facturasieli:account_check' %}"><i>{% translate 'I forgot my password' %}</i></a>
-                </div>
             </form>
             <br />
             <br />
-            <h2>{% translate 'You are not registered yet?' %}</h2>
+            <h2>{% translate 'Not registered yet?' %}</h2>
             <a href="{% url 'facturasieli:register' %}" class="btn btn-outline-warning">👤  {% translate 'Create my account' %}</a>
         </div>
     </div>

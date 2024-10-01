@@ -2,10 +2,8 @@
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
 # File   : facturasieli/views/profile/edit_profile_view.py
-# Author : Brice
+# Author : Morice
 # ---------------------------------------------------------------------------
-
-import os
 
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render,redirect
@@ -13,8 +11,9 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
-from facturasieli.forms import EditProfileForm
+from facturasieli.forms import EditProfileForm,ResetPasswordForm
 from facturasieli.services.notification_service import account_modified
+from facturasieli.models import Profile
 
 def edit_profile(request: HttpRequest):
     if not request.user.is_authenticated:
@@ -23,7 +22,7 @@ def edit_profile(request: HttpRequest):
     profile = request.profile
 
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, request.FILES, instance=profile, user = request.user)
+        form = EditProfileForm(request.POST, instance=profile, user = request.user)
         if form.is_valid():
             try:
                 request.user.last_name = request.POST.get('last_name', '')
@@ -32,6 +31,8 @@ def edit_profile(request: HttpRequest):
                 request.user.save() 
 
                 messages.success(request, _('Your profile has successfully been updated'))
+
+                # sending email and notification to notif change
                 account_modified(request, request.profile)
             except:
                 messages.error(request, _('Your profile upadte has failed, please try again'))
@@ -48,5 +49,35 @@ def edit_profile(request: HttpRequest):
     return render(request, 'facturasieli/profile/edit_profile.html', context)
 
 
+def change_password(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
+    
+    if request.method == 'POST':
+        form = ResetPasswordForm(request,request.POST)
+        if form.is_valid():
+            profile = request.profile
+            new_pwd = form.cleaned_data.get('password1')
+            profile.set_password(new_pwd)
+            profile.save()
 
+            test = Profile.objects.get(pk=request.profile.id)
+            print(test.password,'=========')
 
+            messages.success(request, _('Your password has successfully been updated'))
+            # sending email and notification to notif change
+            account_modified(request, request.profile)
+
+            url = reverse('facturasieli:edit_profile')
+            return redirect(url)
+        else:
+            messages.error(request, _('Your password upadte has failed, please try again'))
+
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f'{field}: {error}')
+
+    form = ResetPasswordForm(request)
+    context = {'form': form}
+
+    return render(request, 'facturasieli/profile/reset_password.html', context)

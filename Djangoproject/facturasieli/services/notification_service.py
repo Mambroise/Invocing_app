@@ -15,7 +15,7 @@ from facturasieli.services.send_email import send_email
 
 # all notification messages
 Welcome_message = _('Thank you for registering and welcome to your new invoicing app')
-account_modified_message = _('Modification successfully updated')
+account_modified_message = _('Account successfully updated')
 invoice_submitted_message = _("Invoice submitted for service:")
 invoice_updated_message = _("Invoice modified for service:")
 invoice_deleted_message = _("Invoice deleted for service:")
