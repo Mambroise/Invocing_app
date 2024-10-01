@@ -13,6 +13,7 @@ from django.contrib import messages
 
 from facturasieli.forms import EditProfileForm,ResetPasswordForm
 from facturasieli.services.notification_service import account_modified
+from facturasieli.models import Profile
 
 def edit_profile(request: HttpRequest):
     if not request.user.is_authenticated:
@@ -60,12 +61,21 @@ def change_password(request):
             profile.set_password(new_pwd)
             profile.save()
 
+            test = Profile.objects.get(pk=request.profile.id)
+            print(test.password,'=========')
+
             messages.success(request, _('Your password has successfully been updated'))
+            # sending email and notification to notif change
+            account_modified(request, request.profile)
 
             url = reverse('facturasieli:edit_profile')
             return redirect(url)
         else:
             messages.error(request, _('Your password upadte has failed, please try again'))
+
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f'{field}: {error}')
 
     form = ResetPasswordForm(request)
     context = {'form': form}
