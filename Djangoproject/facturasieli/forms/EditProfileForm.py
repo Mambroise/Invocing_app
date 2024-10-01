@@ -22,7 +22,7 @@ class EditProfileForm(forms.ModelForm):
         
         # if user role == Company Manager or Admin, role is added to the form
         if self.user and self.user.has_role(['Admin']):
-            self.fields['role'] = forms.ModelMultipleChoiceField(queryset=Role.objects.filter(id__in=[1,2,3]), required=False)
+            self.fields['role'] = forms.ModelMultipleChoiceField(queryset=Role.objects.filter(id__in=[1,2,3]), required=True)
 
     def save(self, commit=True):
         profile = super(EditProfileForm, self).save(commit=False)
