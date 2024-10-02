@@ -17,7 +17,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from facturasieli.forms.InvoiceForm import InvoiceForm
 from facturasieli.models import Service,Invoice
-from facturasieli.services.notification_service import invoice_submitted,invoice_updated,invoice_deleted
+from facturasieli.services.notification_service import invoice_submitted,invoice_updated,invoice_deleted,invoice_paid
 from facturasieli.services.generate_PDF import generate_pdf_invoice
 
 logger = logging.getLogger(__name__)
@@ -128,10 +128,19 @@ def invoice_paid(request,service_id):
     invoice = service.invoice
 
     if invoice.status == '2':
-        invoice.status = '4'
-        invoice.save()
 
-        service.status = Service.TERMINE
+        try:
+            invoice.status = '4'
+            invoice.save()
+
+            service.status = Service.TERMINE
+            service()
+
+            invoice_paid(request, request.profile.id)
+            messages.success(request,_('Invoice status changed. An email has been sent to the client'))
+        except Exception as e:
+            messages.error(request,_('Invoice status cannot be changed: %s' % str(e)))
+
     else:
         messages.error(request, _('Invoice must be verified before being paid'))
         
