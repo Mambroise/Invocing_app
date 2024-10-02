@@ -29,11 +29,10 @@ function activer_tab(id_elt){
         $( "a#nav-notif-sended-tab" ).attr( "aria-selected", true );
         $( "a#nav-notif-sended-tab" ).toggleClass("active", true);
         $("div#nav-notif-sended").toggleClass("show active", true);
-
-        // save the active tab id in local storage
-        localStorage.setItem('activeTab', id_elt);
-        
     }
+    
+    // save the active tab id in local storage
+    localStorage.setItem('activeTab', id_elt);
 
 }
 

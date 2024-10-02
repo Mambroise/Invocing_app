@@ -27,6 +27,7 @@ def invoice_view(request, service_id):
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
     service = get_object_or_404(Service, id=service_id)
+    service.status = Service.TERMINE
 
     if request.method == 'POST':
         form = InvoiceForm(request.POST, request.FILES)

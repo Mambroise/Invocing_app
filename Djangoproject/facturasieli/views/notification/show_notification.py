@@ -37,7 +37,7 @@ def handle_open_notification(request: HttpRequest, notification_id):
     notification.is_read_timestamp = timezone.now() 
     notification.save()
 
-    # call the middleware to update undead notification count
+    # call the middleware to update unread notification count
     NotificationMiddleware(lambda req: None).__call__(request)
     
     context = get_user_notification_pagination(request)
@@ -61,7 +61,7 @@ def get_user_notification_pagination(request):
     profil_user = get_object_or_404(Profile, email= user_email )
 
     # paginate received notifications by batches of 15
-    notifications_received_list = Notification.objects.filter(company_receiver=profil_user.company)
+    notifications_received_list = Notification.objects.filter(company_receiver=profil_user.company).order_by('-send_at')
     paginator_received_notifs = Paginator(notifications_received_list,15)
 
     # get the request attribute page number and select corresponding page
@@ -75,7 +75,7 @@ def get_user_notification_pagination(request):
         notifications_received = paginator_received_notifs.page(paginator_received_notifs.num_pages)
 
     # paginate sent notifications by batches of 15
-    notifications_sent_list = Notification.objects.filter(company_sender=profil_user.company)
+    notifications_sent_list = Notification.objects.filter(company_sender=profil_user.company).order_by('-send_at')
     paginator_sent_notifs = Paginator(notifications_sent_list,15)
 
     # get the request attribute page number and select corresponding page
