@@ -19,8 +19,8 @@ def display_service(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
 
-    client_services = Service.objects.filter(company_client=request.profile.company.id)
-    provider_services = Service.objects.filter(company_provider=request.profile.company.id)
+    client_services = Service.objects.filter(company_client=request.profile.company.id).order_by('-issue_date')
+    provider_services = Service.objects.filter(company_provider=request.profile.company.id).order_by('-issue_date')
 
     if not client_services and not provider_services:
         return HttpResponseRedirect(reverse('facturasieli:select_company'))

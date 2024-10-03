@@ -33,17 +33,17 @@
                         <p>{{ form.last_name }}</p>
                     </div>
                     <strong>{{ form.role.label }}:</strong>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between pt-1">
                         {% for checkbox in form.role %}
-                        <div class="border rounded p-2 role-item">
+                        <div class="border rounded py-3 px-4 role-item">
                             <div class="d-flex justify-content-center">
                                 <span>{{ checkbox.tag }}</span> 
                             </div>
                             <p class="text-center fw-bold">{{ checkbox.choice_label }}</p>
                             <hr>
-                            {% if checkbox.choice_label == 'Provider' %}
+                            {% if checkbox.data.value == 2 %}
                             <small>{% translate 'The service provider offers its services to other companies but does not intend to use the services of another. The user will not be able to make transfers to another company.' %}</small>
-                            {% elif checkbox.choice_label == 'Company manager' %}
+                            {% elif checkbox.data.value == 3 %}
                             <small>{% translate 'The Company Manager has access to create service reports, generate invoices, and manage payment settlements.' %}</small>
                             {% endif %}
                         </div>
