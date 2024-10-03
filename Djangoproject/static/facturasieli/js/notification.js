@@ -21,20 +21,42 @@ function activer_tab(id_elt){
         $( "a#nav-notif-sended-tab" ).toggleClass("active", false);
         $("div#nav-notif-sended").toggleClass("show active", false);
         
+        localStorage.setItem('activeSentPage',1);  // Optional: reset page on tab switch
+        var currentPageId = localStorage.getItem('activeRecievedPage')
+        activer_page(currentPageId)
     }else{
         $( "a#nav-notif-received-tab" ).attr( "aria-selected", false );
         $( "a#nav-notif-received-tab" ).toggleClass("active", false);
         $("div#nav-notif-received").toggleClass("show active", false);
-
+        
         $( "a#nav-notif-sended-tab" ).attr( "aria-selected", true );
         $( "a#nav-notif-sended-tab" ).toggleClass("active", true);
         $("div#nav-notif-sended").toggleClass("show active", true);
+        localStorage.setItem('activeRecievedPage',1);  // Optional: reset page on tab switch
+        var currentPageId = localStorage.getItem('activeSentPage')
+        activer_page(currentPageId)
     }
-    
+
     // save the active tab id in local storage
     localStorage.setItem('activeTab', id_elt);
-
 }
+
+
+// Event listener to save the current page in local storage when a pagination button is clicked
+$(document).on('click', '.page-link', function() {
+    console.log('ca clique sur le bon lien');
+    
+    var page = $(this).attr('href'); // Get the page number from the button
+    var pageValue = $(this).text().trim()
+    console.log(page);
+    if (page.includes('page_sended')){
+
+        localStorage.setItem('activeSentPage', pageValue); // Store the current page in local storage
+    } else {
+        localStorage.setItem('activeRecievedPage', pageValue); // Store the current page in local storage
+    }
+    
+});
 
 //load the active object form localstorage if exists
 document.addEventListener('DOMContentLoaded', function(){
