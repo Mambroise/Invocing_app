@@ -2,7 +2,7 @@
 #                    F a c t u r a S i e l i   ( 2 0 2 4 )
 # ---------------------------------------------------------------------------
 # File   : facturasieli/services/notification_service.py
-# Author : Arnaud
+# Author : Morice
 # ---------------------------------------------------------------------------
 
 from datetime import datetime
@@ -115,7 +115,7 @@ def invoice_paid(request, service : Service):
     send_notification(request,notification_type= NotificationType.INVOICE_PAID,
                 service_title= f"{invoice_paid_message} {service.title}.",
                 company_sender_id= request.profile.company_id,
-                company_receiver_id=service.company_provider.id
+                company_receiver_id=service.company_client.id
                 )
     
 #sending notification in-app to the client after creating the invoice

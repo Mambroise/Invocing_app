@@ -136,7 +136,7 @@ def invoice_paid(request,service_id):
             service.status = Service.TERMINE
             service()
 
-            invoice_paid(request, request.profile.id)
+            invoice_paid(request, service)
             messages.success(request,_('Invoice status changed. An email has been sent to the client'))
         except Exception as e:
             messages.error(request,_('Invoice status cannot be changed: %s' % str(e)))
