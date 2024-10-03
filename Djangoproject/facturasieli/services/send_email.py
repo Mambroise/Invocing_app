@@ -61,9 +61,9 @@ def send_email( notification : Notification,receiver_profile : Profile):
     email.send()
 
 def send_password_email(profile:Profile):
-    object_content = _('Facturasieli: reset your password with this link')
+    object_content = _('Easynvoice: reset your password with this link')
     salute = _('Dear')
-    email_content = _('We are happy to annouce that you will have the opportunity to reset your password.')
+    email_content = _('We are happy to announce that you will have the opportunity to reset your password.')
     email_content2 = _('Please select the link below.')
     email_end = _('See you soon!!')
 
@@ -82,7 +82,7 @@ def send_password_email(profile:Profile):
 
     html_reset_password_content = render_to_string('facturasieli/email/reset_password_email.html', email_body)
 
-        # Create the email message
+    # Create the email message
     email = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
     email.attach_alternative(html_reset_password_content, 'text/html')
 
