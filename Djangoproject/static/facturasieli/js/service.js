@@ -26,8 +26,8 @@ function active_service_tab(elt_id) {
         $( "div#home-tab-pane" ).toggleClass('show active', false);
 
         // save the active tab id in local storage
-        localStorage.setItem('active_service', elt_id);
     }
+    localStorage.setItem('active_service', elt_id);
 }
 
 
