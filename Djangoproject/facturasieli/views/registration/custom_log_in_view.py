@@ -20,7 +20,6 @@ from facturasieli.services.twoFA_service.send_otp_email import send_otp_mail
 
 def custom_log_in(request: HttpRequest):
     if request.method == 'GET':
-        print("dans le get de la fonction custom_log_in")
         form = AuthenticationForm()
         return render(request, 'registration/custom_login.html', {'form': form})
     
