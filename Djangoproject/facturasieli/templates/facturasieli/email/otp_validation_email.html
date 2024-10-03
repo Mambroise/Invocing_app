@@ -39,12 +39,12 @@
             text-align: center;
         }
         .fs-2{
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: black;
         }
         .fs-3{
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 700;
             color: black;
         }
@@ -53,12 +53,11 @@
 <body>
     <div class="container">
         <h1 class="text-center">Easynvoice</h1>
-        <p>{{ salute }} {{ user_profile.first_name }}</p>
-        <p>{{ content }}</p>
+        <h2 class="text-center">{{ salute }}</h2>
         <br>
-        <p class="text-center fs-2">{{ content2 }}</p>
+        <p class="text-center fs-2">{{ content }}</p>
         <div class="d-flex-center">
-            <strong class="frame"><a href="http://127.0.0.1:8000/fr/reset_password/{{user_profile.id}}/">{% translate 'Reset password ' %}</a></strong>
+            <strong class="frame">{{ otp }}</strong>
         </div>
         <p class="text-center fs-3">{{ email_end }}</p>
         <br>
