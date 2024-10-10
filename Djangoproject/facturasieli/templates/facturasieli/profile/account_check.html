@@ -26,7 +26,7 @@
     <h2>{% translate 'Please enter your account email:' %}</h2>
     <div class="d-flex justify-content-center mt-4 ">
 
-        <form class="shadow p-5 rounded" method="post" action="{% url 'facturasieli:account_check' %}">
+        <form class="border-top p-5 " method="post" action="{% url 'facturasieli:account_check' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button class="btn btn-warning mt-3" type="submit">{% translate 'Check' %}</button>

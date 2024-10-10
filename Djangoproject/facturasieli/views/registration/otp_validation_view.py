@@ -6,6 +6,7 @@
 # Author : Brice
 # ---------------------------------------------------------------------------
 
+import environ
 from django.contrib.auth import login
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponseRedirect
@@ -16,7 +17,11 @@ from django.utils.translation import gettext_lazy as _
 
 from facturasieli.forms.OTPForm import OTPForm
 from facturasieli.models import OTP
+from facturasieli.services.inpi_authentification import INPIAuthClient
 
+# initialise environment
+env = environ.Env()
+environ.Env.read_env(env_file='.env')
 
 def otp_validation(request: HttpRequest):
     if request.method == 'GET':
@@ -37,6 +42,12 @@ def otp_validation(request: HttpRequest):
     if otp_instance:
         if otp_instance.expiration_timestamp > timezone.now():
             login(request, otp_instance.profile)
+            if 'inpi_client' not in request.session:
+                username = env('INPI_USERNAME')
+                password = env('INPI_PASSWORD')
+                client = INPIAuthClient(username,password)
+                inpi_token = client .authenticate()
+                request.session['inpi_client'] = inpi_token
             return HttpResponseRedirect(reverse('facturasieli:index'))
         else:
             messages.error(request,_('Time to sign in is out, please retry'))
