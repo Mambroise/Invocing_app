@@ -25,7 +25,7 @@ def custom_log_in(request: HttpRequest):
     
     form = AuthenticationForm(request, data=request.POST)
     if not form.is_valid():
-        messages.error(request,_('Invalid email or password .'))
+        messages.error(request,_('Invalid email or password.'))
         return render(request, 'registration/custom_login.html', {'form': form})
 
     username = form.cleaned_data['username']
