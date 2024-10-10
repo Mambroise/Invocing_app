@@ -4,5 +4,3 @@
 # File   : facturasieli/conf.py
 # Author : Team
 # ---------------------------------------------------------------------------
-
-OTP_VALIDITY_DURATION=30
