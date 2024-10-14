@@ -38,7 +38,6 @@ def search_company(request):
 
     # Remplace request.is_ajax() par la vérification de l'en-tête
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        print('============================================dans le bordel')
         html = render_to_string('facturasieli/service/company_results.html', {"companies": companies})
         return JsonResponse({"table": html})
 
