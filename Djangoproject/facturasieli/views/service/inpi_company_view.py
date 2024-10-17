@@ -5,6 +5,7 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
+from django.shortcuts import render
 from django.http import HttpResponseRedirect,JsonResponse
 from django.urls import reverse
 from django.contrib import messages
@@ -41,3 +42,8 @@ def select_company(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         html = render_to_string('facturasieli/service/company_results.html', {"companies": companies})
         return JsonResponse({"table": html})
+    
+    # Sinon, renvoie la page complète
+    context = {"form": form, "companies": companies}
+
+    return render(request, "facturasieli/service/select_company.html", context)

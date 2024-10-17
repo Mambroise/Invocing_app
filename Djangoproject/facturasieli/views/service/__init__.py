@@ -9,3 +9,4 @@ from .service_form_view import handle_service,update_service
 from .service_view import delete_service, display_service
 from .show_service_view import show_service
 from .select_company_view import search_company
+from .inpi_company_view import select_company

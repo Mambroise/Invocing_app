@@ -32,7 +32,8 @@ urlpatterns = [
     path('reset_password/<int:profile_id>/', views.reset_password, name='reset_password'),
     path('change_password/', views.change_password, name='change_password'),
 
-    path('select_company/', views.search_company, name='select_company'),
+    path('select_company/', views.select_company, name='select_company'),
+    # path('select_company/', views.search_company, name='select_company'),
     path('service_form/<int:company_id>', views.handle_service, name='service_form'),
     path('service/', views.display_service, name='service'),
     path('show_service/<int:service_id>/', views.show_service, name='show_service'),
