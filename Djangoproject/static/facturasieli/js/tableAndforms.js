@@ -79,7 +79,7 @@ function autosubmitionOtp(e,otpForm) {
         }, 500);
     }
 }
-
+// funtion which get company informations from search view thx to ajax and display them in table
 function autosubmitSearch(searchForm) {
     var formData = new FormData(searchForm);
     var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
