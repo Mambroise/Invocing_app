@@ -31,9 +31,18 @@
                 {% csrf_token %}
                 {{form.search}}
             </form>
+            {% if companies %}
+            <p>{{ companies.siret }}</p>
+            <p>{{ companies.name }}</p>
+            <p>{{ companies.address.number }} {{ companies.address.street }}</p>
+            <p>{{ companies.address.zip_code }}</p>
+            <p>{{ companies.address.city }}</p>
+            <p></p>
+            {% else %}
             <div id="company-results">  <!-- ajax results container -->
                 {% include 'facturasieli/service/company_results.html' %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -14,12 +14,14 @@ from django.template.loader import render_to_string
 
 from facturasieli.forms import SearchForm
 from facturasieli.services.inpi_company_search import INPICompanySearch
+from facturasieli.services.create_company import create_company_from_api_data
+
 
 def select_company(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
-    companies = []
+    companies = None
     
     if 'inpi_client' not in request.session:
         messages.error(request, _('A problem occured, please sign in again'))
@@ -32,9 +34,11 @@ def select_company(request):
         if form.is_valid():
             siren = form.cleaned_data['search']
             try:
-                companies = client.search_by_siren(siren)
-                print(companies)
-            except:
+                data = client.search_by_siren(siren)
+                company_data = data[0]
+                companies=create_company_from_api_data(company_data)
+            except Exception as e:
+
                 companies = None
     else:
         form = SearchForm()
