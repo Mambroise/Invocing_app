@@ -39,7 +39,7 @@ class INPIAuthClient:
             if self.token:
                 return self.token
             else:
-                raise Exception("Authentification Fialaed: No token in response.")
+                raise Exception("Authentification Failed: No token in response.")
             
         except requests.RequestException as e:
             raise Exception(f"authentification error: {e}")
