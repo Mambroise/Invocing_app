@@ -37,7 +37,7 @@ def select_company(request):
                 data = client.search_by_siren(siren)
                 company_data = data[0]
                 print(company_data)
-                companies=create_company_from_api_data(company_data)
+                companies=create_company_from_api_data(request,company_data)
             except Exception as e:
                 print(e)
                 companies = None
