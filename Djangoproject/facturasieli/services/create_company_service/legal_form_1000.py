@@ -15,7 +15,7 @@ def create_company_1000(data):
     siret = data['formality']['siren'] + data_personne_physique['identite']['entreprise']['nicSiege']
     
     name = get_company_name(data)
-    activity = data_personne_physique['etablissementPrincipal']['activites'][0]['formeExercice']
+    activity = data_personne_physique['etablissementPrincipal']['activites'][0].get('formeExercice')
     description = data_personne_physique['etablissementPrincipal']['activites'][0]['descriptionDetaillee']
 
     # address extraction
