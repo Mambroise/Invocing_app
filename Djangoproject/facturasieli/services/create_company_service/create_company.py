@@ -29,7 +29,7 @@ def create_company_from_api_data(request,data):
     ]
 
     sarl_code = ['5720','6550','6530','5480','6540']
-
+    print(data)
     for data_object in data:
       # Extraire les données nécessaires de l'objet API
       legal_form = data_object['formality']['content']['natureCreation']['formeJuridique']
@@ -39,19 +39,22 @@ def create_company_from_api_data(request,data):
          company_1000 = create_company_1000(data_object)
          company.append(company_1000)
       elif legal_form == "5499": # Autre societe civile
-         print('555555544444499999999999999999')
+         print(data_object)
+         print('Dans la 5499')
          company_5499 = create_company_5499(data_object)
          company.append(company_5499)
       elif legal_form in sarl_code: # SARL
+         print(data_object)
          messages.warning(request,_('The companies with this legal structure are not compatible with the application at the moment.'))
       elif legal_form == "5480": # SAS
-         print('555444444888000000')
+         print(data_object)
+         print('Dans le 5480')
          messages.warning(request,_('The companies with this legal structure are not compatible with the application at the moment.'))    
       elif legal_form == "5710": # SA
-         print('55557777777711111100000')
-         messages.warning(request,_('The companies with this legal structure are not compatible with the application at the moment.'))    
-         #company = create_company_5710(data)
+         company_5410 = create_company_5710(data_object)
+         company.append(company_5410)
       elif legal_form == "5760": # SCI
+         print(data_object)
          pass
       elif legal_form == "5720": # SCP
          pass

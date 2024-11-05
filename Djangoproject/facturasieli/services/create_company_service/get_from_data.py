@@ -47,3 +47,6 @@ def get_company_name (data):
             name = _('Not determined')
 
     return name
+
+def get_companies_from_list(data):
+    return None
