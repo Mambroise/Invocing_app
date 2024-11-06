@@ -16,7 +16,7 @@ def create_company_1000(data):
     
     name = get_company_name(data)
     activity = data_personne_physique['etablissementPrincipal']['activites'][0].get('formeExercice')
-    description = data_personne_physique['etablissementPrincipal']['activites'][0]['descriptionDetaillee']
+    description = data_personne_physique['etablissementPrincipal']['activites'][0].get('descriptionDetaillee')
 
     # address extraction
     address_data = data_personne_physique['etablissementPrincipal']['adresse']

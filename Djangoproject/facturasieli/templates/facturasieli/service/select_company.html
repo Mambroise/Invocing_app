@@ -39,7 +39,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Activity</th>
                     <th scope="col">Description</th>
-                    <th scope="col">city</th>
+                    <th scope="col">City</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
                     <td>{{ company.name }}</td>
                     <td>{{ company.activity }}</td>
                     <td>{{ company.description }}</td>
-                    <td>@{{ companies.address.city }}</td>
+                    <td>{{ company.address.city }}</td>
                   </tr>
                     {% endfor %}
                 </tbody>
