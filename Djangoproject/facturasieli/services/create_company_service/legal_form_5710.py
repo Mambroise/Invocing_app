@@ -10,6 +10,8 @@ from facturasieli.services.create_company_service.get_from_data import get_addre
 from django.utils.translation import gettext_lazy as _
 
 def create_company_5710(data):
+
+    companies = []
     # extract data from api json object
     data_personne_morale = data['formality']['content']['personneMorale']
 
@@ -25,12 +27,7 @@ def create_company_5710(data):
         address_data = data_personne_morale['etablissementPrincipal'].get('adresse')
         address = get_address(address_data)
 
-    if len(data_personne_morale['autresEtablissements']) >1:
-        companies_data = data_personne_morale['autresEtablissements']
-        get_companies_from_list(companies_data)
-        print("superieur à 1!!!!!!!!!!!!!!!!")
-    
-    # Créer l'objet Company
+    # Create Company object 
     company = Company(
         siret=siret,
         name=name,
@@ -38,6 +35,13 @@ def create_company_5710(data):
         description=description,
         address=address
     )
+    companies.append(company)
+
+    if len(data_personne_morale['autresEtablissements']) >1:
+        companies_data = data_personne_morale['autresEtablissements']
+        company_list = get_companies_from_list(companies_data)
+
+        companies.extend(company_list)
     
-    return company
+    return companies
 

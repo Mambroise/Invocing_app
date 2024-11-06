@@ -6,7 +6,7 @@
 # ---------------------------------------------------------------------------
 
 from django.utils.translation import gettext_lazy as _
-from facturasieli.models import Address
+from facturasieli.models import Address,Company
 
 def get_address(data):
     
@@ -15,8 +15,9 @@ def get_address(data):
         zip_code=data['codePostal'],
         city=data['commune'],
         number=data.get('numVoie'),
-        street=data['typeVoie']+' '+data['voie']
+        street=(data.get('typeVoie', '') + ' ' + data.get('voie', '')).strip()
     )
+
     if address.number is None:
         address.number = ''
     return address
@@ -49,4 +50,31 @@ def get_company_name (data):
     return name
 
 def get_companies_from_list(data):
-    return None
+    companies = []
+
+    for data_object in data:
+        siret = data_object['descriptionEtablissement'].get('siret')
+        name = data_object['descriptionEtablissement'].get('enseigne')
+        if name == None:
+            name = ''
+
+        activity = data_object['activites'][0].get('formeExercice')
+
+
+        description = data_object['activites'][0].get('descriptionDetaillee')
+
+        address_data = data_object['adresse']
+        address = get_address(address_data)
+        
+        # Create Company object 
+        company = Company(
+            siret=siret,
+            name=name,
+            activity=activity,
+            description=description,
+            address=address
+        )
+
+        companies.append(company)
+
+    return companies

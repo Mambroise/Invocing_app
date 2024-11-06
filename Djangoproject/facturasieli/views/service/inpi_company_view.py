@@ -21,7 +21,6 @@ def select_company(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
-    companies = []
     
     if 'inpi_client' not in request.session:
         messages.error(request, _('A problem occured, please sign in again'))
@@ -36,7 +35,8 @@ def select_company(request):
             try:
                 data = client.search_by_siren(siren)
                 company_data = data
-                companies=create_company_from_api_data(request,company_data)
+                companies = create_company_from_api_data(request,company_data)
+
             except Exception as e:
                 print(e)
                 companies = []
