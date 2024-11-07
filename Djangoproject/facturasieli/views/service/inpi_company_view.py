@@ -21,7 +21,7 @@ def select_company(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
-    
+    companies = []
     if 'inpi_client' not in request.session:
         messages.error(request, _('A problem occured, please sign in again'))
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))

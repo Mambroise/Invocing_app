@@ -17,7 +17,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     path('register/', views.register, name='register'),
-    path('register2/', views.register_company_address, name='register2'),
+    path('register2/', views.select_company, name='register2'),
 
     path('custom_login/', views.custom_log_in, name='custom_log_in'),
     path('otp_validation/', views.otp_validation, name='otp_validation'),
