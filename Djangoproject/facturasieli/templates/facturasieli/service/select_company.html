@@ -40,6 +40,7 @@
                     <th scope="col">Activity</th>
                     <th scope="col">Description</th>
                     <th scope="col">City</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,6 +51,20 @@
                     <td>{{ company.activity }}</td>
                     <td>{{ company.description }}</td>
                     <td>{{ company.address.city }}</td>
+                    <td>
+                        <form method="POST" action="{}">
+                            <input type="hidden" name="siret" value="{{ company.siret }}">
+                            <input type="hidden" name="name" value="{{ company.name }}">
+                            <input type="hidden" name="activity" value="{{ company.activity }}">
+                            <input type="hidden" name="description" value="{{ company.description }}">
+                            <input type="hidden" name="address" value='{{ company.address.number }}'>
+                            <!-- <input type="hidden" name="address" value='{{ company.address.addings }}'> -->
+                            <input type="hidden" name="address" value='{{ company.address.street }}'>
+                            <input type="hidden" name="address" value='{{ company.address.city }}'>
+                            <input type="hidden" name="address" value='{{ company.address.country }}'>
+                            <button type="submit" class="btn btn-primary">{% translate 'Select' %}</button>
+                        </form>
+                    </td>
                   </tr>
                     {% endfor %}
                 </tbody>
