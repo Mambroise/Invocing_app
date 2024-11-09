@@ -46,7 +46,7 @@ def otp_validation(request: HttpRequest):
                 username = env('INPI_USERNAME')
                 password = env('INPI_PASSWORD')
                 client = INPIAuthClient(username,password)
-                inpi_token = client .authenticate()
+                inpi_token = client.authenticate()
                 request.session['inpi_client'] = inpi_token
             return HttpResponseRedirect(reverse('facturasieli:index'))
         else:

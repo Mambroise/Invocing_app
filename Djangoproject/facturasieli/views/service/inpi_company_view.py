@@ -23,6 +23,7 @@ def select_company(request):
     
     companies = []
     if 'inpi_client' not in request.session:
+
         messages.error(request, _('A problem occured, please sign in again'))
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
