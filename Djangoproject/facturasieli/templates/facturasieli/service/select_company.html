@@ -52,7 +52,8 @@
                     <td>{{ company.description }}</td>
                     <td>{{ company.address.city }}</td>
                     <td>
-                        <form method="POST" action="{}">
+                        <form method="POST" action="{% url 'facturasieli:register3' %}">
+                            {% csrf_token %}
                             <input type="hidden" name="siret" value="{{ company.siret }}">
                             <input type="hidden" name="name" value="{{ company.name }}">
                             <input type="hidden" name="activity" value="{{ company.activity }}">
