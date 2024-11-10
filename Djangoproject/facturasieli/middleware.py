@@ -63,8 +63,9 @@ class RegistrationCheckMiddleware:
             if request.profile.company is None:
                 registration_url = reverse('facturasieli:register2')
                 logout_url = reverse('facturasieli:log_out')
+                company_register_url = reverse('facturasieli:register3')
                 
-                if request.path != registration_url and request.path != logout_url:
+                if request.path != registration_url and request.path != logout_url and request.path != company_register_url:
                     messages.error(request, _("You have to finish registration before logging in"))
                     return HttpResponseRedirect(registration_url)
 
