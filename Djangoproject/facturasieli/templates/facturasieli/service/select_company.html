@@ -58,11 +58,12 @@
                             <input type="hidden" name="name" value="{{ company.name }}">
                             <input type="hidden" name="activity" value="{{ company.activity }}">
                             <input type="hidden" name="description" value="{{ company.description }}">
-                            <input type="hidden" name="address" value='{{ company.address.number }}'>
+                            <input type="hidden" name="number" value='{{ company.address.number }}'>
                             <!-- <input type="hidden" name="address" value='{{ company.address.addings }}'> -->
-                            <input type="hidden" name="address" value='{{ company.address.street }}'>
-                            <input type="hidden" name="address" value='{{ company.address.city }}'>
-                            <input type="hidden" name="address" value='{{ company.address.country }}'>
+                            <input type="hidden" name="street" value='{{ company.address.street }}'>
+                            <input type="hidden" name="zip_code" value='{{ company.address.zip_code }}'>
+                            <input type="hidden" name="city" value='{{ company.address.city }}'>
+                            <input type="hidden" name="country" value='{{ company.address.country }}'>
                             <button type="submit" class="btn btn-primary">{% translate 'Select' %}</button>
                         </form>
                     </td>

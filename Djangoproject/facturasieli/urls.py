@@ -18,7 +18,8 @@ urlpatterns = [
 
     path('register/', views.register, name='register'),
     path('company_search/', views.select_company, name='register2'),
-    path('register_company/', views.company_address_form, name='register3'),
+    path('register_company_form/', views.company_address_form, name='register3'),
+    path('register_company/', views.register_company_address, name='register4'),
 
     path('custom_login/', views.custom_log_in, name='custom_log_in'),
     path('otp_validation/', views.otp_validation, name='otp_validation'),
