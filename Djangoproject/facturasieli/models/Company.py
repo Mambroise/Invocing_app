@@ -16,7 +16,7 @@ class Company(models.Model):
     siret = models.CharField(_("SIRET"), max_length=15, validators=[validate_siret])
     name = models.CharField(_("Name"), max_length=255)
     activity = models.CharField(_('Activity'), max_length=255,null=True)
-    description = models.CharField(_('Activity'), max_length=255,null=True)
+    description = models.TextField(_('description'), max_length=300,null=True)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='companies')
     phone = models.CharField(_('Phone number'), max_length=15, null=True, validators=[validate_phone_number])
 
