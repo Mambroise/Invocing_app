@@ -45,7 +45,7 @@ def get_company_name (data):
             name = data_personne_morale['identite']['entrepreneur']['denomination']
         except Exception as e:
             print('error create_company_5499:',e)
-            name = _('Not determined')
+            name = _('please determin')
 
     return name
 
