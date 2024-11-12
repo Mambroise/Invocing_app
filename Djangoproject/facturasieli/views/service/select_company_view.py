@@ -13,13 +13,14 @@ from django.template.loader import render_to_string
 from facturasieli.forms.searchForm import SearchForm
 from facturasieli.models import Company
 
-def search_company(request):
+def search_company_in_bdd(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('facturasieli:custom_log_in'))
     
     companies = []
-
+    print("search_company_in_bdd")
     if request.method == 'POST':
+        print("search_company_in_bdd dans le post")
         form = SearchForm(request.POST)
         if form.is_valid():
             search = form.cleaned_data['search']
