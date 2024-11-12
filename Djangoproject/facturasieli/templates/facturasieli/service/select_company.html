@@ -26,52 +26,12 @@
     <div class="d-flex justify-content-center mt-4">
         <div>
             <a href="{% url 'facturasieli:service' %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
-            <form id="search-form" method="post">
+            <form id="search-form" method="post" action="{% url 'facturasieli:select_company' %}">
                 <button type="submit" class="btn btn-success" value="List">{% translate 'Search' %}</button>
                 {% csrf_token %}
                 {{form.search}}
             </form>
             {% if companies %}
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Siret</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Activity</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">City</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {% for company in companies %}
-                  <tr>
-                    <th scope="row">{{ company.siret }}</th>
-                    <td>{{ company.name }}</td>
-                    <td>{{ company.activity }}</td>
-                    <td>{{ company.description }}</td>
-                    <td>{{ company.address.city }}</td>
-                    <td>
-                        <form method="POST" action="{% url 'facturasieli:register3' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="siret" value="{{ company.siret }}">
-                            <input type="hidden" name="name" value="{{ company.name }}">
-                            <input type="hidden" name="activity" value="{{ company.activity }}">
-                            <input type="hidden" name="description" value="{{ company.description }}">
-                            <input type="hidden" name="number" value='{{ company.address.number }}'>
-                            <!-- <input type="hidden" name="address" value='{{ company.address.addings }}'> -->
-                            <input type="hidden" name="street" value='{{ company.address.street }}'>
-                            <input type="hidden" name="zip_code" value='{{ company.address.zip_code }}'>
-                            <input type="hidden" name="city" value='{{ company.address.city }}'>
-                            <input type="hidden" name="country" value='{{ company.address.country }}'>
-                            <button type="submit" class="btn btn-primary">{% translate 'Select' %}</button>
-                        </form>
-                    </td>
-                  </tr>
-                    {% endfor %}
-                </tbody>
-              </table>
-            {% else %}
             <div id="company-results">  <!-- ajax results container -->
                 {% include 'facturasieli/service/company_results.html' %}
             </div>

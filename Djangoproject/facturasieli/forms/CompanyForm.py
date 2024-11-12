@@ -35,7 +35,11 @@ class CompanyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['description'].widget.attrs.update({'style': 'padding: 5px;'})
-        readonly_fields = ['siret', 'name', 'activity', 'description']
+        names_to_determin = ['please determin', 'A déterminer']
+        if self.fields['name'] not in names_to_determin:
+            readonly_fields = ['siret', 'name', 'activity', 'description']
+        else:
+            readonly_fields = ['siret', 'activity', 'description']
         
         for field_name in readonly_fields:
             self.fields[field_name].widget.attrs['readonly'] = True

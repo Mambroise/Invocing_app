@@ -51,4 +51,4 @@ def select_company(request):
     # Sinon, renvoie la page complète
     context = {"form": form, "companies": companies}
 
-    return render(request, "facturasieli/service/select_company.html", context)
+    return render(request, "registration/select_company.html", context)
