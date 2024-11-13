@@ -32,9 +32,10 @@ def select_company(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            siren = form.cleaned_data['search']
+            search = form.cleaned_data['search']
             try:
-                data = client.search_by_siren(siren)
+                data = client.search_by_siren_or_name(search)
+                print(data)
                 company_data = data
                 companies = create_company_from_api_data(request,company_data)
 

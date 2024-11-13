@@ -31,5 +31,5 @@ def create_company_1000(data):
         address=address
     )
     
-    return company
+    return [company]
 
