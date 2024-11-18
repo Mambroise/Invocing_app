@@ -12,7 +12,7 @@ def create_company_1000(data):
     # extract data form api json object
     data_personne_physique = data['formality']['content']['personnePhysique']
 
-    siret = data['formality']['siren'] + data_personne_physique['identite']['entreprise']['nicSiege']
+    siret = data['formality'].get('siren') + data_personne_physique['identite']['entreprise']['nicSiege']
     
     name = get_company_name(data)
     activity = data_personne_physique['etablissementPrincipal']['activites'][0].get('formeExercice')
@@ -31,5 +31,5 @@ def create_company_1000(data):
         address=address
     )
     
-    return company
+    return [company]
 

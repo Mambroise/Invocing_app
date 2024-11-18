@@ -28,7 +28,7 @@ def create_company_from_api_data(request,data):
    "1530"   # Auto-entrepreneur libéral
     ]
 
-    sarl_code = ['5720','6550','6530','5480','6540']
+    sarl_code = ['5720','6550','6530','5480','6540'] # '2110' à ajouter mais objet différent (tester avec fossil)
 
     for data_object in data:
       # Extraire les données nécessaires de l'objet API

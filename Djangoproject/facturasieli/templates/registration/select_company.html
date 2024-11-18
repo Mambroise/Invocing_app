@@ -25,9 +25,9 @@
     <h3 class="my-5">{% translate 'Company selection' %}</h3>
     <div class="d-flex justify-content-center mt-4">
         <div>
-            <a href="{% url 'facturasieli:service' %}" class="btn btn-warning mb-4">{% translate 'Back' %}</a>
+            <a href="{% url 'facturasieli:service' %}" class="btn btn-outline-dark mb-4">{% translate 'Back' %}</a>
             <form method="post">
-                <button type="submit" class="btn btn-success" value="List">{% translate 'Search' %}</button>
+                <button type="submit" class="btn btn-primary" value="List">{% translate 'Search' %}</button>
                 {% csrf_token %}
                 {{form.search}}
             </form>

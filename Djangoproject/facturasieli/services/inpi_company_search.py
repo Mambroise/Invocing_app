@@ -6,27 +6,41 @@
 # ---------------------------------------------------------------------------
 
 import requests
-
 from .inpi_authentification import INPIAuthClient
 
 class INPICompanySearch:
-    SEARCH_URL = "/api/companies"  
 
     def __init__(self, token):
         self.token = token
 
-    def search_by_siren(self, siren):
-        url = f"{INPIAuthClient.BASE_URL}{self.SEARCH_URL}"
+    def search_by_siren_or_name(self, search):
+        search_url= ''
+        # check siren validity (9numbers)
+        if search.isdigit() and len(search) == 9:
+            params = {"siren[]": search}
+            search_url = "/api/companies" 
+        else:
+            params = {"name": search}
+            search_url = "/api/companies?companiesNames"  
+
+
+        """
+        Effectue une recherche d'entreprise soit par SIREN, soit par nom.
+        
+        :param search: numéro SIREN ou nom de société
+        :return: données JSON de l'API
+        """
+        url = f"{INPIAuthClient.BASE_URL}{search_url}"
         headers = {
             "Authorization": f"Bearer {self.token}",
             "Content-Type": "application/json",
         }
-        params = {"siren[]": siren}  # Requête avec filtre par numéro SIREN
+
 
         try:
             response = requests.get(url, headers=headers, params=params)
-            response.raise_for_status()  # Vérifie si la requête a échoué
-            return response.json()  # Retourne les données de l'entreprise
+            response.raise_for_status()  # Lève une exception pour les erreurs HTTP
+            return response.json()
 
         except requests.RequestException as e:
-            raise Exception(f"Erreur de recherche de société: {e}")
+            raise Exception(f"Erreur de recherche de société: {e}, Détails: {response.text if response else 'Aucune réponse'}")
