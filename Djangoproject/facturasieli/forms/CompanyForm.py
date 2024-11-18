@@ -32,9 +32,10 @@ class CompanyForm(forms.ModelForm):
             }
         }
         
+    # fields css  
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['description'].widget.attrs.update({'style': 'padding: 5px;'})
+        
         names_to_determin = ['please determin', 'A déterminer']
         if self.fields['name'] not in names_to_determin:
             readonly_fields = ['siret', 'name', 'activity', 'description']
@@ -42,4 +43,20 @@ class CompanyForm(forms.ModelForm):
             readonly_fields = ['siret', 'activity', 'description']
         
         for field_name in readonly_fields:
+            self.fields[field_name].widget.attrs.update({
+                'style': (
+                'padding: 5px; '
+                'border-radius: 5px; '
+                'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                )
+            })
             self.fields[field_name].widget.attrs['readonly'] = True
+
+            self.fields['phone'].widget.attrs.update({
+                'style': (
+                'padding: 5px; '
+                'border-radius: 5px; '
+                'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                )
+            })
+            

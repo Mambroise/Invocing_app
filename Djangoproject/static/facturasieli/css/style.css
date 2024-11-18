@@ -81,6 +81,13 @@
 }
 
 /********************************** Forms css *****************************************/
+/* Form fields on focus */
+.input-on-focus:focus{
+    transition: 0.5s;
+    box-shadow: 0 0 2px 4px rgba(135, 206, 250, 0.9) !important;
+    outline: none !important;
+}
+
 /* Register page form */
 .role-item{
     width: 180px;

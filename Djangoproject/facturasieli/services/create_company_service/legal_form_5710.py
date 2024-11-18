@@ -15,10 +15,9 @@ def create_company_5710(data):
     # extract data from api json object
     data_personne_morale = data['formality']['content']['personneMorale']
 
-    if data_personne_morale['etablissementPrincipal'] != None:
+    if data_personne_morale.get('etablissementPrincipal') != None:
         siret = data_personne_morale['etablissementPrincipal']['descriptionEtablissement'].get('siret')
 
-    
         name = get_company_name(data)
         activity = data_personne_morale['etablissementPrincipal']['activites'][0].get('formeExercice')
         description = data_personne_morale['etablissementPrincipal']['activites'][0].get('descriptionDetaillee')
