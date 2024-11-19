@@ -28,6 +28,22 @@ class ServiceForm(forms.ModelForm):
             "intervention_end_date" : forms.DateInput(attrs={"type" : "date"})
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        fields = ["title", "description", "intervention_start_date", "intervention_end_date"]
+
+        for field_name in fields:
+            self.fields[field_name].widget.attrs.update({
+                'style': (
+                'padding: 5px;'
+                'border-radius: 5px;'
+                'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9);'
+                'transition: 0.5s;'
+                'margin-left: 20px;'
+                ),
+                'class': 'input-on-focus'
+            })
+
     def clean(self):
         cleaned_data = super().clean()
         intervention_start_date = cleaned_data.get("intervention_start_date")

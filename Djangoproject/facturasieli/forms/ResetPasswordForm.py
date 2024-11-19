@@ -26,6 +26,18 @@ class ResetPasswordForm(forms.Form):
                 max_length=255
             )
 
+        fields = ['password1','password2','old_password']
+        for field_name in fields:
+            self.fields[field_name].widget.attrs.update({
+                'style': (
+                    'padding: 5px; '
+                    'border-radius: 5px; '
+                    'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                    'transition: 0.5s;'
+                ),
+                'class': 'input-on-focus'
+            })
+
     def clean_old_password(self):
         if self.request.user.is_authenticated:
             old_password = self.cleaned_data.get('old_password')

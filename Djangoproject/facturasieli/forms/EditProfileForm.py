@@ -11,9 +11,7 @@ from facturasieli.models import Profile,Role
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = [
-            'avatar', 'email', 'first_name', 'last_name'
-        ]
+        fields = ['avatar', 'email', 'first_name', 'last_name']
     
     # initialise differently the form according to the user role
     def __init__(self, *args, **kwargs):
@@ -36,7 +34,9 @@ class EditProfileForm(forms.ModelForm):
                     'padding: 5px; '
                     'border-radius: 5px; '
                     'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9);'
-                )
+                    'transition: 0.5s;'
+                ),
+                'class': 'input-on-focus'
             })
             if field_name == 'email': 
                 self.fields[field_name].widget.attrs.update({
@@ -46,7 +46,9 @@ class EditProfileForm(forms.ModelForm):
                         'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
                         'width: 240px;'
                         'margin-left: 20px;'
-                    )
+                        'transition: 0.5s;'
+                    ),
+                    'class': 'input-on-focus'
                 })
 
     def save(self, commit=True):

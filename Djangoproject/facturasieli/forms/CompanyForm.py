@@ -5,11 +5,7 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
-from typing import Any, Mapping
 from django import forms
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
 
 from facturasieli.models import Company
@@ -45,18 +41,22 @@ class CompanyForm(forms.ModelForm):
         for field_name in readonly_fields:
             self.fields[field_name].widget.attrs.update({
                 'style': (
-                'padding: 5px; '
-                'border-radius: 5px; '
-                'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
-                )
+                    'padding: 5px; '
+                    'border-radius: 5px; '
+                    'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                    'transition: 0.5s;'
+                ),
+                'class': 'input-on-focus'
             })
             self.fields[field_name].widget.attrs['readonly'] = True
 
             self.fields['phone'].widget.attrs.update({
                 'style': (
-                'padding: 5px; '
-                'border-radius: 5px; '
-                'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
-                )
+                    'padding: 5px; '
+                    'border-radius: 5px; '
+                    'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                    'transition: 0.5s;'
+                ),
+                'class': 'input-on-focus'
             })
             
