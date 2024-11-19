@@ -20,15 +20,16 @@ from facturasieli.services.twoFA_service.send_otp_email import send_otp_mail
  ################# a enlever si otp remise
 from facturasieli.services.inpi_authentification import INPIAuthClient
 ###################################""
+from facturasieli.forms.CustomAuthenticationForm import CustomAuthenticationForm
 
 def custom_log_in(request: HttpRequest):
     if request.method == 'GET':
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
         return render(request, 'registration/custom_login.html', {'form': form})
     
-    form = AuthenticationForm(request, data=request.POST)
+    form = CustomAuthenticationForm(request, data=request.POST)
     if not form.is_valid():
-        messages.error(request,_('Invalid email or password.'))
+        messages.error(request, _('Invalid email or password.'))
         return render(request, 'registration/custom_login.html', {'form': form})
 
     username = form.cleaned_data['username']
