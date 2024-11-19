@@ -28,6 +28,20 @@ class ProfileForm(forms.ModelForm):
         for role in self.fields['role'].queryset:
             translated_name = _(role.role)  
             translated_choices.append((role.id, translated_name))
+
+        # fields css
+        fields = ('email', 'first_name', 'last_name', 'role','password1','password2')
+
+        for field_name in fields:
+            self.fields[field_name].widget.attrs.update({
+                'style': (
+                    'padding: 5px; '
+                    'border-radius: 5px; '
+                    'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                    'transition: 0.5s;'
+                ),
+                'class': 'input-on-focus'
+            })
         
         # creation of variable for i18n in .po file
         provider = _("Provider")
@@ -35,6 +49,7 @@ class ProfileForm(forms.ModelForm):
         Company_Verifier = _("Company Verifier")
 
         self.fields['role'].choices = translated_choices
+        
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

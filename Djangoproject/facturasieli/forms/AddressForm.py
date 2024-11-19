@@ -5,12 +5,8 @@
 # Author : Morice
 # ---------------------------------------------------------------------------
 
-from typing import Any, Mapping
-from django import forms
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
 
+from django import forms
 from facturasieli.models import Address
 
 class AddressForm(forms.ModelForm):
@@ -18,13 +14,43 @@ class AddressForm(forms.ModelForm):
         model = Address
         fields = ['number','street','addings','zip_code','city','country']
 
+    # fields css
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['number'].widget.attrs.update({'style': 'width: 60px;'})
-        self.fields['zip_code'].widget.attrs.update({'style': 'width: 80px;'})
+        fields = ['number','street','addings','zip_code','city','country']
 
-        readonly_fields = ['number','street','addings','zip_code','city','country']
-        for field_name in readonly_fields:
+        for field_name in fields:
+            self.fields[field_name].widget.attrs.update({
+                'style':(
+                    'padding: 5px; '
+                    'border-radius: 5px; '
+                    'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                    'transition: 0.5s;'   
+                ),
+                'class': 'input-on-focus'
+            })
+            if field_name == 'number':
+                self.fields[field_name].widget.attrs.update({
+                'style':(
+                    'padding: 5px; '
+                    'border-radius: 5px; '
+                    'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                    'transition: 0.5s;'
+                    'width: 60px;'   
+                ),
+                'class': 'input-on-focus'
+            })
+            elif field_name == 'zip_code':
+                self.fields[field_name].widget.attrs.update({
+                'style':(
+                    'padding: 5px; '
+                    'border-radius: 5px; '
+                    'box-shadow: 0 0 2px 2px rgba(135, 206, 250, 0.9); '
+                    'transition: 0.5s;'
+                    'width: 80px;'   
+                ),
+                'class': 'input-on-focus'
+            })
             self.fields[field_name].widget.attrs['readonly'] = True
 
         
