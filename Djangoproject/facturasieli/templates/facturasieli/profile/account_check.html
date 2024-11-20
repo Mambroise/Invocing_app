@@ -29,7 +29,7 @@
         <form class="border-top p-5 " method="post" action="{% url 'facturasieli:account_check' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <button class="btn btn-warning mt-3" type="submit">{% translate 'Check' %}</button>
+            <button class="btn btn-btn-primary mt-3" type="submit">{% translate 'Check' %}</button>
         </form>
     </div>
 </div>

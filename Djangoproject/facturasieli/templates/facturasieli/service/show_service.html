@@ -69,10 +69,10 @@
                       {{ service.status }}
                     </strong>
                   {% else %}
-                  <a href="{% url 'facturasieli:update_service' service.id %}" class="btn btn-warning" >{% translate 'Edit' %}
+                  <a href="{% url 'facturasieli:update_service' service.id %}" class="btn btn-primary" >{% translate 'Edit' %}
                   </a>
                   <a href="{% url 'facturasieli:delete_service' service.id %}" 
-                  class="btn btn-danger" 
+                  class="btn btn-outline-danger" 
                   onclick="return confirm(`{% translate 'Do you really want to delete the service' %} ?`)">{% translate 'Delete' %}
                   {% endif %}
                     </a>
@@ -142,7 +142,7 @@
                             {{verif_form.status.label}}
                             {{verif_form.status}}
                           </div>
-                          <button class="btn btn-warning" type="submit">{% translate 'Save' %}</button>
+                          <button class="btn btn-primary" type="submit">{% translate 'Save' %}</button>
                       </div>
                       <div>
                           {{ verif_form.comments.label }}
@@ -257,7 +257,9 @@
                           <img src="{% static 'images/invoiceLucie.png' %}" class="card-img-top" alt="invoice">
                         </div>
                         <p>No invoice registered yet.</p>
-                        <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-warning mb-4">{% translate 'New invoice' %}</a>
+                        <div class="d-grid gap-2">
+                          <a href="{% url 'facturasieli:invoice_form' service.id %}" class="btn btn-primary mb-4">{% translate 'New invoice' %}</a>
+                        </div>
                     </div>
                   {% else %}
                     <div>

@@ -24,10 +24,9 @@
 
 <div class="mt-4">
     <div class="d-flex justify-content-around">
-        <div>
+        <div class="">
             <div class="pe-4 mb-3">
                 <h3 class="mb-3">{% translate 'Your profile:' %}</h3>
-                <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
                 <p><strong>{% translate 'First name: ' %} </strong>{{profile.first_name}}</p>
                 <p><strong>{% translate 'Last name: ' %} </strong>{{profile.last_name}}</p>
                 <p><strong>{% translate 'Email: ' %} </strong>{{profile.email}}</p>
@@ -38,7 +37,7 @@
                     {% endfor %}
                 </p>
                 {% if request.profile.id == profile.id %}
-                    <a class="mt-3 btn btn-warning" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
+                    <a class="mt-3 btn btn-outline-primary" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
                 {% endif %}
             </div>
             <div class="pt-3">
@@ -53,14 +52,14 @@
                 <p><strong>{% translate 'Zipcode: ' %} </strong>{{profile.company.address.zip_code}}</p>
                 <p><strong>{% translate 'City: ' %} </strong>{{profile.company.address.city}} ( {{profile.company.address.country}} )</p>
                 {% if request.profile.id == profile.id %}
-                <a class="mt-3 btn btn-warning" href="{% url 'facturasieli:edit_company' %}">{% translate 'Edit the company' %}</a>
+                <a class="mt-3 btn btn-outline-primary" href="{% url 'facturasieli:edit_company' %}">{% translate 'Edit the company' %}</a>
                 {% endif %}
             </div>
         </div>
         {% if request.profile.id == profile.id %}
         <div>
             <h4 class="mt-2 mb-3"><i>{% translate "I'm the provider" %}</i></h4>
-            <div class="d-flex flex-column p-1 shadow p-3 mb-5 bg-body-tertiary rounded">
+            <div class="d-flex flex-column p-1 p-3 mb-5 bg-body-tertiary rounded custom-shadow">
                 <h3 class="mb-3 text-center">{% translate 'Your activities' %}</h3>
                 <div class="border-bottom">
                     <p class="text-center"><strong>{% translate 'Nbr of services' %}</strong></p>
@@ -82,7 +81,7 @@
                 </div>
             </div>
             <h4 class="mt-2 mb-3"><i>{% translate "I'm the client" %}</i></h4>
-            <div class="d-flex flex-column p-1 shadow p-3 mb-5 bg-body-tertiary rounded">
+            <div class="d-flex flex-column p-1 custom-shadow p-3 mb-5 bg-body-tertiary rounded">
                 <h3 class="mb-3 text-center">{% translate 'Ongoing files' %}</h3>
                 <div class="border-bottom mb-2">
                     <p class="text-center"><strong>{% translate 'Ongoing services' %}</strong></p>

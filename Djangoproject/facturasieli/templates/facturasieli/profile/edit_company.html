@@ -55,7 +55,7 @@
                 <p>{{ address_form.addings.errors }}</p>
                 <div class="d-flex justify-content-between">
                     <strong>{{ address_form.addings.label }}:</strong>
-                    <p>{{ address_form.addings }}</p>
+                    <p class="ms-2">{{ address_form.addings }}</p>
                 </div>
                 <p>{{ address_form.zip_code.errors }}</p>
                 <div class="d-flex justify-content-between">
@@ -72,7 +72,9 @@
                     <strong>{{ address_form.country.label }}:</strong>
                     <p>{{ address_form.country }}</p>
                 </div>
-                <button class="btn btn-outline-warning" type="submit">🔐 {% translate 'Register' %}</button>
+                <div class="d-grid gap-2 my-3">
+                    <button class="btn btn-primary" type="submit">🔐 {% translate 'Register' %}</button>
+                </div>
             </form>
         </div>
     </div>
