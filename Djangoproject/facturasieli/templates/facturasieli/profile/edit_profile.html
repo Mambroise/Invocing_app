@@ -37,9 +37,13 @@
                         <p>{{ form.role }}</p>
                     </div>
                 {% endif %}
-                <a class="float-end neutralLink" href="{% url 'facturasieli:change_password' %}"><i>{% translate 'Change my password' %}</i></a>
-                <button class="btn btn-primary mt-5" type="submit">{% translate 'Save' %}</button>
-                <input type="hidden" name="next" value="{% url 'facturasieli:index' %}" />
+                <div class="d-grid gap-2">
+
+                    <a class="float-end neutralLink" href="{% url 'facturasieli:change_password' %}"><i>{% translate 'Change my password' %}</i></a>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary mt-5" type="submit">{% translate 'Save' %}</button>
+                </div>
             </form>
         </div>
     </div>

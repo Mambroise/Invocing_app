@@ -11,7 +11,7 @@
 {% load i18n %}
 
 {% block content %} 
-<div>
+<div class="my-4">
     <h3 class="my-5">{% if service.invoice %} {% translate 'Invoice number:' %} {{service.invoice.invoice_number}} {% translate 'for service:' %}{% else %}{% translate 'Invoice Form for' %}{% endif %} {{service.title}}</h3>
     <div class="d-flex justify-content-around mt-4 border-top pt-5">
         <div>
@@ -24,7 +24,7 @@
                 <p><strong>{% translate 'Client address:' %}</strong> {{ service.company_client.address }}</p>
             </div>
         </div>
-        <div class="">
+        <div>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div>
@@ -56,7 +56,9 @@
                         <strong>{{ form.attachment.label }}:</strong>
                         <p>{{ form.attachment }}</p>
                     </div>
-                    <button type="submit" class="btn btn-warning">{% if service.invoice %} {% translate 'Update' %}{% else %}{% translate 'Create' %}{% endif %}</button>
+                    <div class="d-grid gap-2 my-3">  
+                        <button type="submit" class="btn btn-primary">{% if service.invoice %} {% translate 'Update' %}{% else %}{% translate 'Create' %}{% endif %}</button>
+                    </div>
                 </div>
             </form>
         </div>
