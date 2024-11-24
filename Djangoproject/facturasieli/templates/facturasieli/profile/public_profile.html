@@ -22,103 +22,108 @@
     </div>
 {% endif %}
 
-<div class="mt-4">
-    <div class="d-flex justify-content-around">
-        <div>
-            <div class="pe-4 mb-3">
-                <h3 class="mb-3">{% translate 'Your profile:' %}</h3>
-                <img src="{{ request.profile.avatar.url }}" width="100px" height="100px" />
-                <p><strong>{% translate 'First name: ' %} </strong>{{profile.first_name}}</p>
-                <p><strong>{% translate 'Last name: ' %} </strong>{{profile.last_name}}</p>
-                <p><strong>{% translate 'Email: ' %} </strong>{{profile.email}}</p>
-                <p><strong>{% translate 'Creation date:' %} </strong>{{profile.creation_date}}</p>
-                <p><strong>{% translate 'Role(s):' %} </strong>
-                    {% for role in profile.role.all %}
-                        {{ role.role }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                {% if request.profile.id == profile.id %}
-                    <a class="mt-3 btn btn-warning" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
-                {% endif %}
+<div class="mt-4 py-4">
+    <!-- first line -->
+    <div class="d-flex justify-content-around mb-4">
+        <!-- Bloc "Your profile" -->
+        <div class="width-40 mx-3 p-3 bg-light border rounded custom-shadow">
+            <h3 class="mb-3">{% translate 'Your profile:' %}</h3>
+            <p class="my-4 fs-4"><strong>{% translate 'Creation date:' %} </strong>{{ profile.creation_date }}</p>
+            <p class="my-4 fs-2 text-center">
+                {{ profile.first_name|capfirst }} {{ profile.last_name|capfirst }}</p>
+            <p class="my-4 fs-3 text-center">{{ profile.email }}</p>
+            <p class="fs-4"><strong>{% translate 'Role(s):' %} </strong>
+                {% for role in profile.role.all %}
+                    {{ role.role }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            {% if request.profile.id == profile.id %}
+                <a class="mt-3 btn btn-outline-primary" href="{% url 'facturasieli:edit_profile' %}">{% translate 'Edit my profile' %}</a>
+            {% endif %}
+        </div>
+
+        <!-- Bloc "I'm a provider" -->
+        <div class="width-40 mx-3 p-3 bg-light border rounded custom-shadow">
+            <h4 class="mb-3"><i>{% translate "I'm the provider" %}</i></h4>
+            <h3 class="mb-3 text-center">{% translate 'Your activities' %}</h3>
+            <div class="border-bottom mb-3">
+                <p class="text-center"><strong>{% translate 'Nbr of services' %}</strong></p>
+                <p class="fs-1 text-center">{{ services_nbr }}</p>
             </div>
-            <div class="pt-3">
-                <h3 class="mb-3">{% translate 'Your company:' %}</h3>
-                <p><strong>{% translate 'Name: ' %} </strong>{{company.name}}</p>
-                <p><strong>{% translate 'Siret: ' %} </strong>{{profile.company.siret}}</p>
-                <p><strong>{% translate 'Phone number: ' %} </strong>{{profile.company.phone}}</p>
-                <p><strong>{% translate 'Number and street: ' %} </strong>{{profile.company.address.number}} {{profile.company.address.street}}</p>
-                {% if profile.company.address.addings %}
-                <p><strong>{% translate 'Addings: ' %} </strong>{{profile.company.address.addings}}</p>
-                {% endif %}
-                <p><strong>{% translate 'Zipcode: ' %} </strong>{{profile.company.address.zip_code}}</p>
-                <p><strong>{% translate 'City: ' %} </strong>{{profile.company.address.city}} ( {{profile.company.address.country}} )</p>
-                {% if request.profile.id == profile.id %}
-                <a class="mt-3 btn btn-warning" href="{% url 'facturasieli:edit_company' %}">{% translate 'Edit the company' %}</a>
-                {% endif %}
+            <div class="d-flex justify-content-around">
+                <div class="border p-2">
+                    <p class="text-center"><strong>{% translate 'Pending invoices' %}</strong></p>
+                    <p class="fs-1 text-center">{{ pending_invoice_nbr }}</p>
+                </div>
+                <div class="border mx-2 p-2">
+                    <p class="text-center"><strong>{% translate 'Invoices to be paid' %}</strong></p>
+                    <p class="fs-1 text-center">{{ accepted_invoice_nbr }}</p>
+                </div>
+                <div class="border p-2">
+                    <p class="text-center"><strong>{% translate 'Paid invoices' %}</strong></p>
+                    <p class="fs-1 text-center">{{ paid_invoice_nbr }}</p>
+                </div>
             </div>
         </div>
-        {% if request.profile.id == profile.id %}
-        <div>
-            <h4 class="mt-2 mb-3"><i>{% translate "I'm the provider" %}</i></h4>
-            <div class="d-flex flex-column p-1 shadow p-3 mb-5 bg-body-tertiary rounded">
-                <h3 class="mb-3 text-center">{% translate 'Your activities' %}</h3>
-                <div class="border-bottom">
-                    <p class="text-center"><strong>{% translate 'Nbr of services' %}</strong></p>
-                    <p class="fs-1 text-center">{{ services_nbr }}</p>
+    </div>
+
+    <!-- second line-->
+    <div class="d-flex justify-content-around">
+        <!-- Bloc "Your company" -->
+        <div class="width-40 mx-3 p-3 bg-light border rounded custom-shadow">
+            <h3 class="mb-3">{% translate 'Your company:' %}</h3>
+            <p class="my-4 fs-4"><strong>{% translate 'Siret: ' %} </strong>{{ profile.company.siret }}</p>
+            <p class=" my-4 fs-2 text-center">{{ company.name }}</p>
+            <p class="my-4 fs-3 text-center">{{ profile.company.phone }}</p>
+            <strong>{% translate 'Address: ' %} </strong>
+            <p class="my-2 fs-3 text-center">{{ profile.company.address.number }} {{ profile.company.address.street }}</p>
+            {% if profile.company.address.addings %}
+                <p class="my-2 fs-3 text-center">{{ profile.company.address.addings }}</p>
+            {% endif %}
+            <p class="my-2 fs-3 text-center">{{ profile.company.address.zip_code }} {{ profile.company.address.city }}</p>
+            <p class="mt-2 mb-4 fs-4 text-center">( {{ profile.company.address.country }} )</p>
+            {% if request.profile.id == profile.id %}
+                <a class="mt-3 btn btn-outline-primary" href="{% url 'facturasieli:edit_company' %}">{% translate 'Edit the company' %}</a>
+            {% endif %}
+        </div>
+
+        <!-- Bloc "I'm the client" -->
+        <div class="width-40 mx-3 p-3 bg-light border rounded custom-shadow">
+            <h4 class="mb-3"><i>{% translate "I'm the client" %}</i></h4>
+            <h3 class="mb-3 text-center">{% translate 'Ongoing files' %}</h3>
+            <div class="border-bottom mb-3">
+                <p class="text-center"><strong>{% translate 'Ongoing services' %}</strong></p>
+                <p class="fs-1 text-center">{{ client_services_nbr }}</p>
+            </div>
+            <div class="d-flex justify-content-around border-bottom m-2 pb-3">
+                <div class="border p-2">
+                    <p class="text-center"><strong>{% translate 'Pending invoices' %}</strong></p>
+                    <p class="fs-1 text-center">{{ pending_invoice_nbr }}</p>
                 </div>
-                <div class="d-flex justify-content-around m-auto">
-                    <div class="border p-1">
-                        <p class="text-center"><strong>{% translate 'pending invoices' %}</strong></p>
-                        <p class="fs-1 text-center">{{ pending_invoice_nbr }}</p>
-                    </div>
-                    <div class="border mx-2 p-1">
-                        <p class="text-center"><strong>{% translate 'invoices to be paid' %}</strong></p>
-                        <p class="fs-1 text-center">{{ accepted_invoice_nbr }}</p>
-                    </div>
-                    <div class="border p-1">
-                        <p class="text-center"><strong>{% translate 'Paid Invoices' %}</strong></p>
-                        <p class="fs-1 text-center">{{ paid_invoice_nbr }}</p>
-                    </div>
+                <div class="border p-2">
+                    <p class="text-center"><strong>{% translate 'Paid invoices' %}</strong></p>
+                    <p class="fs-1 text-center">{{ paid_invoice_nbr }}</p>
                 </div>
             </div>
-            <h4 class="mt-2 mb-3"><i>{% translate "I'm the client" %}</i></h4>
-            <div class="d-flex flex-column p-1 shadow p-3 mb-5 bg-body-tertiary rounded">
-                <h3 class="mb-3 text-center">{% translate 'Ongoing files' %}</h3>
-                <div class="border-bottom mb-2">
-                    <p class="text-center"><strong>{% translate 'Ongoing services' %}</strong></p>
-                    <p class="fs-1 text-center">{{ client_services_nbr }}</p>
-                </div>
-                <div class="d-flex justify-content-around border-bottom m-2 pb-3">
-                    <div class="border p-1">
-                        <p class="text-center"><strong>{% translate 'pending invoices' %}</strong></p>
-                        <p class="fs-1 text-center">{{ pending_invoice_nbr }}</p>
-                    </div>
-                    <div class="border p-1">
-                        <p class="text-center"><strong>{% translate 'Paid Invoices' %}</strong></p>
-                        <p class="fs-1 text-center">{{ paid_invoice_nbr }}</p>
-                    </div>
-                </div>
-                <div class=" mx-2 p-1">
-                    <p class="text-center"><strong>{% translate 'invoices to pay' %}</strong></p>
-                    <table class="table">
-                        <thead>
-                            <th scope="col">{% translate 'Number' %}</th>
-                            <th scope="col">{% translate 'Due date' %}</th>
-                            <th scope="col">{% translate 'Pre-tax price' %}</th>
-                        </thead>
-                        <tbody>
-                            {% for invoice in invoice_to_pay %}
+            <div class="mx-2 p-2">
+                <p class="text-center"><strong>{% translate 'Invoices to pay' %}</strong></p>
+                <table class="table">
+                    <thead>
+                        <th scope="col">{% translate 'Number' %}</th>
+                        <th scope="col">{% translate 'Due date' %}</th>
+                        <th scope="col">{% translate 'Pre-tax price' %}</th>
+                    </thead>
+                    <tbody>
+                        {% for invoice in invoice_to_pay %}
                             <tr>
                                 <td>{{ invoice.invoice_number }}</td>
                                 <td>{{ invoice.due_date }}</td>
                                 <td>{{ invoice.amount_excluding_tax }}</td>
                             </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-                {% endif %}
         </div>
     </div>
 </div>
